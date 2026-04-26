@@ -1,4 +1,5 @@
 export interface Course {
+  id?: string;
   class: string;
   title: string;
   badge: string;

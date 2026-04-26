@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Users } from 'lucide-react';
 import type { Course } from '../../types';
 import { useAuthStore } from '../../store/useAuthStore';
@@ -10,6 +11,7 @@ interface CourseCardProps {
 }
 
 export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = true }) => {
+  const navigate = useNavigate();
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
   const openAuthModal = useAuthStore(state => state.openAuthModal);
   const quantity = useCartStore(state => state.items.find(i => i.courseTitle === course.title)?.quantity || 0);
@@ -52,7 +54,11 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
         <div className="mt-auto space-y-4">
           <div className="flex items-center gap-3">
             {showExplore && (
-              <Button variant="outline" className="flex-1 py-1.5 h-10 text-xs">
+              <Button 
+                variant="outline" 
+                className="flex-1 py-1.5 h-10 text-xs"
+                onClick={() => course.id && navigate(`/batches/${course.id}`)}
+              >
                 EXPLORE
               </Button>
             )}

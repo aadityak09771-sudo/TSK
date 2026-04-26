@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { HeroCarousel } from '../components/common/HeroCarousel';
 import { CourseCard } from '../components/common/CourseCard';
 import { COURSE_DATA } from '../config/courses';
@@ -37,6 +38,7 @@ const ACADEMIC_CLASSES = [
 ];
 
 export const Home: React.FC = () => {
+  const navigate = useNavigate();
   const featuredCourses = COURSE_DATA.filter(c => 
     c.title === 'Class 12th Board Mastery' || 
     c.title === 'Class 11th Foundation Batch' || 
@@ -56,7 +58,10 @@ export const Home: React.FC = () => {
             <h2 className="text-3xl font-black mb-2">Our Core Programs</h2>
             <p className="text-gray-500">Structured curriculums designed to provide maximum clarity</p>
           </div>
-          <button className="text-[var(--color-primary)] font-bold border-b-2 border-[var(--color-primary)] pb-1 hover:text-[var(--color-primary-light)] hover:border-[var(--color-primary-light)] transition-all">
+          <button 
+            onClick={() => navigate('/batches')}
+            className="text-[var(--color-primary)] font-bold border-b-2 border-[var(--color-primary)] pb-1 hover:text-[var(--color-primary-light)] hover:border-[var(--color-primary-light)] transition-all bg-transparent cursor-pointer"
+          >
             View All Courses
           </button>
         </div>

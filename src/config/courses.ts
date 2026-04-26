@@ -9,6 +9,7 @@ export const CLASS_METADATA: Record<string, string[]> = {
 
 export const COURSE_DATA: Course[] = [
   {
+    id: '3',
     class: '12',
     title: 'Class 12th Board Mastery',
     badge: 'ONLINE',
@@ -22,6 +23,7 @@ export const COURSE_DATA: Course[] = [
     image: './assets/images/course.png'
   },
   {
+    id: '3',
     class: '12',
     title: 'Class 12th Physics Crash Course',
     badge: 'RECORDED',
@@ -35,6 +37,7 @@ export const COURSE_DATA: Course[] = [
     image: './assets/images/course.png'
   },
   {
+    id: '2',
     class: '11',
     title: 'Class 11th Foundation Batch',
     badge: 'ONLINE',
@@ -48,6 +51,7 @@ export const COURSE_DATA: Course[] = [
     image: './assets/images/course.png'
   },
   {
+    id: '1',
     class: '10',
     title: 'Class 10th Board Powerpack',
     badge: 'ONLINE',
@@ -61,6 +65,7 @@ export const COURSE_DATA: Course[] = [
     image: './assets/images/course.png'
   },
   {
+    id: '6',
     class: '9',
     title: 'Class 9th Baseline Success',
     badge: 'ONLINE',
