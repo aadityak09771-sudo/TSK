@@ -47,43 +47,6 @@ export const Home: React.FC = () => {
     <div>
       <HeroCarousel />
       
-      {/* Academic Classes Covered */}
-      <section className="py-24 bg-white">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-4 text-gray-900">Academic Classes Covered</h2>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Comprehensive academic programs from Class 9 to 12, designed for CBSE board excellence and competitive exam readiness.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {ACADEMIC_CLASSES.map((cls) => {
-              const Icon = cls.icon;
-              return (
-                <div
-                  key={cls.grade}
-                  className="group relative bg-white border border-gray-100 rounded-3xl p-8 text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden"
-                >
-                  {/* Accent top bar */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-1.5"
-                    style={{ backgroundColor: cls.color }}
-                  />
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: `${cls.color}15`, color: cls.color }}
-                  >
-                    <Icon size={28} />
-                  </div>
-                  <h3 className="text-xl font-black text-gray-900 mb-3">{cls.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{cls.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       <Ecosystem />
 
       {/* Featured Courses */}

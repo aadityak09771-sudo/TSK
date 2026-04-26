@@ -98,6 +98,14 @@ export const Header: React.FC = () => {
             </li>
             <li>
               <Link 
+                to="/batches" 
+                className={`text-sm font-semibold transition-colors hover:text-[var(--color-primary)] ${isActive('/batches') ? 'text-[var(--color-primary)]' : 'text-gray-600'}`}
+              >
+                Batches
+              </Link>
+            </li>
+            <li>
+              <Link 
                 to="/about" 
                 className={`text-sm font-semibold transition-colors hover:text-[var(--color-primary)] ${isActive('/about') ? 'text-[var(--color-primary)]' : 'text-gray-600'}`}
               >
