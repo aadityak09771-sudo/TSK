@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { 
   BookOpen, 
   Gamepad, 
@@ -11,8 +11,10 @@ import {
   ShoppingBag, 
   HelpCircle,
   X,
-  LayoutDashboard
+  LayoutDashboard,
+  LogOut
 } from 'lucide-react';
+import { useAuthStore } from '../../store/useAuthStore';
 
 interface StudentSidebarProps {
   isOpen: boolean;
@@ -30,7 +32,17 @@ interface SidebarSection {
 }
 
 export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSidebar }) => {
+  const logout = useAuthStore(state => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+    if (window.innerWidth < 1024) toggleSidebar();
+  };
+  
   const sections: SidebarSection[] = [
+// ... (keep sections as they are)
     {
       title: 'Learn Online',
       items: [
@@ -112,11 +124,21 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
             ))}
           </nav>
 
-          <div className="mt-8 p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-            <p className="text-xs font-bold text-gray-500 mb-2">Need Help?</p>
-            <p className="text-[10px] text-gray-400 leading-relaxed mb-3">Check our support center for any queries regarding your courses.</p>
-            <button className="w-full py-2 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50 transition-colors">
-              Visit Help Center
+          <div className="mt-8 space-y-4">
+            <div className="p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+              <p className="text-xs font-bold text-gray-500 mb-2">Need Help?</p>
+              <p className="text-[10px] text-gray-400 leading-relaxed mb-3">Check our support center for any queries regarding your courses.</p>
+              <button className="w-full py-2 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50 transition-colors">
+                Visit Help Center
+              </button>
+            </div>
+
+            <button 
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-red-500 hover:bg-red-50 transition-all"
+            >
+              <LogOut size={20} />
+              <span className="text-sm">Log Out</span>
             </button>
           </div>
         </div>

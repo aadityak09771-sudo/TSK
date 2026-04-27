@@ -31,119 +31,159 @@ export const Header: React.FC = () => {
   return (
     <header className="header sticky top-0 z-50 bg-white shadow-sm">
       <div className="container flex items-center justify-between h-20">
-        {/* Brand */}
-        <Logo />
+        {/* Brand & All Categories */}
+        <div className="flex items-center gap-10">
+          <Logo />
 
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-8 list-none m-0 p-0">
-            <li 
-              className="relative"
-              onMouseEnter={() => setShowAllAcategories(true)}
-              onMouseLeave={() => setShowAllAcategories(false)}
-            >
-              <button className="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-[var(--color-primary)] bg-transparent border-none cursor-pointer py-8">
-                All Categories <ChevronDown size={14} className={`transition-transform duration-200 ${showAllAcategories ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {showAllAcategories && (
-                <div className="absolute left-0 top-full -mt-2 pt-2 z-50">
-                  <div className="bg-white shadow-xl rounded-2xl border border-gray-100 overflow-hidden flex min-w-[500px] h-[300px]">
-                    {/* Left Side: Categories */}
-                    <div className="w-2/5 bg-gray-50 border-r border-gray-100 p-4">
-                      <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-2">Categories</h3>
-                      <button
-                        onMouseEnter={() => setActiveCategory('School Boards')}
-                        className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold flex items-center justify-between transition-colors ${
-                          activeCategory === 'School Boards' 
-                            ? 'bg-white text-[var(--color-primary)] shadow-sm' 
-                            : 'text-gray-600 hover:bg-gray-100'
-                        }`}
-                      >
-                        School Boards
-                        <ChevronRight size={14} className={activeCategory === 'School Boards' ? 'opacity-100' : 'opacity-0'} />
-                      </button>
-                    </div>
+          {/* Navigation */}
+          <nav className="hidden lg:flex items-center">
+            <ul className="flex items-center gap-8 list-none m-0 p-0">
+              <li 
+                className="relative py-2"
+                onMouseEnter={() => setShowAllAcategories(true)}
+                onMouseLeave={() => setShowAllAcategories(false)}
+              >
+                <button className="flex items-center gap-2 text-[13px] font-bold text-gray-700 hover:text-[var(--color-primary)] bg-gray-50 hover:bg-white border border-gray-100 hover:border-[var(--color-primary)] px-4 py-2 rounded-full cursor-pointer transition-all shadow-sm">
+                  All Categories <ChevronDown size={14} className={`transition-transform duration-300 ${showAllAcategories ? 'rotate-180' : ''} text-gray-400`} />
+                </button>
+                
+                {showAllAcategories && (
+                  <div className="absolute left-0 top-full pt-2 z-50">
+                    <div className="bg-white shadow-xl rounded-2xl border border-gray-100 overflow-hidden flex min-w-[500px] h-[300px]">
+                      {/* Left Side: Categories */}
+                      <div className="w-2/5 bg-gray-50 border-r border-gray-100 p-4">
+                        <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-2">Categories</h3>
+                        <button
+                          onMouseEnter={() => setActiveCategory('School Boards')}
+                          className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold flex items-center justify-between transition-colors ${
+                            activeCategory === 'School Boards' 
+                              ? 'bg-white text-[var(--color-primary)] shadow-sm' 
+                              : 'text-gray-600 hover:bg-gray-100'
+                          }`}
+                        >
+                          School Boards
+                          <ChevronRight size={14} className={activeCategory === 'School Boards' ? 'opacity-100' : 'opacity-0'} />
+                        </button>
+                      </div>
 
-                    {/* Right Side: Options */}
-                    <div className="w-3/5 p-6">
-                      <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-2">Available Boards</h3>
-                      <div className="grid gap-2">
-                        {boardCategories[activeCategory as keyof typeof boardCategories].map((board) => (
-                          <Link
-                            key={board.name}
-                            to={board.path}
-                            className="px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[var(--color-primary)] transition-all flex items-center justify-between group/item"
-                            onClick={() => setShowAllAcategories(false)}
-                          >
-                            {board.name}
-                            <div className="w-6 h-6 rounded-full bg-blue-100 text-[var(--color-primary)] flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity">
-                              <ChevronRight size={12} />
-                            </div>
-                          </Link>
-                        ))}
+                      {/* Right Side: Options */}
+                      <div className="w-3/5 p-6">
+                        <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 px-2">Available Boards</h3>
+                        <div className="grid gap-2">
+                          {boardCategories[activeCategory as keyof typeof boardCategories].map((board) => (
+                            <Link
+                              key={board.name}
+                              to={board.path}
+                              className="px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[var(--color-primary)] transition-all flex items-center justify-between group/item"
+                              onClick={() => setShowAllAcategories(false)}
+                            >
+                              {board.name}
+                              <div className="w-6 h-6 rounded-full bg-blue-100 text-[var(--color-primary)] flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                <ChevronRight size={12} />
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </li>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        {/* Center/Main Navigation */}
+        <nav className="hidden md:flex items-center">
+          <ul className="flex items-center gap-10 list-none m-0 p-0">
             <li>
               <Link 
                 to="/" 
-                className={`text-sm font-semibold transition-colors hover:text-[var(--color-primary)] ${isActive('/') ? 'text-[var(--color-primary)]' : 'text-gray-600'}`}
+                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
+                  isActive('/') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                }`}
               >
                 Home
+                {isActive('/') && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                )}
               </Link>
             </li>
             <li>
               <Link 
                 to="/batches" 
-                className={`text-sm font-semibold transition-colors hover:text-[var(--color-primary)] ${isActive('/batches') ? 'text-[var(--color-primary)]' : 'text-gray-600'}`}
+                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
+                  isActive('/batches') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                }`}
               >
                 Batches
+                {isActive('/batches') && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                )}
               </Link>
             </li>
             <li>
               <Link 
                 to="/about" 
-                className={`text-sm font-semibold transition-colors hover:text-[var(--color-primary)] ${isActive('/about') ? 'text-[var(--color-primary)]' : 'text-gray-600'}`}
+                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
+                  isActive('/about') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                }`}
               >
                 About Us
+                {isActive('/about') && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                )}
               </Link>
             </li>
             <li>
               <Link 
                 to="/contact" 
-                className={`text-sm font-semibold transition-colors hover:text-[var(--color-primary)] ${isActive('/contact') ? 'text-[var(--color-primary)]' : 'text-gray-600'}`}
+                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
+                  isActive('/contact') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                }`}
               >
                 Contact Us
+                {isActive('/contact') && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                )}
               </Link>
             </li>
           </ul>
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           {isLoggedIn ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
+              <Link to="/dashboard" className="text-[13px] font-bold text-gray-700 hover:text-[var(--color-primary)] transition-colors">
+                My Dashboard
+              </Link>
               <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[var(--color-primary)] transition-colors">
-                <ShoppingCart size={24} />
-                <span className="absolute -top-1 -right-1 bg-[var(--color-primary)] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                <ShoppingCart size={22} />
+                <span className="absolute 0 right-0 bg-[var(--color-primary)] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
                   {totalCount}
                 </span>
               </Link>
-              <Button type="button" variant="outline" size="sm" onClick={logout}>
+              <Button type="button" variant="outline" size="sm" onClick={logout} className="text-xs font-bold px-5">
                 Log Out
               </Button>
             </div>
           ) : (
-            <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="px-6 py-2 rounded-full font-bold">
-              Register / Login
-            </Button>
+            <>
+              <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[var(--color-primary)] transition-colors">
+                <ShoppingCart size={22} />
+                <span className="absolute 0 right-0 bg-[var(--color-primary)] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
+                  {totalCount}
+                </span>
+              </Link>
+              <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="px-6 py-2.5 rounded-full font-bold text-xs">
+                Login / Register
+              </Button>
+            </>
           )}
         </div>
       </div>
     </header>
   );
+
 };

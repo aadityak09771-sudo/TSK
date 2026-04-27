@@ -41,8 +41,8 @@ export const HeroCarousel: React.FC = () => {
         >
           {/* Background Image */}
           <div className="absolute inset-0">
-            <img src={slide.image} alt="" className="w-full h-full object-cover opacity-50" />
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/40 to-transparent" />
+            <img src={slide.image} alt="" className="w-full h-full object-cover opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/40 to-transparent" />
           </div>
 
           {/* Content */}

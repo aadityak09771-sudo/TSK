@@ -1,5 +1,7 @@
-import React from 'react';
-import { Search, ChevronDown, Download, Bell, UserCircle, Menu } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Search, ChevronDown, Download, Bell, UserCircle, Menu, LogOut } from 'lucide-react';
+import { useAuthStore } from '../../store/useAuthStore';
 
 interface DashboardHeaderProps {
   searchQuery: string;
@@ -12,6 +14,26 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   onSearchChange,
   toggleSidebar 
 }) => {
+  const logout = useAuthStore(state => state.logout);
+  const navigate = useNavigate();
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowProfileMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-gray-100 h-20 shadow-sm">
       <div className="px-4 md:px-8 h-full flex items-center justify-between gap-4 md:gap-8">
@@ -63,14 +85,31 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
           </button>
 
-          <div className="flex items-center gap-3 pl-2 cursor-pointer group">
-            <div className="text-right hidden sm:block">
-              <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">Hi, Student</p>
-              <p className="text-xs font-black text-gray-900">My Profile</p>
+          <div className="relative" ref={menuRef}>
+            <div 
+              className="flex items-center gap-3 pl-2 cursor-pointer group"
+              onClick={() => setShowProfileMenu(!showProfileMenu)}
+            >
+              <div className="text-right hidden sm:block">
+                <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">Hi, Student</p>
+                <p className="text-xs font-black text-gray-900">My Profile</p>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all shadow-sm">
+                <UserCircle size={26} />
+              </div>
             </div>
-            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all shadow-sm">
-              <UserCircle size={26} />
-            </div>
+
+            {showProfileMenu && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[110]">
+                <button 
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut size={18} />
+                  Log Out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
