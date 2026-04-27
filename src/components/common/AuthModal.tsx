@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Button } from '../ui/Button';
 
 export const AuthModal: React.FC = () => {
+  const navigate = useNavigate();
   const isAuthModalOpen = useAuthStore(state => state.isAuthModalOpen);
   const closeAuthModal = useAuthStore(state => state.closeAuthModal);
   const login = useAuthStore(state => state.login);
@@ -51,9 +53,20 @@ export const AuthModal: React.FC = () => {
 
   const handleVerify = () => {
     if (otp.every(digit => digit !== '')) {
+      // Show mock loading state if needed, but for now direct login
       login(phone);
+      navigate('/dashboard');
     }
   };
+
+  useEffect(() => {
+    if (otp.every(digit => digit !== '') && step === 2) {
+      const timer = setTimeout(() => {
+        handleVerify();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [otp, step]);
 
   if (!isAuthModalOpen) return null;
 

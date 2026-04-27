@@ -13,6 +13,8 @@ import { Terms } from './pages/Terms';
 
 import { Courses } from './pages/Courses';
 import { BatchDetails } from './pages/BatchDetails';
+import { MyCourses } from './pages/MyCourses';
+import { LearningRoom } from './pages/LearningRoom';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +27,8 @@ const App: React.FC = () => {
           <Route path="/course-listing" element={<CourseListing />} />
           <Route path="/batches" element={<Courses />} />
           <Route path="/batches/:id" element={<BatchDetails />} />
+          <Route path="/dashboard" element={<MyCourses />} />
+          <Route path="/learning/:id" element={<LearningRoom />} />
           <Route path="/board-cbse" element={<BoardSelection />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/faqs" element={<Faqs />} />

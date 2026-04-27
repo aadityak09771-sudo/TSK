@@ -1,18 +1,21 @@
-export interface Batch {
+export type Batch = {
   id: string;
   title: string;
-  category: 'School Courses' | 'JEE' | 'NEET' | 'Foundation' | 'Dropper';
+  category: string;
   target: string;
-  medium: string;
-  mode: 'Live' | 'Recorded' | 'Hybrid';
-  duration: string;
+  language: string;
+  startDate: string;
+  discount: string;
+  lessonsCount: string;
+  price: number;
   originalPrice: number;
-  discountedPrice: number;
   image: string;
-  tags: string[];
-  features: string[];
-  details: BatchDetails;
-}
+  badge?: string;
+  description?: string;
+  details?: BatchDetails;
+};
+
+export const Batch = {}; // Runtime dummy export
 
 export interface BatchDetails {
   overview: string;
@@ -24,3 +27,21 @@ export interface BatchDetails {
   doubtSupport: string;
   validity: string;
 }
+
+export interface Category {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+export interface Lesson {
+  id: string;
+  lessonNumber: number;
+  title: string;
+  duration: string;
+  videoUrl: string;
+  isCompleted: boolean;
+}
+
+// Runtime export to ensure Vite treats this as a valid JS module
+export const BatchRuntime = {};

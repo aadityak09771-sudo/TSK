@@ -1,179 +1,122 @@
-import type { Batch } from '../types/batches';
+import type { Batch, Category, Lesson } from '../types/batches';
 
-export const BATCHES_DATA: Batch[] = [
+export const DASHBOARD_CATEGORIES: Category[] = [
+  { id: '1', name: 'Video Editing', icon: '🎬' },
+  { id: '2', name: 'AI & ChatGPT', icon: '🤖' },
+  { id: '3', name: 'YouTube Creator', icon: '📹' },
+  { id: '4', name: 'Instagram & Social Media', icon: '📱' },
+  { id: '5', name: 'Graphic Design', icon: '🎨' },
+  { id: '6', name: 'Web Development', icon: '💻' },
+];
+
+export const POPULAR_COURSES: Batch[] = [
   {
-    id: '1',
-    title: 'Class 10 Complete Online Course 2026-27',
-    category: 'School Courses',
-    target: 'CBSE Class 10',
-    medium: 'Hinglish',
-    mode: 'Live',
-    duration: '1 Year',
-    originalPrice: 5000,
-    discountedPrice: 2999,
-    image: '/assets/images/course.png',
-    tags: ['Live Classes', 'DPPs', 'Mock Tests'],
-    features: ['Live Interactive Classes', 'Recorded Lectures', 'Study Notes & PDFs', 'Doubt Support'],
-    details: {
-      overview: 'Complete comprehensive course for Class 10th students covering all major subjects for CBSE Board 2027.',
-      whoIsItFor: ['Students currently in Class 10', 'CBSE Board aspirants'],
-      subjectsCovered: ['Mathematics', 'Science', 'Social Science', 'English'],
-      whatYouGet: ['Daily Live Classes', 'PDF Notes of every class', 'Chapter-wise DPPs', 'Weekly Mock Tests'],
-      highlights: ['Interactive learning experience', 'Top experienced educators', 'Regular performance tracking'],
-      testPractice: ['10+ Full length mock tests', '20+ Chapter-wise tests', 'Previous year questions discussion'],
-      doubtSupport: '24/7 Doubt solving via app and dedicated live doubt sessions.',
-      validity: 'Till March 2027'
-    }
-  },
-  {
-    id: '2',
-    title: 'Class 11 JEE Foundation Course 2026-27',
-    category: 'JEE',
-    target: 'JEE 2028',
-    medium: 'English',
-    mode: 'Hybrid',
-    duration: '2 Years',
-    originalPrice: 15000,
-    discountedPrice: 9999,
-    image: '/assets/images/course.png',
-    tags: ['JEE Prep', 'Live Classes', 'Doubt Support'],
-    features: ['Advanced Problem Solving', 'Personalized Mentorship', 'Live Classes', 'DPPs'],
-    details: {
-      overview: 'Building strong foundations for JEE Main and Advanced from Class 11th.',
-      whoIsItFor: ['Class 11 students aiming for JEE', 'Students wanting strong conceptual clarity'],
-      subjectsCovered: ['Physics', 'Chemistry', 'Mathematics'],
-      whatYouGet: ['Foundation to Advanced level classes', 'Special JEE focus DPPs', 'Personal mentorship sessions'],
-      highlights: ['Special focus on basics', 'Problem solving techniques', 'Time management strategies'],
-      testPractice: ['Monthly JEE patterns tests', 'Subject-wise quizzes', 'All India Test Series (AITS)'],
-      doubtSupport: 'Dedicated JEE experts for doubt resolution.',
-      validity: 'Till June 2028'
-    }
-  },
-  {
-    id: '3',
-    title: 'Class 12 NEET Target Course 2026-27',
-    category: 'NEET',
-    target: 'NEET 2027',
-    medium: 'Hinglish',
-    mode: 'Live',
-    duration: '1 Year',
-    originalPrice: 12000,
-    discountedPrice: 7999,
-    image: '/assets/images/course.png',
-    tags: ['NEET Special', 'Biology Focus', 'Mock Tests'],
-    features: ['NCERT Based Learning', 'Diagram Practice', 'Mock Tests', 'Recorded Backup'],
-    details: {
-      overview: 'Targeted course for NEET 2027 aspirants focusing on NCERT mastery and speed.',
-      whoIsItFor: ['Class 12 students aiming for NEET 2027'],
-      subjectsCovered: ['Physics', 'Chemistry', 'Biology'],
-      whatYouGet: ['Daily Interactive Classes', 'Digital Mind Maps', 'NCERT Punch Biology Notes'],
-      highlights: ['Complete NCERT coverage', 'Shortcut methods for Physics/Chemistry', 'Quick revision notes'],
-      testPractice: ['NCERT based tests', 'Full syllabus NEET mock tests', 'OMR practice sessions'],
-      doubtSupport: 'Special doubt sessions for complex numericals.',
-      validity: 'Till NEET 2027 Exam'
-    }
-  },
-  {
-    id: '4',
-    title: 'JEE Dropper Batch 2027',
-    category: 'Dropper',
+    id: 'b1',
+    title: 'Arjuna JEE 2027',
+    category: 'Class 11 JEE',
+    language: 'HINGLISH',
     target: 'JEE 2027',
-    medium: 'English',
-    mode: 'Live',
-    duration: '10 Months',
-    originalPrice: 20000,
-    discountedPrice: 12999,
+    startDate: 'Started on 13 Apr 2026',
+    discount: 'Upto 40% off',
+    lessonsCount: '120+ lessons',
+    price: 4999,
+    originalPrice: 8000,
     image: '/assets/images/course.png',
-    tags: ['Intensive', 'Problem Solving', 'Daily DPPs'],
-    features: ['Quick Revision', 'Advanced Practice', 'All India Test Series', '24/7 Support'],
+    badge: 'Multiple plans inside: Basic, Pro',
+    description: 'Complete syllabus coverage for Class 11th JEE aspirants with top faculty.',
     details: {
-      overview: 'Accelerated course for droppers to crack JEE 2027 with high rank.',
-      whoIsItFor: ['Students taking a gap year for JEE'],
+      overview: 'Comprehensive program for Class 11 JEE 2027 preparation.',
+      whoIsItFor: ['Class 11 Students', 'JEE 2027 Aspirants'],
       subjectsCovered: ['Physics', 'Chemistry', 'Mathematics'],
-      whatYouGet: ['Fast-track syllabus completion', 'Extensive practice material', 'Rank booster sessions'],
-      highlights: ['Focus on high-weightage topics', 'Error analysis sessions', 'Competitive environment'],
-      testPractice: ['Weekly JEE Main/Advanced tests', 'Previous year papers in timer mode', 'Predictor tests'],
-      doubtSupport: 'Priority doubt clearing for droppers.',
-      validity: 'Till JEE Advanced 2027'
+      whatYouGet: ['Live Classes', 'DPPs', 'Mock Tests'],
+      highlights: ['Expert Faculty', 'Doubt Solving', 'Regular Tests'],
+      testPractice: ['Weekly Tests', 'Monthly Mocks'],
+      doubtSupport: '24/7 Support',
+      validity: 'Till JEE 2027'
     }
   },
   {
-    id: '5',
-    title: 'NEET Dropper Batch 2027',
-    category: 'Dropper',
-    target: 'NEET 2027',
-    medium: 'Hinglish',
-    mode: 'Live',
-    duration: '10 Months',
-    originalPrice: 18000,
-    discountedPrice: 11499,
+    id: 'b2',
+    title: 'Lakshya JEE 2027',
+    category: 'Class 12 JEE',
+    language: 'HINGLISH',
+    target: 'JEE 2027',
+    startDate: 'Started on 26 Mar 2026',
+    discount: 'Upto 35% off',
+    lessonsCount: '150+ lessons',
+    price: 5999,
+    originalPrice: 9000,
     image: '/assets/images/course.png',
-    tags: ['Fast Track', 'Mock Tests', 'PCB'],
-    features: ['Syllabus Completion', 'Practice Sheets', 'Recorded Lectures', 'Doubt Support'],
+    badge: 'Pro Pack Included',
+    description: 'Targeted course for Class 12th JEE success with intensive practice.',
     details: {
-      overview: 'Comprehensive dropper batch for NEET 2027 aspirants.',
-      whoIsItFor: ['Students taking a gap year for NEET'],
-      subjectsCovered: ['Physics', 'Chemistry', 'Biology'],
-      whatYouGet: ['Complete syllabus coverage in 10 months', 'Special biology focus', 'Daily practice problems'],
-      highlights: ['Conceptual depth', 'Consistent revision cycles', 'Motivational sessions'],
-      testPractice: ['Regular NEET pattern tests', 'Topic-wise practice sheets', 'AITS for NEET'],
-      doubtSupport: 'Live doubt sessions and chat support.',
-      validity: 'Till NEET 2027'
+      overview: 'Dedicated batch for Class 12 JEE 2027 aspirants.',
+      whoIsItFor: ['Class 12 Students', 'JEE 2027 Aspirants'],
+      subjectsCovered: ['Physics', 'Chemistry', 'Mathematics'],
+      whatYouGet: ['Advanced Practice', 'Recorded Backups'],
+      highlights: ['High Weightage Focus', 'Previous Year Questions'],
+      testPractice: ['Pattern-based tests', 'AITS'],
+      doubtSupport: 'Priority Doubt Solving',
+      validity: 'Till JEE 2027'
     }
   },
   {
-    id: '6',
-    title: 'Class 9 Foundation Course 2026-27',
-    category: 'Foundation',
-    target: 'NTSE/Olympiads',
-    medium: 'Hinglish',
-    mode: 'Recorded',
-    duration: '1 Year',
-    originalPrice: 4000,
-    discountedPrice: 1999,
+    id: 'b3',
+    title: 'Vidyapeeth 11th JEE 2028',
+    category: 'Class 11 + 12 JEE',
+    language: 'HINGLISH',
+    target: 'JEE 2028',
+    startDate: 'Batch starting in April',
+    discount: 'Upto 40% off',
+    lessonsCount: '200+ lessons',
+    price: 7999,
+    originalPrice: 12000,
     image: '/assets/images/course.png',
-    tags: ['Foundation', 'NTSE', 'Mental Ability'],
-    features: ['recorded Lectures', 'Digital Notes', 'Monthly Tests', 'Parent-Teacher Meeting'],
+    badge: 'Premium Offline Hybrid',
+    description: 'Foundation to Advanced hybrid batch for long-term JEE preparation.',
     details: {
-      overview: 'Foundation course for Class 9th to prepare for NTSE, Olympiads and Boards.',
-      whoIsItFor: ['Class 9 students wanting an early start'],
-      subjectsCovered: ['Maths', 'Science', 'SST', 'English', 'Mental Ability'],
-      whatYouGet: ['High quality recorded lectures', 'Simplified notes', 'Mental ability sessions'],
-      highlights: ['Pre-foundation for JEE/NEET', 'Logical reasoning focus', 'Holistic development'],
-      testPractice: ['Foundation level tests', 'Olympiad mock tests', 'Chapter quizzes'],
-      doubtSupport: 'Weekly live doubt sessions.',
-      validity: 'Till March 2027'
+      overview: '2-Year foundation program for JEE 2028.',
+      whoIsItFor: ['Class 11 Students'],
+      subjectsCovered: ['Physics', 'Chemistry', 'Mathematics'],
+      whatYouGet: ['Hybrid Learning', 'Study Material'],
+      highlights: ['Long-term strategy', 'Concept Building'],
+      testPractice: ['Foundation Tests', 'Olympiad prep'],
+      doubtSupport: 'Dedicated Mentors',
+      validity: 'Till June 2028'
     }
   }
 ];
 
+export const MOCK_LESSONS: Lesson[] = [
+  { id: 'l1', lessonNumber: 1, title: 'Introduction to the Course', duration: '10:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', isCompleted: true },
+  { id: 'l2', lessonNumber: 2, title: 'Basic Concepts', duration: '45:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', isCompleted: false },
+  { id: 'l3', lessonNumber: 3, title: 'Chapter 1: Fundamentals', duration: '55:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', isCompleted: false },
+  { id: 'l4', lessonNumber: 4, title: 'Practice Session 1', duration: '30:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', isCompleted: false },
+  { id: 'l5', lessonNumber: 5, title: 'Revision Class', duration: '40:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', isCompleted: false },
+  { id: 'l6', lessonNumber: 6, title: 'Mock Test Discussion', duration: '60:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', isCompleted: false },
+];
+
+export const BATCHES_DATA = POPULAR_COURSES;
+
 export const FAQ_DATA = [
   {
-    question: 'Are classes live or recorded?',
-    answer: 'Most of our courses feature live interactive classes. However, we also provide recorded versions of these classes for later revision. Some specialized foundation courses are pre-recorded for flexible learning.'
+    question: "What is the mode of classes in these batches?",
+    answer: "Most of our batches offer a hybrid experience with live interactive classes and 24/7 access to recorded lectures for revision."
   },
   {
-    question: 'Will students get class notes?',
-    answer: 'Yes, students will receive comprehensive digital PDF notes after every class. These are accessible through our mobile app and website.'
+    question: "How can I resolve my doubts after the live class?",
+    answer: "We have dedicated doubt-solving sessions, and students can also post their queries on our platform to get them resolved by expert mentors."
   },
   {
-    question: 'Are mock tests included?',
-    answer: 'Absolutely! Every course includes a series of chapter-wise tests, part-syllabus tests, and full-length mock tests based on the latest exam patterns.'
+    question: "Is study material provided with the course?",
+    answer: "Yes, comprehensive digital study material including lecture notes, PDFs, and daily practice problems (DPPs) are provided to all enrolled students."
   },
   {
-    question: 'Is doubt support available?',
-    answer: 'Yes, we provide 24/7 doubt support through our app. Students can also attend dedicated live doubt-clearing sessions with subject experts.'
+    question: "Can I watch the classes on my mobile phone?",
+    answer: "Absolutely! Our platform is fully responsive and optimized for mobile devices. You can also download our mobile app for a better learning experience."
   },
   {
-    question: 'Can students access lectures on mobile?',
-    answer: 'Yes, our platform is fully responsive. Students can attend classes and access all study materials on smartphones, tablets, and laptops.'
-  },
-  {
-    question: 'How long will course access be available?',
-    answer: 'Access to course materials and recorded lectures is usually available until the final exam of the targeted academic session (e.g., till March 2027 for Class 10th).'
-  },
-  {
-    question: 'Can students attend demo classes?',
-    answer: 'Yes, we offer free demo classes for all our premium courses. You can book a free demo using the "Book Free Demo" button on the course page.'
+    question: "What is the validity of the course?",
+    answer: "Course validity typically lasts until your target exam date. For example, JEE 2027 batches remain valid until the JEE Advanced 2027 exam is conducted."
   }
 ];
