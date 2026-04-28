@@ -48,7 +48,7 @@ export const HeroCarousel: React.FC = () => {
     <>
       <section className="hero-container">
         {/* Slides Container - keep within container for alignment if needed, or move out for full width */}
-        <div className="container h-full relative">
+        <div className="h-full relative">
           <div 
             className="hero-slider-track"
             style={{ 
