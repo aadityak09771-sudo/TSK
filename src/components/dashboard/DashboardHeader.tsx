@@ -50,11 +50,6 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <div className="w-10 h-10 bg-[var(--color-primary)] rounded-xl flex items-center justify-center text-white font-black text-xl">S</div>
             <span className="text-xl font-black text-gray-900 tracking-tight hidden sm:block">Siksha Kendra</span>
           </div>
-
-          <div className="hidden md:flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-xl border border-gray-100 cursor-pointer hover:bg-gray-100 transition-colors group">
-            <span className="text-sm font-black text-gray-700">11th - IIT JEE</span>
-            <ChevronDown size={16} className="text-gray-400 group-hover:text-gray-900 transition-colors" />
-          </div>
         </div>
 
         {/* Center: Search */}

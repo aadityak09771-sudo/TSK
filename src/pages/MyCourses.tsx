@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Sparkles } from 'lucide-react';
 import { StudentDashboardLayout } from '../layouts/StudentDashboardLayout';
-import { CategoryScroller } from '../components/dashboard/CategoryScroller';
 import { CourseCard } from '../components/dashboard/CourseCard';
 import { CourseDetailsModal } from '../components/dashboard/CourseDetailsModal';
 import { EmptyState } from '../components/dashboard/EmptyState';
@@ -47,32 +46,8 @@ export const MyCourses: React.FC = () => {
               <Sparkles size={14} />
               Batches
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight leading-tight">
-              Learn a skill and <br />
-              <span className="text-[var(--color-primary)]">start earning early</span>
-            </h1>
           </div>
 
-          <div className="relative group max-w-xl">
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--color-primary)] transition-colors">
-              <Search size={20} />
-            </div>
-            <input 
-              type="text" 
-              placeholder="Search for your favorite course..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold outline-none focus:bg-white focus:border-[var(--color-primary)] focus:ring-4 focus:ring-blue-500/5 transition-all shadow-sm"
-            />
-          </div>
-        </section>
-
-        {/* Categories Section */}
-        <section>
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xl font-black text-gray-900 tracking-tight">Explore Categories</h2>
-          </div>
-          <CategoryScroller />
         </section>
 
         {/* Courses Section */}
