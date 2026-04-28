@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HeroCarousel } from '../components/common/HeroCarousel';
+import { HeroCarousel } from '../components/common/HeroCarousel/HeroCarousel';
 import { CourseCard } from '../components/common/CourseCard';
 import { COURSE_DATA } from '../config/courses';
 import { Ecosystem } from '../components/common/Ecosystem';
