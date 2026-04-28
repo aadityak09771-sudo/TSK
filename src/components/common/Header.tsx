@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
-import { useCartStore } from '../../store/useCartStore';
 import { Button } from '../ui/Button';
 import { Logo } from './Logo';
 
@@ -13,7 +12,6 @@ export const Header: React.FC = () => {
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
   const logout = useAuthStore(state => state.logout);
   const openAuthModal = useAuthStore(state => state.openAuthModal);
-  const totalCount = useCartStore(state => state.items.reduce((sum, i) => sum + i.quantity, 0));
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -158,24 +156,12 @@ export const Header: React.FC = () => {
               <Link to="/dashboard" className="text-[13px] font-bold text-gray-700 hover:text-[var(--color-primary)] transition-colors">
                 My Dashboard
               </Link>
-              <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[var(--color-primary)] transition-colors">
-                <ShoppingCart size={22} />
-                <span className="absolute 0 right-0 bg-[var(--color-primary)] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
-                  {totalCount}
-                </span>
-              </Link>
               <Button type="button" variant="outline" size="sm" onClick={logout} className="text-xs font-bold px-5">
                 Log Out
               </Button>
             </div>
           ) : (
             <>
-              <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[var(--color-primary)] transition-colors">
-                <ShoppingCart size={22} />
-                <span className="absolute 0 right-0 bg-[var(--color-primary)] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
-                  {totalCount}
-                </span>
-              </Link>
               <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="px-6 py-2.5 rounded-full font-bold text-xs">
                 Login / Register
               </Button>

@@ -147,71 +147,6 @@ export const API_ENDPOINTS = {
   },
 
   // ══════════════════════════════════════════════════════════
-  //  CART  (/cart)
-  // ══════════════════════════════════════════════════════════
-  CART: {
-    /** GET — Fetch user's cart from server */
-    GET_CART: {
-      method: 'GET' as const,
-      path: '/cart',
-      params: 'none (auth header)',
-      response: '{ items: CartItem[], total: number }',
-      status: '🔴 Mock — Zustand persisted to localStorage',
-      usedBy: ['Cart page, Header badge'],
-    },
-
-    /** POST — Add item to cart */
-    ADD_ITEM: {
-      method: 'POST' as const,
-      path: '/cart/items',
-      body: '{ courseId: string, quantity: number }',
-      response: '{ cart: CartItem[] }',
-      status: '🔴 Mock — Zustand store',
-      usedBy: ['CourseCard (Add to Cart)'],
-    },
-
-    /** PATCH — Update item quantity */
-    UPDATE_QUANTITY: {
-      method: 'PATCH' as const,
-      path: '/cart/items/:courseId',
-      body: '{ delta: number }',
-      response: '{ cart: CartItem[] }',
-      status: '🔴 Mock — Zustand store',
-      usedBy: ['CourseCard (+/- buttons), Cart page'],
-    },
-
-    /** DELETE — Remove item from cart */
-    REMOVE_ITEM: {
-      method: 'DELETE' as const,
-      path: '/cart/items/:courseId',
-      body: 'none',
-      response: '{ cart: CartItem[] }',
-      status: '🔴 Mock — Zustand store',
-      usedBy: ['Cart page (trash icon)'],
-    },
-
-    /** DELETE — Clear entire cart */
-    CLEAR_CART: {
-      method: 'DELETE' as const,
-      path: '/cart',
-      body: 'none',
-      response: '{ success: boolean }',
-      status: '🔴 Mock — Zustand store',
-      usedBy: ['Cart page (Clear Cart)'],
-    },
-
-    /** POST — Initiate checkout / payment */
-    CHECKOUT: {
-      method: 'POST' as const,
-      path: '/cart/checkout',
-      body: '{ paymentMethod: string }',
-      response: '{ orderId: string, paymentUrl: string }',
-      status: '🟡 Pending',
-      usedBy: ['Cart page (Proceed to Checkout)'],
-    },
-  },
-
-  // ══════════════════════════════════════════════════════════
   //  ABOUT US  (/about)
   // ══════════════════════════════════════════════════════════
   ABOUT: {
@@ -312,13 +247,6 @@ export const printApiSummary = () => {
     { page: 'CourseListing',  endpoint: '/courses/subjects',     method: 'GET',    status: '🔴 Mock' },
     // Board Selection
     { page: 'BoardSelection', endpoint: '/boards',               method: 'GET',    status: '🔴 Mock' },
-    // Cart
-    { page: 'Cart',           endpoint: '/cart',                 method: 'GET',    status: '🔴 Mock' },
-    { page: 'Cart',           endpoint: '/cart/items',           method: 'POST',   status: '🔴 Mock' },
-    { page: 'Cart',           endpoint: '/cart/items/:id',       method: 'PATCH',  status: '🔴 Mock' },
-    { page: 'Cart',           endpoint: '/cart/items/:id',       method: 'DELETE', status: '🔴 Mock' },
-    { page: 'Cart',           endpoint: '/cart',                 method: 'DELETE', status: '🔴 Mock' },
-    { page: 'Cart',           endpoint: '/cart/checkout',        method: 'POST',   status: '🟡 Pending' },
     // Contact
     { page: 'Contact',        endpoint: '/contact',              method: 'POST',   status: '🟡 Pending' },
     // Content

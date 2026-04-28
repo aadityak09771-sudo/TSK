@@ -6,7 +6,6 @@ import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { CourseListing } from './pages/CourseListing';
 import { BoardSelection } from './pages/BoardSelection';
-import { Cart } from './pages/Cart';
 import { Faqs } from './pages/Faqs';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
@@ -30,7 +29,6 @@ const App: React.FC = () => {
           <Route path="/dashboard" element={<MyCourses />} />
           <Route path="/learning/:id" element={<LearningRoom />} />
           <Route path="/board-cbse" element={<BoardSelection />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

@@ -3,7 +3,7 @@
  * Paths live in `src/config/api-endpoints.ts`; keep types here only.
  */
 
-import type { CartItem, Course, User } from './entities';
+import type { Course, User } from './entities';
 
 // ─── Shared / envelope ───────────────────────────────────────
 
@@ -94,35 +94,6 @@ export interface BoardItem {
 
 export interface GetBoardsResponse {
   boards: BoardItem[];
-}
-
-// ─── Cart ───────────────────────────────────────────────────
-
-export interface GetCartResponse {
-  items: CartItem[];
-  total: number;
-}
-
-export interface AddCartItemRequest {
-  courseId: string;
-  quantity: number;
-}
-
-export interface CartMutationResponse {
-  cart: CartItem[];
-}
-
-export interface UpdateCartQuantityRequest {
-  delta: number;
-}
-
-export interface CheckoutRequest {
-  paymentMethod: string;
-}
-
-export interface CheckoutResponse {
-  orderId: string;
-  paymentUrl: string;
 }
 
 // ─── About ───────────────────────────────────────────────────
