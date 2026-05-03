@@ -1,23 +1,17 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Search } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 
 export const Contact: React.FC = () => {
   return (
-    <div className="bg-white">
-      {/* Hero */}
-      <section className="py-24 bg-blue-50/30">
-        <div className="container text-center max-w-2xl">
-          <h1 className="text-5xl font-black mb-6 text-gray-900">Contact Us</h1>
-          <p className="text-lg text-gray-600">
-            Have questions about our batches? Need help with enrollment? 
-            Our team is here to guide you.
-          </p>
-        </div>
-      </section>
+    <div className="bg-white pt-20">
+      {/* Simple Header */}
+      <div className="container pt-12">
+        <h1 className="text-4xl md:text-5xl font-black text-gray-900">Contact Us</h1>
+      </div>
 
       {/* Main Content */}
-      <section className="py-24">
+      <section className="py-20">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Info Card */}
           <div className="space-y-12">
@@ -68,7 +62,7 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact form (Dummy in original as well) */}
+          {/* Contact form */}
           <div className="bg-white p-10 rounded-[40px] shadow-2xl shadow-blue-500/5 border border-gray-100">
             <h3 className="text-2xl font-black mb-8">Send a Message</h3>
             <form className="space-y-6">
@@ -87,10 +81,10 @@ export const Contact: React.FC = () => {
                 <input type="email" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none" placeholder="john@example.com" />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700">Batch of Interest</label>
+                <label className="text-sm font-bold text-gray-700">Course of Interest</label>
                 <select className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none">
-                  <option>Class 12th Board Mastery</option>
-                  <option>Class 11th Foundation</option>
+                  <option>Class 12th Board Mastery Course</option>
+                  <option>Class 11th Foundation Course</option>
                   <option>Others</option>
                 </select>
               </div>

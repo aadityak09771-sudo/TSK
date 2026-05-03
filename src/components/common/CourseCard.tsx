@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { Users } from 'lucide-react';
-import type { Course } from '../../types';
+import type { CommonCourse } from '../../types/entities';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Button } from '../ui/Button';
 
 interface CourseCardProps {
-  course: Course;
+  course: CommonCourse;
   showExplore?: boolean;
 }
 
@@ -20,7 +20,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
     } else {
       // Enrollment logic or redirect to details
       if (course.id) {
-        navigate(`/batches/${course.id}`);
+        navigate(`/courses/${course.id}`);
       }
     }
   };
@@ -56,7 +56,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
               <Button 
                 variant="outline" 
                 className="flex-1 py-1.5 h-10 text-xs"
-                onClick={() => course.id && navigate(`/batches/${course.id}`)}
+                onClick={() => course.id && navigate(`/courses/${course.id}`)}
               >
                 EXPLORE
               </Button>

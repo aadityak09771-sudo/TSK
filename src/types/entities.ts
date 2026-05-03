@@ -1,4 +1,4 @@
-export interface Course {
+export interface CommonCourse {
   id?: string;
   class: string;
   title: string;

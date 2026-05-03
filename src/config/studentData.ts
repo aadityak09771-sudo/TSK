@@ -7,17 +7,12 @@ export interface Category {
 }
 
 export const CATEGORIES: Category[] = [
-  { id: '1', name: 'Video Editing', icon: '🎬' },
-  { id: '2', name: 'AI & ChatGPT', icon: '🤖' },
-  { id: '3', name: 'YouTube Creator', icon: '📹' },
-  { id: '4', name: 'Instagram & Social Media', icon: '📱' },
-  { id: '5', name: 'Graphic Design', icon: '🎨' },
-  { id: '6', name: 'Web Development', icon: '💻' },
-  { id: '7', name: 'Public Speaking', icon: '🎤' },
-  { id: '8', name: 'Personal Finance', icon: '💰' },
+  { id: 'cbse-science', name: 'CBSE Science', icon: '🧪' },
+  { id: 'cbse-commerce', name: 'CBSE Commerce', icon: '📊' },
+  { id: 'cbse-arts', name: 'CBSE Arts', icon: '🎨' },
 ];
 
-export interface BatchCourse {
+export interface DashboardCourse {
   id: string;
   title: string;
   category: string;
@@ -34,7 +29,7 @@ export interface BatchCourse {
   subjects: string[];
 }
 
-export const BATCH_COURSES: BatchCourse[] = [
+export const DASHBOARD_COURSES: DashboardCourse[] = [
   {
     id: 'b1',
     title: 'Arjuna JEE 2027',
@@ -73,7 +68,7 @@ export const BATCH_COURSES: BatchCourse[] = [
     category: 'Class 11 + 12 JEE',
     language: 'HINGLISH',
     target: 'JEE 2028',
-    startDate: 'Batch starting in April',
+    startDate: 'Course starting in April',
     discount: 'Upto 40% off',
     lessons: '200+ lessons',
     price: '₹7,999',
@@ -85,7 +80,7 @@ export const BATCH_COURSES: BatchCourse[] = [
   },
 ];
 
-export const ENROLLED_COURSES: EnrolledCourse[] = BATCH_COURSES.map(course => ({
+export const ENROLLED_COURSES: EnrolledCourse[] = DASHBOARD_COURSES.map(course => ({
   id: course.id,
   title: course.title,
   description: course.description,

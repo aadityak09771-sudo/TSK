@@ -1,12 +1,12 @@
 import React from 'react';
-import { Calendar, Languages, Target, BookOpen, ChevronRight } from 'lucide-react';
-import type { BatchCourse } from '../../config/studentData';
+import { Languages, Target, BookOpen, ChevronRight } from 'lucide-react';
+import type { DashboardCourse } from '../../config/studentData';
 import { Button } from '../ui/Button';
 
 interface CourseCardProps {
-  course: BatchCourse;
-  onViewDetails: (course: BatchCourse) => void;
-  onStartLearning: (course: BatchCourse) => void;
+  course: DashboardCourse;
+  onViewDetails: (course: DashboardCourse) => void;
+  onStartLearning: (course: DashboardCourse) => void;
 }
 
 export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetails, onStartLearning }) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Ecosystem.css'
 
 const ECOSYSTEM_ITEMS = [
   {
@@ -35,7 +36,7 @@ const ECOSYSTEM_ITEMS = [
 
 export const Ecosystem: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-50/50">
+    <section className="ecosystem-container">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl font-black mb-6">Our Learning Ecosystem</h2>

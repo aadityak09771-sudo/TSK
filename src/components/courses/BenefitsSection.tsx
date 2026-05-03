@@ -17,7 +17,7 @@ export const BenefitsSection: React.FC = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">Why Choose Our Batches?</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4">Why Choose Our Courses?</h2>
           <div className="w-24 h-1.5 bg-[var(--color-primary)] mx-auto rounded-full"></div>
         </div>
 

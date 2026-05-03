@@ -1,4 +1,4 @@
-import type { Course } from '../types';
+import type { CommonCourse } from '../types/entities';
 
 export const CLASS_METADATA: Record<string, string[]> = {
   '9': ['Science', 'Mathematics', 'English', 'Social Science'],
@@ -7,7 +7,7 @@ export const CLASS_METADATA: Record<string, string[]> = {
   '12': ['Physics', 'Chemistry', 'Mathematics', 'Biology']
 };
 
-export const COURSE_DATA: Course[] = [
+export const COURSE_DATA: CommonCourse[] = [
   {
     id: '3',
     class: '12',
@@ -39,7 +39,7 @@ export const COURSE_DATA: Course[] = [
   {
     id: '2',
     class: '11',
-    title: 'Class 11th Foundation Batch',
+    title: 'Class 11th Foundation Course',
     badge: 'ONLINE',
     language: 'English',
     audience: 'For Class 11th CBSE students',

@@ -1,20 +1,20 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { StudentDashboardLayout } from '../layouts/StudentDashboardLayout';
 import { CourseCard } from '../components/dashboard/CourseCard';
 import { CourseDetailsModal } from '../components/dashboard/CourseDetailsModal';
 import { EmptyState } from '../components/dashboard/EmptyState';
-import { BATCH_COURSES, type BatchCourse } from '../config/studentData';
+import { DASHBOARD_COURSES, type DashboardCourse } from '../config/studentData';
 
 export const MyCourses: React.FC = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCourse, setSelectedCourse] = useState<BatchCourse | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<DashboardCourse | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredCourses = useMemo(() => {
-    return BATCH_COURSES.filter(course => 
+    return DASHBOARD_COURSES.filter(course => 
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.target.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -22,12 +22,12 @@ export const MyCourses: React.FC = () => {
     );
   }, [searchQuery]);
 
-  const handleViewDetails = (course: BatchCourse) => {
+  const handleViewDetails = (course: DashboardCourse) => {
     setSelectedCourse(course);
     setIsModalOpen(true);
   };
 
-  const handleStartLearning = (course: BatchCourse) => {
+  const handleStartLearning = (course: DashboardCourse) => {
     setIsModalOpen(false);
     navigate(`/learning/${course.id}`);
     
@@ -44,7 +44,7 @@ export const MyCourses: React.FC = () => {
           <div className="flex flex-col gap-2 mb-8">
             <div className="flex items-center gap-2 text-[var(--color-primary)] font-black uppercase tracking-[0.2em] text-[10px]">
               <Sparkles size={14} />
-              Batches
+              Courses
             </div>
           </div>
 

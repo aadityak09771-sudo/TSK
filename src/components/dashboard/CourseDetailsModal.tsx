@@ -1,13 +1,13 @@
 import React from 'react';
 import { X, CheckCircle2, Globe, Clock, Calendar, Star, ChevronRight } from 'lucide-react';
-import type { BatchCourse } from '../../config/studentData';
+import type { DashboardCourse } from '../../config/studentData';
 import { Button } from '../ui/Button';
 
 interface CourseDetailsModalProps {
-  course: BatchCourse | null;
+  course: DashboardCourse | null;
   isOpen: boolean;
   onClose: () => void;
-  onStartLearning: (course: BatchCourse) => void;
+  onStartLearning: (course: DashboardCourse) => void;
 }
 
 export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ 

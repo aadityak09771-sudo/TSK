@@ -6,19 +6,19 @@ import './HeroCarousel.css'
 const SLIDES = [
   {
     image: '/assets/images/class9_course.png',
-    link: '/batches'
+    link: '/courses'
   },
   {
     image: '/assets/images/class10_course.png',
-    link: '/batches'
+    link: '/courses'
   },
   {
     image: '/assets/images/class11_course.png',
-    link: '/batches'
+    link: '/courses'
   },
   {
     image: '/assets/images/class12_course.png',
-    link: '/batches'
+    link: '/courses'
   }
 ];
 

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, ChevronDown, Download, Bell, UserCircle, Menu, LogOut } from 'lucide-react';
+import { Search, UserCircle, Menu, LogOut, User } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
+import { STUDENT_PROFILE } from '../../config/studentProfile';
 
 interface DashboardHeaderProps {
   searchQuery: string;
@@ -18,6 +19,14 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const navigate = useNavigate();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map((n) => n[0])
+      .join('')
+      .toUpperCase();
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -46,7 +55,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <Menu size={24} />
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/dashboard')}>
             <div className="w-10 h-10 bg-[var(--color-primary)] rounded-xl flex items-center justify-center text-white font-black text-xl">S</div>
             <span className="text-xl font-black text-gray-900 tracking-tight hidden sm:block">Siksha Kendra</span>
           </div>
@@ -66,36 +75,35 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           />
         </div>
 
-        {/* Right: Actions & Profile */}
+        {/* Right: Profile */}
         <div className="flex items-center gap-2 md:gap-4">
-          <button className="hidden xl:flex items-center gap-2 text-xs font-black text-gray-600 hover:text-[var(--color-primary)] px-4 py-2 transition-colors">
-            <Download size={18} />
-            Download App
-          </button>
-          
-          <div className="w-px h-6 bg-gray-200 hidden md:block mx-2"></div>
-
-          <button className="p-2 text-gray-400 hover:text-[var(--color-primary)] relative">
-            <Bell size={22} />
-            <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-          </button>
-
           <div className="relative" ref={menuRef}>
             <div 
               className="flex items-center gap-3 pl-2 cursor-pointer group"
               onClick={() => setShowProfileMenu(!showProfileMenu)}
             >
               <div className="text-right hidden sm:block">
-                <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">Hi, Student</p>
+                <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">Hi, {STUDENT_PROFILE.personalDetails.name.split(' ')[0]}</p>
                 <p className="text-xs font-black text-gray-900">My Profile</p>
               </div>
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[var(--color-primary)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all shadow-sm">
-                <UserCircle size={26} />
+              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[var(--color-primary)] font-bold text-sm group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all shadow-sm">
+                {getInitials(STUDENT_PROFILE.personalDetails.name)}
               </div>
             </div>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[110]">
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[110] overflow-hidden">
+                <button 
+                  onClick={() => {
+                    navigate('/dashboard/profile');
+                    setShowProfileMenu(false);
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-gray-50 transition-colors"
+                >
+                  <User size={18} />
+                  My Profile
+                </button>
+                <div className="h-px bg-gray-100 mx-2"></div>
                 <button 
                   onClick={handleLogout}
                   className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"

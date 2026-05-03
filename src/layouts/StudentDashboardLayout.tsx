@@ -40,6 +40,7 @@ export const StudentDashboardLayout: React.FC<StudentDashboardLayoutProps> = ({
           <DashboardHeader 
             searchQuery={searchQuery} 
             onSearchChange={onSearchChange} 
+            toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           />
         </div>
 

@@ -174,7 +174,7 @@ export const AuthModal: React.FC = () => {
                 {otp.map((digit, i) => (
                   <input
                     key={i}
-                    ref={el => otpInputs.current[i] = el}
+                    ref={el => { otpInputs.current[i] = el; }}
                     type="text"
                     inputMode="numeric"
                     value={digit}

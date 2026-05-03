@@ -7,7 +7,7 @@ export const CourseHero: React.FC = () => {
     { icon: <Video className="text-blue-500" />, label: 'Live + Recorded Classes' },
     { icon: <ShieldCheck className="text-green-500" />, label: 'Mock Tests Included' },
     { icon: <Headphones className="text-purple-500" />, label: 'Doubt Support' },
-    { icon: <BookOpen className="text-orange-500" />, label: 'Affordable Batches' },
+    { icon: <BookOpen className="text-orange-500" />, label: 'Affordable Courses' },
   ];
 
   return (

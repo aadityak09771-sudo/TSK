@@ -1,4 +1,4 @@
-export type Batch = {
+export type Course = {
   id: string;
   title: string;
   category: string;
@@ -12,12 +12,12 @@ export type Batch = {
   image: string;
   badge?: string;
   description?: string;
-  details?: BatchDetails;
+  details?: CourseDetails;
 };
 
-export const Batch = {}; // Runtime dummy export
+export const Course = {}; // Runtime dummy export
 
-export interface BatchDetails {
+export interface CourseDetails {
   overview: string;
   whoIsItFor: string[];
   subjectsCovered: string[];
@@ -44,4 +44,4 @@ export interface Lesson {
 }
 
 // Runtime export to ensure Vite treats this as a valid JS module
-export const BatchRuntime = {};
+export const CourseRuntime = {};

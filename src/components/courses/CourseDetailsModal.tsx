@@ -1,16 +1,16 @@
 import React from 'react';
 import { X, CheckCircle2, Info, BookCheck, Headphones, CalendarDays } from 'lucide-react';
-import type { Batch } from '../../types/batches';
+import type { Course } from '../../types/courses';
 import { Button } from '../ui/Button';
 
 interface CourseDetailsModalProps {
-  batch: Batch | null;
+  course: Course | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, isOpen, onClose }) => {
-  if (!isOpen || !batch) return null;
+export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ course, isOpen, onClose }) => {
+  if (!isOpen || !course) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
@@ -27,8 +27,8 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
             <span className="bg-blue-50 text-[var(--color-primary)] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-4 inline-block">
               Course Details
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">{batch.title}</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">{batch.details.overview}</p>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6">{course.title}</h2>
+            <p className="text-gray-600 text-lg leading-relaxed">{course.details?.overview}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -41,7 +41,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
                   <h3 className="text-xl font-bold text-gray-900">Who is it for?</h3>
                 </div>
                 <ul className="space-y-3">
-                  {batch.details.whoIsItFor.map((item, idx) => (
+                  {course.details?.whoIsItFor.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-gray-600">
                       <span className="mt-1.5 w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0"></span>
                       {item}
@@ -58,7 +58,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
                   <h3 className="text-xl font-bold text-gray-900">Subjects Covered</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {batch.details.subjectsCovered.map((item, idx) => (
+                  {course.details?.subjectsCovered.map((item, idx) => (
                     <span key={idx} className="px-4 py-2 bg-purple-50 text-purple-700 rounded-xl font-bold text-sm border border-purple-100">
                       {item}
                     </span>
@@ -74,7 +74,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
                   <h3 className="text-xl font-bold text-gray-900">Course Highlights</h3>
                 </div>
                 <ul className="space-y-3">
-                  {batch.details.highlights.map((item, idx) => (
+                  {course.details?.highlights.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-gray-600">
                       <CheckCircle2 size={16} className="text-green-500 mt-1 flex-shrink-0" />
                       {item}
@@ -93,7 +93,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
                   <h3 className="text-xl font-bold text-gray-900">Test & Practice</h3>
                 </div>
                 <ul className="space-y-3">
-                  {batch.details.testPractice.map((item, idx) => (
+                  {course.details?.testPractice.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-gray-600">
                       <span className="mt-1.5 w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0"></span>
                       {item}
@@ -110,7 +110,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
                   <h3 className="text-xl font-bold text-gray-900">Doubt Support</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed bg-red-50/50 p-4 rounded-2xl border border-red-100">
-                  {batch.details.doubtSupport}
+                  {course.details?.doubtSupport}
                 </p>
               </section>
 
@@ -122,7 +122,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
                   <h3 className="text-xl font-bold text-gray-900">Validity</h3>
                 </div>
                 <p className="text-gray-900 font-bold bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                  {batch.details.validity}
+                  {course.details?.validity}
                 </p>
               </section>
             </div>
@@ -131,8 +131,8 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ batch, i
           <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="flex flex-col">
-                <span className="text-sm text-gray-400 line-through">₹{batch.originalPrice.toLocaleString()}</span>
-                <span className="text-3xl font-black text-gray-900">₹{batch.discountedPrice.toLocaleString()}</span>
+                <span className="text-sm text-gray-400 line-through">₹{course.originalPrice.toLocaleString()}</span>
+                <span className="text-3xl font-black text-gray-900">₹{course.price.toLocaleString()}</span>
               </div>
               <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black">
                 Limited Time Offer

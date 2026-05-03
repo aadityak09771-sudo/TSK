@@ -11,27 +11,71 @@ import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
 
 import { Courses } from './pages/Courses';
-import { BatchDetails } from './pages/BatchDetails';
+import { CourseDetails } from './pages/CourseDetails';
 import { MyCourses } from './pages/MyCourses';
+import { MyProfile } from './pages/MyProfile';
 import { LearningRoom } from './pages/LearningRoom';
+import { Library } from './pages/Library';
+import { MyPurchases } from './pages/MyPurchases';
+import { DashboardCourses } from './pages/DashboardCourses';
+import { StudentDashboardLayout } from './layouts/StudentDashboardLayout';
+import { PublicRoute } from './components/common/PublicRoute';
 
 const App: React.FC = () => {
   return (
     <Router>
       <MainLayout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/course-listing" element={<CourseListing />} />
-          <Route path="/batches" element={<Courses />} />
-          <Route path="/batches/:id" element={<BatchDetails />} />
+          <Route path="/" element={<PublicRoute><Home /></PublicRoute>} />
+          <Route path="/about" element={<PublicRoute><About /></PublicRoute>} />
+          <Route path="/contact" element={<PublicRoute><Contact /></PublicRoute>} />
+          <Route path="/course-listing" element={<PublicRoute><CourseListing /></PublicRoute>} />
+          <Route path="/courses" element={<PublicRoute><Courses /></PublicRoute>} />
+          <Route path="/courses/:id" element={<PublicRoute><CourseDetails /></PublicRoute>} />
+          
+          {/* Dashboard Routes */}
           <Route path="/dashboard" element={<MyCourses />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/my-purchases" element={<MyPurchases />} />
+          <Route path="/dashboard/courses" element={<DashboardCourses />} />
+          <Route 
+            path="/dashboard/profile" 
+            element={
+              <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                <MyProfile />
+              </StudentDashboardLayout>
+            } 
+          />
+          <Route 
+            path="/dashboard/about" 
+            element={
+              <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                <About isDashboard={true} />
+              </StudentDashboardLayout>
+            } 
+          />
+          <Route 
+            path="/dashboard/contact" 
+            element={
+              <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                <Contact />
+              </StudentDashboardLayout>
+            } 
+          />
+          <Route 
+            path="/dashboard/privacy" 
+            element={
+              <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                <Privacy />
+              </StudentDashboardLayout>
+            } 
+          />
+          
           <Route path="/learning/:id" element={<LearningRoom />} />
-          <Route path="/board-cbse" element={<BoardSelection />} />
-          <Route path="/faqs" element={<Faqs />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
+          <Route path="/board-cbse" element={<PublicRoute><BoardSelection /></PublicRoute>} />
+          <Route path="/faqs" element={<PublicRoute><Faqs /></PublicRoute>} />
+          <Route path="/privacy" element={<PublicRoute><Privacy /></PublicRoute>} />
+          <Route path="/terms" element={<PublicRoute><Terms /></PublicRoute>} />
         </Routes>
       </MainLayout>
     </Router>

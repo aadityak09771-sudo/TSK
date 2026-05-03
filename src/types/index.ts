@@ -1,4 +1,4 @@
-export * from './entities';
+export type { CommonCourse, User } from './entities';
 export * from './api-responses';
-export * from './batches';
-export * from './student';
+export type { Course, CourseDetails, Category, Lesson } from './courses';
+export type { EnrolledLesson, EnrolledCourse } from './student';

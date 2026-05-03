@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Share2, Info, ChevronRight, MessageSquare, FileText } from 'lucide-react';
 import { ENROLLED_COURSES } from '../config/studentData';
-import type { Lesson } from '../types/student';
+import type { EnrolledLesson } from '../types/student';
 import { VideoPlayer } from '../components/learning/VideoPlayer';
 import { LessonList } from '../components/learning/LessonList';
 import { Button } from '../components/ui/Button';
@@ -10,7 +10,7 @@ import { Button } from '../components/ui/Button';
 export const LearningRoom: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const course = ENROLLED_COURSES.find(c => c.id === id);
-  const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
+  const [activeLesson, setActiveLesson] = useState<EnrolledLesson | null>(null);
 
   useEffect(() => {
     if (course && course.lessons.length > 0) {

@@ -109,13 +109,13 @@ export const Header: React.FC = () => {
             </li>
             <li>
               <Link 
-                to="/batches" 
+                to="/courses" 
                 className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
-                  isActive('/batches') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                  isActive('/courses') ? 'text-[var(--color-primary)]' : 'text-gray-600'
                 }`}
               >
-                Batches
-                {isActive('/batches') && (
+                Courses
+                {isActive('/courses') && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
                 )}
               </Link>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
-import { FAQ_DATA } from '../../config/batches';
+import { FAQ_DATA } from '../../config/courses-data';
 
 export const FAQAccordion: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);

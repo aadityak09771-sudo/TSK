@@ -1,18 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
+import { Mail, Phone, MapPin, X, Send } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-12">
-        {/* About */}
+        {/* Logo + Contact Info */}
         <div className="space-y-6">
           <Logo light />
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Leading the way in digital education. Join thousands of students 
-            mastering their subjects with our expert-led courses.
-          </p>
+          <div className="space-y-4 pt-2">
+            <div className="flex items-center gap-3 text-gray-400">
+              <Mail size={18} className="text-[var(--color-primary)]" />
+              <a href="mailto:support@sikshakendra.com" className="hover:text-white transition-colors text-sm">
+                support@sikshakendra.com
+              </a>
+            </div>
+            <div className="flex items-center gap-3 text-gray-400">
+              <Phone size={18} className="text-[var(--color-primary)]" />
+              <a href="tel:+919876543210" className="hover:text-white transition-colors text-sm">
+                +91 9876 543 210
+              </a>
+            </div>
+            <div className="flex items-start gap-3 text-gray-400">
+              <MapPin size={18} className="text-[var(--color-primary)] mt-1" />
+              <span className="text-sm leading-relaxed">
+                Sector 62, Noida,<br />
+                Uttar Pradesh, India
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Quick Links */}
@@ -20,13 +38,12 @@ export const Footer: React.FC = () => {
           <h4 className="text-lg font-bold mb-6">Quick Links</h4>
           <ul className="space-y-4 list-none p-0">
             <li><Link to="/" className="text-gray-400 hover:text-white transition-colors text-sm">Home</Link></li>
-            <li><Link to="/board-cbse" className="text-gray-400 hover:text-white transition-colors text-sm">Boards</Link></li>
             <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors text-sm">About Us</Link></li>
             <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors text-sm">Contact Us</Link></li>
           </ul>
         </div>
 
-        {/* Legal */}
+        {/* Support & Legal */}
         <div>
           <h4 className="text-lg font-bold mb-6">Support & Legal</h4>
           <ul className="space-y-4 list-none p-0">
@@ -36,13 +53,33 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Support */}
+        {/* Social Links */}
         <div>
-          <h4 className="text-lg font-bold mb-6">Support</h4>
-          <p className="text-gray-400 text-sm mb-2">Have questions? Reach out to us:</p>
-          <a href="mailto:support@sikshakendra.com" className="text-blue-400 hover:text-blue-300 transition-colors text-sm">
-            support@sikshakendra.com
-          </a>
+          <h4 className="text-lg font-bold mb-6">Social Links</h4>
+          <div className="flex flex-col gap-4">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              Instagram
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+              Facebook
+            </a>
+            <a href="https://t.me" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+              <Send size={20} className="text-[var(--color-primary)]" />
+              Telegram
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+              <X size={20} className="text-[var(--color-primary)]" />
+              Twitter (X)
+            </a>
+          </div>
         </div>
       </div>
 

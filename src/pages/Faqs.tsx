@@ -12,11 +12,11 @@ const FAQ_ITEMS = [
   },
   {
     question: "Do you offer refunds if I am unsatisfied?",
-    answer: "Yes, we offer a 7-day money-back guarantee for all our full-batch premium programs if you feel our methodology doesn't align with your learning style."
+    answer: "Yes, we offer a 7-day money-back guarantee for all our full-course premium programs if you feel our methodology doesn't align with your learning style."
   },
   {
     question: "Are there printed study materials available?",
-    answer: "All our standard modules include comprehensive digital PDFs and interactive online assignments. For select premium tier batches, physical booklets are shipped directly to the student's registered address."
+    answer: "All our standard modules include comprehensive digital PDFs and interactive online assignments. For select premium tier courses, physical booklets are shipped directly to the student's registered address."
   },
   {
     question: "How do I contact a tutor for doubt resolution?",

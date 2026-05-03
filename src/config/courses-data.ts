@@ -1,4 +1,4 @@
-import type { Batch, Category, Lesson } from '../types/batches';
+import type { Course, Category, Lesson } from '../types/courses';
 
 export const DASHBOARD_CATEGORIES: Category[] = [
   { id: '1', name: 'Video Editing', icon: '🎬' },
@@ -9,7 +9,7 @@ export const DASHBOARD_CATEGORIES: Category[] = [
   { id: '6', name: 'Web Development', icon: '💻' },
 ];
 
-export const POPULAR_COURSES: Batch[] = [
+export const POPULAR_COURSES: Course[] = [
   {
     id: 'b1',
     title: 'Arjuna JEE 2027',
@@ -50,7 +50,7 @@ export const POPULAR_COURSES: Batch[] = [
     badge: 'Pro Pack Included',
     description: 'Targeted course for Class 12th JEE success with intensive practice.',
     details: {
-      overview: 'Dedicated batch for Class 12 JEE 2027 aspirants.',
+      overview: 'Dedicated course for Class 12 JEE 2027 aspirants.',
       whoIsItFor: ['Class 12 Students', 'JEE 2027 Aspirants'],
       subjectsCovered: ['Physics', 'Chemistry', 'Mathematics'],
       whatYouGet: ['Advanced Practice', 'Recorded Backups'],
@@ -66,14 +66,14 @@ export const POPULAR_COURSES: Batch[] = [
     category: 'Class 11 + 12 JEE',
     language: 'HINGLISH',
     target: 'JEE 2028',
-    startDate: 'Batch starting in April',
+    startDate: 'Course starting in April',
     discount: 'Upto 40% off',
     lessonsCount: '200+ lessons',
     price: 7999,
     originalPrice: 12000,
     image: '/assets/images/course.png',
     badge: 'Premium Offline Hybrid',
-    description: 'Foundation to Advanced hybrid batch for long-term JEE preparation.',
+    description: 'Foundation to Advanced hybrid course for long-term JEE preparation.',
     details: {
       overview: '2-Year foundation program for JEE 2028.',
       whoIsItFor: ['Class 11 Students'],
@@ -96,12 +96,12 @@ export const MOCK_LESSONS: Lesson[] = [
   { id: 'l6', lessonNumber: 6, title: 'Mock Test Discussion', duration: '60:00', videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', isCompleted: false },
 ];
 
-export const BATCHES_DATA = POPULAR_COURSES;
+export const COURSES_DATA = POPULAR_COURSES;
 
 export const FAQ_DATA = [
   {
-    question: "What is the mode of classes in these batches?",
-    answer: "Most of our batches offer a hybrid experience with live interactive classes and 24/7 access to recorded lectures for revision."
+    question: "What is the mode of classes in these courses?",
+    answer: "Most of our courses offer a hybrid experience with live interactive classes and 24/7 access to recorded lectures for revision."
   },
   {
     question: "How can I resolve my doubts after the live class?",
@@ -117,6 +117,6 @@ export const FAQ_DATA = [
   },
   {
     question: "What is the validity of the course?",
-    answer: "Course validity typically lasts until your target exam date. For example, JEE 2027 batches remain valid until the JEE Advanced 2027 exam is conducted."
+    answer: "Course validity typically lasts until your target exam date. For example, JEE 2027 courses remain valid until the JEE Advanced 2027 exam is conducted."
   }
 ];

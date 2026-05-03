@@ -169,7 +169,7 @@ export const API_ENDPOINTS = {
     SUBMIT_FORM: {
       method: 'POST' as const,
       path: '/contact',
-      body: '{ name: string, phone: string, email: string, batch: string, message: string }',
+      body: '{ name: string, phone: string, email: string, course: string, message: string }',
       response: '{ success: boolean, ticketId: string }',
       status: '🟡 Pending',
       usedBy: ['Contact (Send Message form)'],

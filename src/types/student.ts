@@ -1,4 +1,4 @@
-export interface Lesson {
+export interface EnrolledLesson {
   id: string;
   lessonNumber: number;
   title: string;
@@ -16,5 +16,5 @@ export interface EnrolledCourse {
   totalLessons: number;
   totalDuration: string;
   progress: number;
-  lessons: Lesson[];
+  lessons: EnrolledLesson[];
 }

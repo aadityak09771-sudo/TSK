@@ -3,7 +3,7 @@
  * Paths live in `src/config/api-endpoints.ts`; keep types here only.
  */
 
-import type { Course, User } from './entities';
+import type { CommonCourse, User } from './entities';
 
 // ─── Shared / envelope ───────────────────────────────────────
 
@@ -54,8 +54,8 @@ export interface HeroSlidesResponse {
   slides: HeroSlide[];
 }
 
-export interface FeaturedCoursesResponse {
-  courses: Course[];
+export interface FeaturedCommonCoursesResponse {
+  courses: CommonCourse[];
 }
 
 export interface EcosystemItem {
@@ -68,10 +68,10 @@ export interface EcosystemResponse {
   items: EcosystemItem[];
 }
 
-// ─── Course listing ─────────────────────────────────────────
+// ─── CommonCourse listing ─────────────────────────────────────────
 
-export interface GetCoursesResponse {
-  courses: Course[];
+export interface GetCommonCoursesResponse {
+  courses: CommonCourse[];
 }
 
 export interface GetSubjectsResponse {
@@ -114,7 +114,7 @@ export interface ContactFormRequest {
   name: string;
   phone: string;
   email: string;
-  batch: string;
+  course: string;
   message: string;
 }
 

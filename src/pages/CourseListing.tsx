@@ -88,7 +88,7 @@ export const CourseListing: React.FC = () => {
               Recommended for you
             </h2>
             <div className="text-sm font-bold text-gray-400">
-              Showing {filteredCourses.length} Batches
+              Showing {filteredCourses.length} Courses
             </div>
           </div>
 

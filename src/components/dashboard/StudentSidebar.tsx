@@ -1,18 +1,16 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { 
-  BookOpen, 
-  Gamepad, 
   Library, 
-  Zap, 
-  Trophy, 
-  GraduationCap, 
-  MapPin, 
   ShoppingBag, 
-  HelpCircle,
   X,
   LayoutDashboard,
-  LogOut
+  LogOut,
+  Coins,
+  MessageCircle,
+  Info,
+  ShieldCheck,
+  Store
 } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
 
@@ -21,14 +19,17 @@ interface StudentSidebarProps {
   toggleSidebar: () => void;
 }
 
+interface SidebarItem {
+  name: string;
+  icon: React.ReactNode;
+  path: string;
+  subtext?: string;
+  isActive?: boolean;
+}
+
 interface SidebarSection {
   title: string;
-  items: {
-    name: string;
-    icon: React.ReactNode;
-    path: string;
-    isActive?: boolean;
-  }[];
+  items: SidebarItem[];
 }
 
 export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSidebar }) => {
@@ -42,35 +43,31 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
   };
   
   const sections: SidebarSection[] = [
-// ... (keep sections as they are)
     {
       title: 'Learn Online',
       items: [
-        { name: 'Study', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
-        { name: 'Practice', icon: <Gamepad size={20} />, path: '/practice' },
+        { name: 'My Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
         { name: 'Library', icon: <Library size={20} />, path: '/library' },
+        { name: 'My Purchases', icon: <ShoppingBag size={20} />, path: '/my-purchases' },
       ]
     },
     {
       title: 'Study Packs',
       items: [
-        { name: 'Batches', icon: <BookOpen size={20} />, path: '/batches', isActive: true },
-        { name: 'Power Batch', icon: <Zap size={20} />, path: '/power-batch' },
-        { name: 'Test Series', icon: <Trophy size={20} />, path: '/test-series' },
-        { name: 'Scholarship', icon: <GraduationCap size={20} />, path: '/scholarship' },
+        { name: 'Our Courses', icon: <Store size={20} />, path: '/dashboard/courses' },
       ]
     },
     {
-      title: 'Offline',
+      title: 'Support & Info',
       items: [
-        { name: 'Centres', icon: <MapPin size={20} />, path: '/centres' },
-      ]
-    },
-    {
-      title: 'Explore',
-      items: [
-        { name: 'Store', icon: <ShoppingBag size={20} />, path: '/store' },
-        { name: 'Help & Support', icon: <HelpCircle size={20} />, path: '/support' },
+        { 
+          name: 'Contact us', 
+          icon: <MessageCircle size={20} />, 
+          path: '/dashboard/contact',
+          subtext: 'My issues'
+        },
+        { name: 'About us', icon: <Info size={20} />, path: '/dashboard/about' },
+        { name: 'Privacy Policy', icon: <ShieldCheck size={20} />, path: '/dashboard/privacy' },
       ]
     }
   ];
@@ -106,8 +103,8 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
                     <NavLink
                       key={item.name}
                       to={item.path}
-                      className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${
-                        (isActive || (item.isActive && window.location.pathname === '/'))
+                      className={({ isActive }) => `flex items-start gap-3 px-4 py-3 rounded-xl font-bold transition-all ${
+                        isActive
                           ? 'bg-blue-50 text-[var(--color-primary)]' 
                           : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                       }`}
@@ -115,8 +112,15 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
                         if (window.innerWidth < 1024) toggleSidebar();
                       }}
                     >
-                      {item.icon}
-                      <span className="text-sm">{item.name}</span>
+                      <span className="mt-0.5">{item.icon}</span>
+                      <div className="flex flex-col">
+                        <span className="text-sm">{item.name}</span>
+                        {item.subtext && (
+                          <span className="text-[10px] font-medium text-gray-400 mt-0.5">
+                            {item.subtext}
+                          </span>
+                        )}
+                      </div>
                     </NavLink>
                   ))}
                 </div>
@@ -125,14 +129,6 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
           </nav>
 
           <div className="mt-8 space-y-4">
-            <div className="p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-              <p className="text-xs font-bold text-gray-500 mb-2">Need Help?</p>
-              <p className="text-[10px] text-gray-400 leading-relaxed mb-3">Check our support center for any queries regarding your courses.</p>
-              <button className="w-full py-2 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50 transition-colors">
-                Visit Help Center
-              </button>
-            </div>
-
             <button 
               onClick={handleLogout}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-red-500 hover:bg-red-50 transition-all"

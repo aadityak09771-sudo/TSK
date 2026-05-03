@@ -1,11 +1,11 @@
 import React from 'react';
 import { Play, CheckCircle, Lock, Clock } from 'lucide-react';
-import type { Lesson } from '../../types/student';
+import type { EnrolledLesson } from '../../types/student';
 
 interface LessonListProps {
-  lessons: Lesson[];
+  lessons: EnrolledLesson[];
   currentLessonId: string;
-  onLessonSelect: (lesson: Lesson) => void;
+  onLessonSelect: (lesson: EnrolledLesson) => void;
 }
 
 export const LessonList: React.FC<LessonListProps> = ({ 
