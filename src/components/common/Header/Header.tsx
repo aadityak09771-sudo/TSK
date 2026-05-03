@@ -50,10 +50,10 @@ export const Header: React.FC = () => {
           <Logo />
 
           {/* Navigation */}
-          <nav className="hidden lg:flex items-center">
+          <nav className="header-nav">
             <ul className="all-categories-list">
               <li 
-                className="relative py-2"
+                className="category-list-item"
                 onMouseEnter={() => setShowAllCategories(true)}
                 onMouseLeave={() => setShowAllCategories(false)}
               >
@@ -84,11 +84,11 @@ export const Header: React.FC = () => {
                       </div>
 
                       {/* Right Side: Options */}
-                      <div className="w-3/5 p-6">
+                      <div className="dropdown-options-container">
                         <h3 className="dropdown-title">
                           {allCategories.find(category => category.id === activeCategory)?.sectionTitle}
                         </h3>
-                        <div className="grid gap-2">
+                        <div className="options-grid">
                           {allCategories.find(category => category.id === activeCategory)?.options.map((option) => (
                             <Link
                               key={option.id}
@@ -113,57 +113,57 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Center/Main Navigation */}
-        <nav className="hidden md:flex items-center">
-          <ul className="flex items-center gap-10 list-none m-0 p-0">
+        <nav className="main-nav">
+          <ul className="nav-list">
             <li>
               <Link 
                 to="/" 
-                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
-                  isActive('/') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                className={`nav-link ${
+                  isActive('/') ? 'nav-link-active' : 'nav-link-inactive'
                 }`}
               >
                 Home
                 {isActive('/') && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                  <span className="active-indicator" />
                 )}
               </Link>
             </li>
             <li>
               <Link 
                 to="/courses" 
-                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
-                  isActive('/courses') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                className={`nav-link ${
+                  isActive('/courses') ? 'nav-link-active' : 'nav-link-inactive'
                 }`}
               >
                 Courses
                 {isActive('/courses') && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                  <span className="active-indicator" />
                 )}
               </Link>
             </li>
             <li>
               <Link 
                 to="/about" 
-                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
-                  isActive('/about') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                className={`nav-link ${
+                  isActive('/about') ? 'nav-link-active' : 'nav-link-inactive'
                 }`}
               >
                 About Us
                 {isActive('/about') && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                  <span className="active-indicator" />
                 )}
               </Link>
             </li>
             <li>
               <Link 
                 to="/contact" 
-                className={`text-[13px] font-bold transition-all relative py-1 hover:text-[var(--color-primary)] ${
-                  isActive('/contact') ? 'text-[var(--color-primary)]' : 'text-gray-600'
+                className={`nav-link ${
+                  isActive('/contact') ? 'nav-link-active' : 'nav-link-inactive'
                 }`}
               >
                 Contact Us
                 {isActive('/contact') && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[var(--color-primary)] rounded-full" />
+                  <span className="active-indicator" />
                 )}
               </Link>
             </li>
@@ -171,8 +171,8 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-6">
-            <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="px-6 py-2.5 rounded-full font-bold text-xs">
+        <div className="header-actions">
+            <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="auth-button">
                 Login / Register
             </Button>
         </div>
