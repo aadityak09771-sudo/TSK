@@ -11,13 +11,13 @@ export const CourseHero: React.FC = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
+    <section className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-10">
       <div className="container mx-auto px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
           Find the Right Course for Your <br className="hidden md:block" />
           <span className="text-[var(--color-primary)]">Learning Journey</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto mb-10 leading-relaxed">
           Unlock your potential with our expert-led live classes, comprehensive recorded lectures, 
           premium study material, and 24/7 doubt support. Join thousands of successful students today!
         </p>
@@ -31,7 +31,7 @@ export const CourseHero: React.FC = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
               <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center">

@@ -4,19 +4,14 @@ import { Button } from '../components/ui/Button';
 
 export const Contact: React.FC = () => {
   return (
-    <div className="bg-white pt-20">
-      {/* Simple Header */}
-      <div className="container pt-12">
-        <h1 className="text-4xl md:text-5xl font-black text-gray-900">Contact Us</h1>
-      </div>
-
+    <div className="bg-white">
       {/* Main Content */}
-      <section className="py-20">
+      <section className="py-5">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Info Card */}
           <div className="space-y-12">
             <div>
-              <h2 className="text-3xl font-black mb-8 underline decoration-[var(--color-primary)] decoration-4 underline-offset-8">Get in Touch</h2>
+              <h2 className="text-3xl font-bold mb-8 underline decoration-[var(--color-primary)] decoration-4 underline-offset-8">Get in Touch</h2>
               <div className="space-y-8">
                 <div className="flex items-start gap-6">
                   <div className="w-12 h-12 bg-blue-50 text-[var(--color-primary)] rounded-xl flex items-center justify-center shrink-0">
