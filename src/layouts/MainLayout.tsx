@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Header } from '../components/common/Header';
+import { Header } from '../components/common/Header/Header';
 import { Footer } from '../components/common/Footer';
 import { AuthModal } from '../components/common/AuthModal';
 
