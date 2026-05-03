@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../components/common/Header/Header';
 import { Footer } from '../components/common/Footer';
-import { AuthModal } from '../components/common/AuthModal';
+import { AuthModal } from '../components/common/AuthModal/AuthModal';
 import { useAuthStore } from '../store/useAuthStore';
 
 interface MainLayoutProps {

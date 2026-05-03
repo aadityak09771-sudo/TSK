@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../store/useAuthStore';
-import { Button } from '../ui/Button';
+import { useAuthStore } from '../../../store/useAuthStore';
+import { Button } from '../../ui/Button';
+import './AuthModal.css'
 
 export const AuthModal: React.FC = () => {
   const navigate = useNavigate();
@@ -73,85 +74,36 @@ export const AuthModal: React.FC = () => {
   // Use createPortal to render directly on document.body
   // This avoids any CSS stacking context issues from parent elements
   const modalContent = (
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 9999,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1rem',
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        backdropFilter: 'blur(4px)',
-      }}
-      onClick={closeAuthModal}
-    >
-      <div
-        style={{
-          backgroundColor: '#fff',
-          width: '100%',
-          maxWidth: '28rem',
-          borderRadius: '1rem',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-          overflow: 'hidden',
-          position: 'relative',
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div className="auth-modal-overlay" onClick={closeAuthModal}>
+      <div className="auth-modal-container" onClick={(e) => e.stopPropagation()}>
         {/* Close Button */}
         <button
           type="button"
           onClick={closeAuthModal}
-          style={{
-            position: 'absolute',
-            top: '1rem',
-            right: '1rem',
-            padding: '0.5rem',
-            background: 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            color: '#9CA3AF',
-            borderRadius: '9999px',
-          }}
+          className="auth-modal-close"
         >
           <X size={20} />
         </button>
 
-        <div style={{ padding: '2.5rem' }}>
+        <div className="auth-modal-content">
           {step === 1 ? (
             <div>
-              <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', margin: 0 }}>Welcome Back</h2>
-                <p style={{ color: '#6B7280', marginTop: '0.5rem' }}>Enter your phone number to continue</p>
+              <div className="auth-modal-header">
+                <h2 className="auth-modal-title">Welcome Back</h2>
+                <p className="auth-modal-subtitle">Enter your phone number to continue</p>
               </div>
 
               <form onSubmit={handlePhoneSubmit}>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '0.5rem' }}>Phone Number</label>
-                  <div style={{ position: 'relative' }}>
-                    <span style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#6B7280', fontWeight: 500 }}>+91</span>
+                <div className="auth-modal-form-group">
+                  <label className="auth-modal-label">Phone Number</label>
+                  <div className="auth-modal-input-wrapper">
+                    <span className="auth-modal-country-code">+91</span>
                     <input
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                       placeholder="Enter 10 digit number"
-                      style={{
-                        width: '100%',
-                        paddingLeft: '3.5rem',
-                        paddingRight: '1rem',
-                        paddingTop: '0.75rem',
-                        paddingBottom: '0.75rem',
-                        backgroundColor: '#F9FAFB',
-                        border: '1px solid #E5E7EB',
-                        borderRadius: '0.75rem',
-                        outline: 'none',
-                        fontSize: '1rem',
-                        boxSizing: 'border-box',
-                      }}
+                      className="auth-modal-input"
                       required
                       autoFocus
                     />
@@ -165,12 +117,12 @@ export const AuthModal: React.FC = () => {
             </div>
           ) : (
             <div>
-              <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', margin: 0 }}>Verify OTP</h2>
-                <p style={{ color: '#6B7280', marginTop: '0.5rem' }}>Sent to +91 {phone}</p>
+              <div className="auth-modal-header">
+                <h2 className="auth-modal-title">Verify OTP</h2>
+                <p className="auth-modal-subtitle">Sent to +91 {phone}</p>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+              <div className="auth-modal-otp-grid">
                 {otp.map((digit, i) => (
                   <input
                     key={i}
@@ -180,17 +132,7 @@ export const AuthModal: React.FC = () => {
                     value={digit}
                     onChange={(e) => handleOtpChange(i, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(i, e)}
-                    style={{
-                      width: '3.5rem',
-                      height: '4rem',
-                      textAlign: 'center',
-                      fontSize: '1.5rem',
-                      fontWeight: 700,
-                      backgroundColor: '#F9FAFB',
-                      border: '1px solid #E5E7EB',
-                      borderRadius: '0.75rem',
-                      outline: 'none',
-                    }}
+                    className="auth-modal-otp-input"
                   />
                 ))}
               </div>
@@ -208,16 +150,7 @@ export const AuthModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                style={{
-                  width: '100%',
-                  marginTop: '1rem',
-                  fontSize: '0.875rem',
-                  fontWeight: 500,
-                  color: '#2563EB',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                }}
+                className="auth-modal-text-button"
               >
                 Change Phone Number
               </button>
