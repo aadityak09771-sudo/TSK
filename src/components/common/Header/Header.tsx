@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
     const fetchAllCategories = async () => {
       setIsLoading(true);
       // Mock API call simulation
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       const data = [
         {

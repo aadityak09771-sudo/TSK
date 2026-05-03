@@ -5,6 +5,14 @@
   background-color: white;
 }
 
+.hero-loader-container {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb;
+}
+
 .hero-slider-track {
   display: flex;
   width: 100%;
