@@ -7,11 +7,9 @@ import { Logo } from '../Logo';
 import './Header.css'
 
 export const Header: React.FC = () => {
-  const [showAllAcategories, setShowAllAcategories] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('School Boards');
+  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('school-boards');
   
-  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
-  const logout = useAuthStore(state => state.logout);
   const openAuthModal = useAuthStore(state => state.openAuthModal);
   const location = useLocation();
 
@@ -19,13 +17,30 @@ export const Header: React.FC = () => {
     return location.pathname === path || (location.pathname === '/' && path === '/index.html');
   };
 
-  const boardCategories = {
-    'School Boards': [
-      { name: 'CBSE Arts', path: '/board-cbse' },
-      { name: 'CBSE Science', path: '/board-cbse' },
-      { name: 'CBSE Commerce', path: '/board-cbse' },
-    ]
-  };
+  const allCategories = [
+    {
+      id: "school-boards",
+      label: "School Boards",
+      sectionTitle: "Available Boards",
+      options: [
+        {
+          id: "cbse-arts",
+          name: "CBSE Arts",
+          path: "/board-cbse",
+        },
+        {
+          id: "cbse-science",
+          name: "CBSE Science",
+          path: "/board-cbse",
+        },
+        {
+          id: "cbse-commerce",
+          name: "CBSE Commerce",
+          path: "/board-cbse",
+        },
+      ],
+    },
+  ];
 
   return (
     <header className="header-public">
@@ -39,44 +54,49 @@ export const Header: React.FC = () => {
             <ul className="all-categories-list">
               <li 
                 className="relative py-2"
-                onMouseEnter={() => setShowAllAcategories(true)}
-                onMouseLeave={() => setShowAllAcategories(false)}
+                onMouseEnter={() => setShowAllCategories(true)}
+                onMouseLeave={() => setShowAllCategories(false)}
               >
                 <button className="all-categories-button">
-                  All Categories <ChevronDown size={14} className={`all-categories-chevron ${showAllAcategories ? 'rotate-180' : ''} `} />
+                  All Categories <ChevronDown size={14} className={`all-categories-chevron ${showAllCategories ? 'rotate-180' : ''} `} />
                 </button>
                 
-                {showAllAcategories && (
+                {showAllCategories && (
                   <div className="all-categories-dropdown-wrapper">
                     <div className="dropdown-menu">
                       {/* Left Side: Categories */}
                       <div className="dropdown-sidebar">
                         <h3 className="dropdown-title">Categories</h3>
-                        <button
-                          onMouseEnter={() => setActiveCategory('School Boards')}
-                          className={`dropdown-item ${
-                            activeCategory === 'School Boards' 
-                              ? 'bg-white text-[var(--color-primary)] shadow-sm' 
-                              : 'text-gray-600 hover:bg-gray-100'
-                          }`}
-                        >
-                          School Boards
-                          <ChevronRight size={14} className={activeCategory === 'School Boards' ? 'opacity-100' : 'opacity-0'} />
-                        </button>
+                        {allCategories.map((category) => (
+                          <button
+                            key={category.id}
+                            onMouseEnter={() => setActiveCategory(category.id)}
+                            className={`dropdown-item ${
+                              activeCategory === category.id 
+                                ? 'bg-white text-[var(--color-primary)] shadow-sm' 
+                                : 'text-gray-600 hover:bg-gray-100'
+                            }`}
+                          >
+                            {category.label}
+                            <ChevronRight size={14} className={activeCategory === category.id ? 'opacity-100' : 'opacity-0'} />
+                          </button>
+                        ))}
                       </div>
 
                       {/* Right Side: Options */}
                       <div className="w-3/5 p-6">
-                        <h3 className="dropdown-title">Available Boards</h3>
+                        <h3 className="dropdown-title">
+                          {allCategories.find(category => category.id === activeCategory)?.sectionTitle}
+                        </h3>
                         <div className="grid gap-2">
-                          {boardCategories[activeCategory as keyof typeof boardCategories].map((board) => (
+                          {allCategories.find(category => category.id === activeCategory)?.options.map((option) => (
                             <Link
-                              key={board.name}
-                              to={board.path}
+                              key={option.id}
+                              to={option.path}
                               className="dropdown-link"
-                              onClick={() => setShowAllAcategories(false)}
+                              onClick={() => setShowAllCategories(false)}
                             >
-                              {board.name}
+                              {option.name}
                               <div className="dropdown-link-icon">
                                 <ChevronRight size={12} />
                               </div>
@@ -152,22 +172,9 @@ export const Header: React.FC = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-6">
-          {isLoggedIn ? (
-            <div className="flex items-center gap-6">
-              <Link to="/dashboard" className="text-[13px] font-bold text-gray-700 hover:text-[var(--color-primary)] transition-colors">
-                My Dashboard
-              </Link>
-              <Button type="button" variant="outline" size="sm" onClick={logout} className="text-xs font-bold px-5">
-                Log Out
-              </Button>
-            </div>
-          ) : (
-            <>
-              <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="px-6 py-2.5 rounded-full font-bold text-xs">
+            <Button type="button" variant="primary" size="sm" onClick={openAuthModal} className="px-6 py-2.5 rounded-full font-bold text-xs">
                 Login / Register
-              </Button>
-            </>
-          )}
+            </Button>
         </div>
       </div>
     </header>
