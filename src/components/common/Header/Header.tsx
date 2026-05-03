@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { useAuthStore } from '../../../store/useAuthStore';
 import { Button } from '../../ui/Button';
 import { Logo } from '../Logo';
+import { Spinner } from '../../ui/Spinner/Spinner';
 import './Header.css'
 
 export const Header: React.FC = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState('school-boards');
+  const [categories, setCategories] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   const openAuthModal = useAuthStore(state => state.openAuthModal);
   const location = useLocation();
@@ -17,30 +20,41 @@ export const Header: React.FC = () => {
     return location.pathname === path || (location.pathname === '/' && path === '/index.html');
   };
 
-  const allCategories = [
-    {
-      id: "school-boards",
-      label: "School Boards",
-      sectionTitle: "Available Boards",
-      options: [
+  useEffect(() => {
+    //TODO: complete the API integration and move it to another file
+    const fetchAllCategories = async () => {
+      setIsLoading(true);
+      // Mock API call simulation
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      
+      const data = [
         {
-          id: "cbse-arts",
-          name: "CBSE Arts",
-          path: "/board-cbse",
+          id: "school-boards",
+          label: "School Boards",
+          sectionTitle: "Available Boards",
+          options: [
+            { id: "cbse-arts", name: "CBSE Arts", path: "/board-cbse" },
+            { id: "cbse-science", name: "CBSE Science", path: "/board-cbse" },
+            { id: "cbse-commerce", name: "CBSE Commerce", path: "/board-cbse" },
+          ],
         },
         {
-          id: "cbse-science",
-          name: "CBSE Science",
-          path: "/board-cbse",
+          id: "competitive-exams",
+          label: "Competitive Exams",
+          sectionTitle: "Available Exams",
+          options: [
+            { id: "jee", name: "JEE", path: "/jee" },
+            { id: "neet", name: "NEET", path: "/neet" },
+          ],
         },
-        {
-          id: "cbse-commerce",
-          name: "CBSE Commerce",
-          path: "/board-cbse",
-        },
-      ],
-    },
-  ];
+      ];
+      
+      setCategories(data);
+      setIsLoading(false);
+    };
+    
+    fetchAllCategories();
+  }, []);
 
   return (
     <header className="header-public">
@@ -64,46 +78,52 @@ export const Header: React.FC = () => {
                 {showAllCategories && (
                   <div className="all-categories-dropdown-wrapper">
                     <div className="dropdown-menu">
-                      {/* Left Side: Categories */}
-                      <div className="dropdown-sidebar">
-                        <h3 className="dropdown-title">Categories</h3>
-                        {allCategories.map((category) => (
-                          <button
-                            key={category.id}
-                            onMouseEnter={() => setActiveCategory(category.id)}
-                            className={`dropdown-item ${
-                              activeCategory === category.id 
-                                ? 'bg-white text-[var(--color-primary)] shadow-sm' 
-                                : 'text-gray-600 hover:bg-gray-100'
-                            }`}
-                          >
-                            {category.label}
-                            <ChevronRight size={14} className={activeCategory === category.id ? 'opacity-100' : 'opacity-0'} />
-                          </button>
-                        ))}
-                      </div>
+                      {isLoading ? (
+                        <Spinner text="Loading categories..." className="w-full h-full" />
+                      ) : categories.length > 0 ? (
+                        <>
+                          {/* Left Side: Categories */}
+                          <div className="dropdown-sidebar">
+                            <h3 className="dropdown-title">Categories</h3>
+                            {categories.map((category) => (
+                              <button
+                                key={category.id}
+                                onMouseEnter={() => setActiveCategory(category.id)}
+                                className={`dropdown-item ${
+                                  activeCategory === category.id 
+                                    ? 'bg-white text-[var(--color-primary)] shadow-sm' 
+                                    : 'text-gray-600 hover:bg-gray-100'
+                                }`}
+                              >
+                                {category.label}
+                                <ChevronRight size={14} className={activeCategory === category.id ? 'opacity-100' : 'opacity-0'} />
+                              </button>
+                            ))}
+                          </div>
 
-                      {/* Right Side: Options */}
-                      <div className="dropdown-options-container">
-                        <h3 className="dropdown-title">
-                          {allCategories.find(category => category.id === activeCategory)?.sectionTitle}
-                        </h3>
-                        <div className="options-grid">
-                          {allCategories.find(category => category.id === activeCategory)?.options.map((option) => (
-                            <Link
-                              key={option.id}
-                              to={option.path}
-                              className="dropdown-link"
-                              onClick={() => setShowAllCategories(false)}
-                            >
-                              {option.name}
-                              <div className="dropdown-link-icon">
-                                <ChevronRight size={12} />
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
+                          {/* Right Side: Options */}
+                          <div className="dropdown-options-container">
+                            <h3 className="dropdown-title">
+                              {categories.find(category => category.id === activeCategory)?.sectionTitle}
+                            </h3>
+                            <div className="options-grid">
+                              {categories.find(category => category.id === activeCategory)?.options.map((option: any) => (
+                                <Link
+                                  key={option.id}
+                                  to={option.path}
+                                  className="dropdown-link"
+                                  onClick={() => setShowAllCategories(false)}
+                                >
+                                  {option.name}
+                                  <div className="dropdown-link-icon">
+                                    <ChevronRight size={12} />
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      ) : null}
                     </div>
                   </div>
                 )}
