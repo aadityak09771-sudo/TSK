@@ -6,6 +6,7 @@ interface LogoProps {
   light?: boolean;
 }
 
+//TODO: REPLACE WITH ACTUAL LOGO
 export const Logo: React.FC<LogoProps> = ({ className, light = false }) => {
   return (
     <Link to="/" className={`flex items-center gap-2 text-2xl font-bold transition-transform hover:scale-105 ${className}`}>

@@ -1,0 +1,271 @@
+.header-public {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem; /* 80px */
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* 40px */
+}
+
+.header-logo-container .all-categories-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* 32px */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.all-categories-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151; /* gray-700 */
+
+  background-color: #f9fafb; /* gray-50 */
+  border: 1px solid #f3f4f6; /* gray-100 */
+
+  padding: 0.5rem 1rem; /* py-2 px-4 */
+  border-radius: 9999px; /* rounded-full */
+
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+}
+
+.all-categories-button:hover {
+  color: var(--color-primary);
+  background-color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.all-categories-chevron {
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+
+  color: #9ca3af; /* gray-400 */
+}
+
+.all-categories-dropdown-wrapper {
+  position: absolute;
+  left: 0;
+  top: 100%;
+
+  padding-top: 0.5rem; /* 8px */
+
+  z-index: 50;
+}
+
+.dropdown-menu {
+  background-color: #ffffff;
+
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+              0 8px 10px -6px rgb(0 0 0 / 0.1); /* shadow-xl */
+
+  border-radius: 1rem; /* 16px */
+  border: 1px solid #f3f4f6; /* gray-100 */
+
+  overflow: hidden;
+
+  display: flex;
+
+  min-width: 500px;
+  height: 300px;
+}
+
+.dropdown-sidebar {
+  width: 40%; /* 2/5 */
+  background-color: #f9fafb; /* gray-50 */
+
+  border-right: 1px solid #f3f4f6; /* gray-100 */
+
+  padding: 1rem; /* 16px */
+}
+
+.dropdown-title {
+  font-size: 10px;
+  font-weight: 900;
+  color: #9ca3af; /* gray-400 */
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* tracking-widest */
+
+  margin-bottom: 1rem; /* 16px */
+
+  padding-left: 0.5rem; /* 8px */
+  padding-right: 0.5rem; /* 8px */
+}
+
+.dropdown-item {
+  width: 100%;
+  text-align: left;
+
+  padding: 0.75rem 1rem; /* py-3 px-4 */
+
+  border-radius: 0.75rem; /* 12px */
+
+  font-size: 0.875rem; /* 14px */
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+.dropdown-link {
+  padding: 0.75rem 1rem; /* py-3 px-4 */
+
+  border-radius: 0.75rem; /* rounded-xl */
+
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #374151; /* gray-700 */
+
+  transition: all 150ms ease-in-out;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-link:hover {
+  background-color: #eff6ff; /* blue-50 */
+  color: var(--color-primary);
+}
+
+.dropdown-link-icon {
+  width: 1.5rem; /* 24px */
+  height: 1.5rem; /* 24px */
+
+  border-radius: 9999px;
+  background-color: #dbeafe; /* blue-100 */
+  color: var(--color-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+.dropdown-link:hover .dropdown-link-icon {
+  opacity: 1;
+}
+
+/* Main Navigation */
+.header-nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .header-nav {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.category-list-item {
+  position: relative;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dropdown-options-container {
+  width: 60%; /* 3/5 */
+  padding: 1.5rem; /* 24px */
+}
+
+.options-grid {
+  display: grid;
+  gap: 0.5rem; /* 8px */
+}
+
+/* Center Navigation */
+.main-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .main-nav {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* 40px */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 150ms ease-in-out;
+  position: relative;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link-active {
+  color: var(--color-primary);
+}
+
+.nav-link-inactive {
+  color: #4b5563; /* gray-600 */
+}
+
+.active-indicator {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  border-radius: 9999px;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* 24px */
+}
+
+.auth-button {
+  padding: 0.625rem 1.5rem !important; /* 10px 24px */
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important; /* 12px */
+}

@@ -68,9 +68,9 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="py-24 bg-blue-50/50">
+      <section className="py-12 bg-blue-50/50">
         <div className="container text-center max-w-3xl">
-          <h1 className="text-5xl font-black mb-6 text-gray-900">Our Mission</h1>
+          <h1 className="text-5xl font-bold mb-6 text-gray-900">Our Mission</h1>
           <p className="text-xl text-gray-600 leading-relaxed">
             Siksha Kendra is an edutech platform focused on true academic excellence. 
             We move beyond memorization to help students deeply understand, ask big questions, 
@@ -80,7 +80,7 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
       </section>
 
       {/* Philosophy - ZigZag Row 1 */}
-      <section className="py-24">
+      <section className="py-12">
         <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl font-black mb-6 italic text-[var(--color-primary)]">What Makes Us Different</h2>
