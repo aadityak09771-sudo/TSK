@@ -18,13 +18,13 @@ export const Courses: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      <CourseHero />
+      {/* <CourseHero /> */}
       
-      <section className="py-20 bg-white" id="explore">
+      <section className="py-5 bg-white" id="explore">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Explore Our Courses</h2>
-            <p className="text-gray-500">Filter courses by category to find the perfect course for your goals.</p>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore Our Courses</h2>
+            {/* <p className="text-gray-500">Filter courses by category to find the perfect course for your goals.</p> */}
           </div>
 
           <CourseFilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />

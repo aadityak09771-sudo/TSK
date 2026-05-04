@@ -58,8 +58,8 @@ export const Contact: React.FC = () => {
           </div>
 
           {/* Contact form */}
-          <div className="bg-white p-10 rounded-[40px] shadow-2xl shadow-blue-500/5 border border-gray-100">
-            <h3 className="text-2xl font-black mb-8">Send a Message</h3>
+          <div className="bg-white p-10 pt-5 rounded-[40px] shadow-2xl shadow-blue-500/5 border border-gray-100">
+            {/* <h3 className="text-2xl font-bold mb-8">Send a Message</h3> */}
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
