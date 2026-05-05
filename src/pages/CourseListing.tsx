@@ -33,7 +33,7 @@ export const CourseListing: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-24">
       {/* Header */}
-      <section className="bg-white border-b border-gray-100 py-16">
+      <section className="bg-white border-b border-gray-100 py-5">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
@@ -42,17 +42,17 @@ export const CourseListing: React.FC = () => {
                 <span className="text-gray-300">/</span>
                 <span className="text-gray-400">CLASS {classFilter || 'ALL'}</span>
               </nav>
-              <h1 className="text-4xl font-black text-gray-900">
+              {/* <h1 className="text-4xl font-black text-gray-900">
                 {classFilter ? `Class ${classFilter}th Courses` : 'All Courses'}
-              </h1>
+              </h1> */}
             </div>
             {classFilter && (
-              <div className="bg-blue-50 px-6 py-4 rounded-2xl border border-blue-100 flex items-center gap-4">
-                <div className="w-10 h-10 bg-[var(--color-primary)] text-white rounded-xl flex items-center justify-center font-bold">
+              <div className="bg-blue-50 px-6 py-2 rounded-2xl border border-blue-100 flex items-center gap-4">
+                {/* <div className="w-10 h-10 bg-[var(--color-primary)] text-white rounded-xl flex items-center justify-center font-bold">
                   {classFilter}
-                </div>
+                </div> */}
                 <div>
-                  <p className="text-xs font-bold text-blue-600 uppercase">Selected Grade</p>
+                  {/* <p className="text-xs font-bold text-blue-600 uppercase">Selected Grade</p> */}
                   <p className="font-bold text-gray-900">Academic Year 2026-27</p>
                 </div>
               </div>
@@ -63,16 +63,18 @@ export const CourseListing: React.FC = () => {
 
       {/* Subjects Grid */}
       {classFilter && subjects.length > 0 && (
-        <section className="py-12 bg-white">
+        <section className="py-8 bg-white border-b border-gray-50">
           <div className="container">
-            <h2 className="text-sm font-black text-gray-400 uppercase tracking-[0.2em] mb-8">Available Subjects</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <h2 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] mb-5">Explore by Subject</h2>
+            <div className="flex flex-wrap gap-4">
               {subjects.map((subject, i) => (
-                <div key={i} className="group cursor-pointer bg-gray-50 border border-gray-100 p-6 rounded-2xl flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1">
-                  <div className="w-14 h-14 bg-white shadow-sm rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-50 group-hover:text-[var(--color-primary)] transition-colors">
-                    <SubjectIcon name={subject} />
+                <div key={i} className="group cursor-pointer bg-gray-50 border border-gray-100 px-5 py-3 rounded-xl flex items-center gap-3 transition-all hover:bg-white hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-0.5">
+                  <div className="w-8 h-8 bg-white shadow-sm rounded-lg flex items-center justify-center group-hover:bg-blue-50 group-hover:text-[var(--color-primary)] transition-colors">
+                    <div className="scale-75">
+                      <SubjectIcon name={subject} />
+                    </div>
                   </div>
-                  <span className="font-bold text-gray-700">{subject}</span>
+                  <span className="font-bold text-gray-700 text-sm whitespace-nowrap">{subject}</span>
                 </div>
               ))}
             </div>

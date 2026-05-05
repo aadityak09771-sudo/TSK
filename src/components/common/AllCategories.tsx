@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CATEGORIES } from '../../config/studentData';
 
 export const AllCategories: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -14,12 +16,21 @@ export const AllCategories: React.FC = () => {
     }
   };
 
+  const handleCategoryClick = (categoryName: string) => {
+    // Standard mapping for CBSE categories
+    if (categoryName.startsWith('CBSE')) {
+      navigate('/board-cbse');
+    } else {
+      navigate(`/courses?category=${encodeURIComponent(categoryName)}`);
+    }
+  };
+
   return (
     <section className="py-16 bg-white overflow-hidden relative">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-black text-gray-900 mb-4">All Categories</h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">All Categories</h2>
+          <p className="text-gray-500 text-lg mx-auto">
             Discover a wide range of courses tailored to help you master new skills and excel in your academic journey.
           </p>
         </div>
@@ -51,6 +62,7 @@ export const AllCategories: React.FC = () => {
               <div 
                 key={category.id}
                 className="flex-shrink-0 w-[220px] md:w-[280px] group cursor-pointer"
+                onClick={() => handleCategoryClick(category.name)}
               >
                 <div className="bg-gray-50/50 rounded-[3rem] p-10 aspect-square flex flex-col items-center justify-center gap-8 border border-gray-50 group-hover:bg-white group-hover:border-[var(--color-primary)] group-hover:shadow-[0_20px_50px_rgba(37,99,235,0.1)] transition-all duration-500 relative overflow-hidden">
                   {/* Decorative element */}
@@ -60,10 +72,10 @@ export const AllCategories: React.FC = () => {
                     {category.icon}
                   </div>
                   <div className="text-center z-10">
-                    <h3 className="text-lg md:text-xl font-black text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors">
                       {category.name}
                     </h3>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
                       Explore Courses
                     </p>
                   </div>

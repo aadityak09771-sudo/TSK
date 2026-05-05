@@ -38,8 +38,8 @@ export const Ecosystem: React.FC = () => {
   return (
     <section className="ecosystem-container">
       <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-black mb-6">Our Learning Ecosystem</h2>
+        <div className="text-center mx-auto mb-16">
+          <h2 className="text-4xl font-bold mb-6">Our Learning Ecosystem</h2>
           <p className="text-gray-500 text-lg leading-relaxed">
             Beyond just classes, we provide a complete suite of tools designed to 
             ensure conceptual mastery and examination success.
@@ -50,9 +50,9 @@ export const Ecosystem: React.FC = () => {
           {ECOSYSTEM_ITEMS.map((item, idx) => (
             <div 
               key={idx} 
-              className="group bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1"
+              className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1"
             >
-              <div className="aspect-[16/10] overflow-hidden bg-gray-100 p-4">
+              <div className="aspect-[16/10] overflow-hidden bg-gray-100">
                 <img 
                   src={item.image} 
                   alt={item.title} 

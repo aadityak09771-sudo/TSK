@@ -1,12 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { STUDY_RESOURCES } from '../../config/home-sections';
 
 export const StudyResources: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleResourceClick = (resourceId: string) => {
+    // For now, redirecting all resources to the library page
+    // We can add specific filters or sub-pages later if needed
+    navigate('/library');
+  };
+
   return (
     <section className="py-24 bg-gray-50">
       <div className="container">
         <div className="mb-16">
-          <h2 className="text-3xl font-black mb-2">Study Resources</h2>
+          <h2 className="text-3xl font-bold mb-2">Study Resources</h2>
           <p className="text-gray-500">Everything you need to ace your exams, all in one place.</p>
         </div>
 
@@ -15,6 +24,7 @@ export const StudyResources: React.FC = () => {
             <div 
               key={resource.id}
               className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-all group cursor-pointer border border-gray-100"
+              onClick={() => handleResourceClick(resource.id)}
             >
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-transform group-hover:scale-110
                 ${resource.color === 'blue' ? 'bg-blue-50 text-blue-600' : 

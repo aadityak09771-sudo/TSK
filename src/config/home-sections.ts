@@ -28,7 +28,7 @@ export const FACULTY_DATA = [
     name: 'Dr. Sameer Kohli',
     subject: 'Physics Expert',
     experience: '15+ Years Exp.',
-    image: '/assets/images/educators.png',
+    image: '/assets/images/teacher_1.png',
     tag: 'IIT Delhi Alumnus'
   },
   {
@@ -36,7 +36,7 @@ export const FACULTY_DATA = [
     name: 'Anjali Sharma',
     subject: 'Chemistry Maestro',
     experience: '10+ Years Exp.',
-    image: '/assets/images/educators.png',
+    image: '/assets/images/teacher_2.png',
     tag: 'NEET Specialist'
   },
   {
@@ -44,7 +44,7 @@ export const FACULTY_DATA = [
     name: 'Rajiv Malhotra',
     subject: 'Maths Wizard',
     experience: '12+ Years Exp.',
-    image: '/assets/images/educators.png',
+    image: '/assets/images/teacher_3.png',
     tag: 'Board Exam Specialist'
   },
   {
@@ -52,7 +52,7 @@ export const FACULTY_DATA = [
     name: 'Sneha Reddy',
     subject: 'Biology Guru',
     experience: '8+ Years Exp.',
-    image: '/assets/images/educators.png',
+    image: '/assets/images/teacher_4.png',
     tag: 'Gold Medalist'
   },
   {
@@ -60,7 +60,7 @@ export const FACULTY_DATA = [
     name: 'Vikram Singh',
     subject: 'Social Science',
     experience: '14+ Years Exp.',
-    image: '/assets/images/educators.png',
+    image: '/assets/images/teacher_5.png',
     tag: 'UPSC Mentor'
   }
 ];
