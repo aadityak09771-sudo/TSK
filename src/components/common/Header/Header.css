@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 5rem; /* 80px */
+  height: 72px;
 }
 
 .header-logo-container {
@@ -33,7 +33,7 @@
   align-items: center;
   gap: 0.5rem; /* 8px */
 
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   color: #374151; /* gray-700 */
 
@@ -100,8 +100,8 @@
 }
 
 .dropdown-title {
-  font-size: 10px;
-  font-weight: 900;
+  font-size: 13px;
+  font-weight: 700;
   color: #9ca3af; /* gray-400 */
 
   text-transform: uppercase;
@@ -121,8 +121,8 @@
 
   border-radius: 0.75rem; /* 12px */
 
-  font-size: 0.875rem; /* 14px */
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
 
   display: flex;
   align-items: center;
@@ -138,7 +138,7 @@
 
   border-radius: 0.75rem; /* rounded-xl */
 
-  font-size: 0.875rem; /* text-sm */
+  font-size: 16px;
   font-weight: 500; /* font-medium */
   color: #374151; /* gray-700 */
 
@@ -226,7 +226,7 @@
 }
 
 .nav-link {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   transition: all 150ms ease-in-out;
   position: relative;
@@ -265,7 +265,7 @@
 
 .auth-button {
   padding: 0.625rem 1.5rem !important; /* 10px 24px */
-  border-radius: 9999px !important;
+  border-radius: 6px !important;
   font-weight: 700 !important;
-  font-size: 0.75rem !important; /* 12px */
+  font-size: 16px !important;
 }

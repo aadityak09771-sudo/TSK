@@ -35,13 +35,13 @@ export const Home: React.FC = () => {
       <section className="py-24 bg-white">
 
         <div className="container flex justify-between items-end mb-16">
-          <div>
-            <h2 className="text-3xl font-black mb-2">Our Core Programs</h2>
+          <div className="mb-2">
+            <h2 className="text-3xl font-bold mb-2">Our Core Programs</h2>
             <p className="text-gray-500">Structured curriculums designed to provide maximum clarity</p>
           </div>
           <button 
             onClick={() => navigate('/courses')}
-            className="text-[var(--color-primary)] font-bold border-b-2 border-[var(--color-primary)] pb-1 hover:text-[var(--color-primary-light)] hover:border-[var(--color-primary-light)] transition-all bg-transparent cursor-pointer"
+            className="mb-2 text-[var(--color-primary)] font-bold border-b-2 border-[var(--color-primary)] pb-1 hover:text-[var(--color-primary-light)] hover:border-[var(--color-primary-light)] transition-all bg-transparent cursor-pointer"
           >
             View All Courses
           </button>

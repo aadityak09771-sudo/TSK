@@ -20,10 +20,12 @@ import { MyPurchases } from './pages/MyPurchases';
 import { DashboardCourses } from './pages/DashboardCourses';
 import { StudentDashboardLayout } from './layouts/StudentDashboardLayout';
 import { PublicRoute } from './components/common/PublicRoute';
+import { ScrollToTop } from './utils/ScrollToTop';
 
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <MainLayout>
         <Routes>
           <Route path="/" element={<PublicRoute><Home /></PublicRoute>} />

@@ -18,8 +18,8 @@ export const AllCategories: React.FC = () => {
     <section className="py-16 bg-white overflow-hidden relative">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-black text-gray-900 mb-4">All Categories</h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">All Categories</h2>
+          <p className="text-gray-500 text-lg mx-auto">
             Discover a wide range of courses tailored to help you master new skills and excel in your academic journey.
           </p>
         </div>
@@ -60,10 +60,10 @@ export const AllCategories: React.FC = () => {
                     {category.icon}
                   </div>
                   <div className="text-center z-10">
-                    <h3 className="text-lg md:text-xl font-black text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors">
                       {category.name}
                     </h3>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
                       Explore Courses
                     </p>
                   </div>

@@ -6,7 +6,7 @@ export const StudyResources: React.FC = () => {
     <section className="py-24 bg-gray-50">
       <div className="container">
         <div className="mb-16">
-          <h2 className="text-3xl font-black mb-2">Study Resources</h2>
+          <h2 className="text-3xl font-bold mb-2">Study Resources</h2>
           <p className="text-gray-500">Everything you need to ace your exams, all in one place.</p>
         </div>
 
