@@ -113,7 +113,7 @@ export const FacultyCarousel: React.FC = () => {
                   className="px-4"
                   style={{ width: `${100 / extendedData.length}%` }}
                 >
-                  <div className="bg-gray-50 rounded-[2rem] overflow-hidden group border border-gray-100 hover:border-[var(--color-primary-light)] hover:shadow-2xl hover:shadow-[var(--color-primary)]/5 transition-all duration-500 h-full">
+                  <div className="bg-gray-100 rounded-[1rem] overflow-hidden group border border-gray-100 hover:border-[var(--color-primary-light)] hover:shadow-2xl hover:shadow-[var(--color-primary)]/5 transition-all duration-500 h-full">
                     <div className="relative overflow-hidden bg-gray-200">
                       <img 
                         src={faculty.image} 

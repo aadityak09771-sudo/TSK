@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CourseHero } from '../components/courses/CourseHero';
 import { CourseFilterTabs } from '../components/courses/CourseFilterTabs';
 import { CourseCard } from '../components/courses/CourseCard';
@@ -9,7 +10,15 @@ import { FAQAccordion } from '../components/courses/FAQAccordion';
 import { COURSES_DATA } from '../config/courses-data';
 
 export const Courses: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const categoryParam = searchParams.get('category');
   const [activeFilter, setActiveFilter] = useState('All');
+
+  useEffect(() => {
+    if (categoryParam) {
+      setActiveFilter(categoryParam);
+    }
+  }, [categoryParam]);
 
   const filteredCourses = useMemo(() => {
     if (activeFilter === 'All') return COURSES_DATA;

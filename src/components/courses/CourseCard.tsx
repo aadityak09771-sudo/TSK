@@ -14,7 +14,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   const discountPercentage = Math.round((discountAmount / course.originalPrice) * 100);
 
   return (
-    <div className="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group">
       <div className="relative h-[200px] overflow-hidden">
         <img 
           src={course.image} 
@@ -28,12 +28,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         </div>
       </div>
 
-      <div className="p-4 flex flex-col flex-grow">
-        <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 min-h-[3rem]">
+      <div className="p-2 flex flex-col flex-grow bg-gray-50">
+        <h3 className="text-lg font-bold text-gray-900 line-clamp-2 min-h-[3rem]">
           {course.title}
         </h3>
 
-        <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-4">
+        <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-2">
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <Calendar size={14} className="text-[var(--color-primary)]" />
             <span className="text-xs">{course.target}</span>
@@ -54,7 +54,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           </span>
         </div>
 
-        <div className="mt-auto pt-4 border-t border-gray-50">
+        <div className="mt-auto border-t border-gray-50">
           <div className="flex items-end gap-3 mb-4">
             <div className="flex flex-col">
               <span className="text-[10px] text-gray-400 line-through">₹{course.originalPrice.toLocaleString()}</span>

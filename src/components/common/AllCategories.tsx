@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CATEGORIES } from '../../config/studentData';
 
 export const AllCategories: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -11,6 +13,15 @@ export const AllCategories: React.FC = () => {
       const scrollAmount = clientWidth * 0.8;
       const scrollTo = direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
       scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
+  const handleCategoryClick = (categoryName: string) => {
+    // Standard mapping for CBSE categories
+    if (categoryName.startsWith('CBSE')) {
+      navigate('/board-cbse');
+    } else {
+      navigate(`/courses?category=${encodeURIComponent(categoryName)}`);
     }
   };
 
@@ -51,6 +62,7 @@ export const AllCategories: React.FC = () => {
               <div 
                 key={category.id}
                 className="flex-shrink-0 w-[220px] md:w-[280px] group cursor-pointer"
+                onClick={() => handleCategoryClick(category.name)}
               >
                 <div className="bg-gray-50/50 rounded-[3rem] p-10 aspect-square flex flex-col items-center justify-center gap-8 border border-gray-50 group-hover:bg-white group-hover:border-[var(--color-primary)] group-hover:shadow-[0_20px_50px_rgba(37,99,235,0.1)] transition-all duration-500 relative overflow-hidden">
                   {/* Decorative element */}
