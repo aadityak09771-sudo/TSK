@@ -64,7 +64,7 @@ export const Header: React.FC = () => {
           <Logo />
 
           {/* Navigation */}
-          <nav className="header-nav">
+          {/* <nav className="header-nav">
             <ul className="all-categories-list">
               <li 
                 className="category-list-item"
@@ -72,7 +72,76 @@ export const Header: React.FC = () => {
                 onMouseLeave={() => setShowAllCategories(false)}
               >
                 <button className="all-categories-button">
-                  All Categories <ChevronDown size={14} className={`all-categories-chevron ${showAllCategories ? 'rotate-180' : ''} `} />
+                  All Categories <ChevronDown size={6} className={`all-categories-chevron ${showAllCategories ? 'rotate-180' : ''} `} />
+                </button>
+                
+                {showAllCategories && (
+                  <div className="all-categories-dropdown-wrapper">
+                    <div className="dropdown-menu">
+                      {isLoading ? (
+                        <Spinner text="Loading categories..." className="w-full h-full" />
+                      ) : categories.length > 0 ? (
+                        <>
+                         
+                          <div className="dropdown-sidebar">
+                            <h3 className="dropdown-title">Categories</h3>
+                            {categories.map((category) => (
+                              <button
+                                key={category.id}
+                                onMouseEnter={() => setActiveCategory(category.id)}
+                                className={`dropdown-item ${
+                                  activeCategory === category.id 
+                                    ? 'bg-white text-[var(--color-primary)] shadow-sm' 
+                                    : 'text-gray-600 hover:bg-gray-100'
+                                }`}
+                              >
+                                {category.label}
+                                <ChevronRight size={14} className={activeCategory === category.id ? 'opacity-100' : 'opacity-0'} />
+                              </button>
+                            ))}
+                          </div>
+
+                          
+                          <div className="dropdown-options-container">
+                            <h3 className="dropdown-title">
+                              {categories.find(category => category.id === activeCategory)?.sectionTitle}
+                            </h3>
+                            <div className="options-grid">
+                              {categories.find(category => category.id === activeCategory)?.options.map((option: any) => (
+                                <Link
+                                  key={option.id}
+                                  to={option.path}
+                                  className="dropdown-link"
+                                  onClick={() => setShowAllCategories(false)}
+                                >
+                                  {option.name}
+                                  <div className="dropdown-link-icon">
+                                    <ChevronRight size={12} />
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      ) : null}
+                    </div>
+                  </div>
+                )}
+              </li>
+            </ul>
+          </nav> */}
+        </div>
+
+        {/* Center/Main Navigation */}
+        <nav className="main-nav">
+          <ul className="nav-list">
+            <li 
+                className="category-list-item"
+                onMouseEnter={() => setShowAllCategories(true)}
+                onMouseLeave={() => setShowAllCategories(false)}
+              >
+                <button className="all-categories-button">
+                  All Categories <ChevronDown size={16} className={`all-categories-chevron ${showAllCategories ? 'rotate-180' : ''} `} />
                 </button>
                 
                 {showAllCategories && (
@@ -128,13 +197,6 @@ export const Header: React.FC = () => {
                   </div>
                 )}
               </li>
-            </ul>
-          </nav>
-        </div>
-
-        {/* Center/Main Navigation */}
-        <nav className="main-nav">
-          <ul className="nav-list">
             <li>
               <Link 
                 to="/" 
@@ -144,19 +206,6 @@ export const Header: React.FC = () => {
               >
                 Home
                 {isActive('/') && (
-                  <span className="active-indicator" />
-                )}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/courses" 
-                className={`nav-link ${
-                  isActive('/courses') ? 'nav-link-active' : 'nav-link-inactive'
-                }`}
-              >
-                Courses
-                {isActive('/courses') && (
                   <span className="active-indicator" />
                 )}
               </Link>

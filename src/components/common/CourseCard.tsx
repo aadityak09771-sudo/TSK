@@ -27,9 +27,9 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
 
   return (
     <article className="bg-white rounded-[var(--radius-lg)] shadow-[var(--shadow-md)] overflow-hidden transition-all duration-300 hover:shadow-[var(--shadow-hover)] border border-[var(--color-border)] flex flex-col h-full">
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative h-[100px] overflow-hidden">
         {course.badge && (
-          <div className="absolute top-4 left-4 z-10 bg-[var(--color-primary)] text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider">
+          <div className="absolute top-2 left-3 z-10 bg-[var(--color-primary)] text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider">
             {course.badge}
           </div>
         )}
@@ -40,22 +40,22 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
         />
       </div>
 
-      <div className="p-6 flex flex-col flex-grow bg-white">
-        <h3 className="text-lg font-bold text-[var(--color-text-main)] mb-3 line-clamp-2 min-h-[3.5rem]">
+      <div className="p-4 flex flex-col flex-grow bg-white">
+        <h3 className="text-base font-bold text-[var(--color-text-main)] mb-2 line-clamp-2 min-h-[3rem]">
           {course.title}
         </h3>
 
-        <div className="flex items-center gap-2 text-[var(--color-text-muted)] text-sm mb-6">
-          <Users size={16} />
+        <div className="flex items-center gap-2 text-[var(--color-text-muted)] text-xs mb-4">
+          <Users size={14} />
           <span>{course.audience}</span>
         </div>
 
-        <div className="mt-auto space-y-4">
-          <div className="flex items-center gap-3">
+        <div className="mt-auto space-y-3">
+          <div className="flex items-center gap-2">
             {showExplore && (
               <Button 
                 variant="outline" 
-                className="flex-1 py-1.5 h-10 text-xs"
+                className="flex-1 py-1.5 h-9 text-[10px]"
                 onClick={() => course.id && navigate(`/courses/${course.id}`)}
               >
                 EXPLORE
@@ -64,7 +64,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
             
             <Button 
               variant="solid" 
-              className="flex-1 py-1.5 h-10 text-xs shadow-md shadow-blue-500/10"
+              className="flex-1 py-1.5 h-9 text-[10px] shadow-md shadow-blue-500/10"
               onClick={handleAction}
             >
               {isLoggedIn ? 'ENROLL NOW' : 'BUY NOW'}

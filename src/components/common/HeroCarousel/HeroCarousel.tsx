@@ -12,7 +12,7 @@ export const HeroCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [slides, setSlides] = useState<HeroSlide[]>([
     {
-      image: '/assets/images/class9_course.png',
+      image: '/assets/images/hero1.png',
       link: '/courses'
     }
   ]);
@@ -25,21 +25,21 @@ export const HeroCarousel: React.FC = () => {
       
       const data: HeroSlide[] = [
         {
-          image: '/assets/images/class9_course.png',
+          image: '/assets/images/hero1.png',
           link: '/courses'
         },
-        {
-          image: '/assets/images/class10_course.png',
-          link: '/courses'
-        },
-        {
-          image: '/assets/images/class11_course.png',
-          link: '/courses'
-        },
-        {
-          image: '/assets/images/class12_course.png',
-          link: '/courses'
-        }
+        // {
+        //   image: '/assets/images/class10_course.png',
+        //   link: '/courses'
+        // },
+        // {
+        //   image: '/assets/images/class11_course.png',
+        //   link: '/courses'
+        // },
+        // {
+        //   image: '/assets/images/class12_course.png',
+        //   link: '/courses'
+        // }
       ];
       
       setSlides(data);

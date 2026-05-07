@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #005A9C;
+  --color-primary: #4361ee;
   --color-primary-light: #3B82F6;
   --color-secondary: #F59E0B;
   
@@ -14,7 +14,7 @@
 
   --font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
   
-  --container-max-width: 1200px;
+  --container-max-width: 1300px;
   
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;

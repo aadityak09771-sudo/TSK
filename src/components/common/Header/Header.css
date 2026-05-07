@@ -4,6 +4,7 @@
   z-index: 50;
   background-color: #ffffff;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  font-family: "Nunito Sans", sans-serif;
 }
 
 .header-content {
@@ -36,17 +37,14 @@
   font-size: 16px;
   font-weight: 700;
   color: #374151; /* gray-700 */
-
-  background-color: #f9fafb; /* gray-50 */
-  border: 1px solid #f3f4f6; /* gray-100 */
-
   padding: 0.5rem 1rem; /* py-2 px-4 */
-  border-radius: 9999px; /* rounded-full */
+  border-radius: 6px; /* rounded-full */
 
   cursor: pointer;
   transition: all 150ms ease-in-out;
-
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  border: 1px solid #e5eaf2;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
 .all-categories-button:hover {
@@ -219,7 +217,7 @@
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 2.5rem; /* 40px */
+  gap: 2rem; /* 40px */
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -227,26 +225,26 @@
 
 .nav-link {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   transition: all 150ms ease-in-out;
   position: relative;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  color: #071b4d;
+  letter-spacing: -0.1px;
 }
 
 .nav-link:hover {
   color: var(--color-primary);
+  /* font-weight: 700; */
 }
 
 .nav-link-active {
   color: var(--color-primary);
+  font-weight: 700;
 }
 
-.nav-link-inactive {
-  color: #4b5563; /* gray-600 */
-}
-
-.active-indicator {
+/* .active-indicator {
   position: absolute;
   bottom: -0.25rem;
   left: 0;
@@ -254,7 +252,7 @@
   height: 2px;
   background-color: var(--color-primary);
   border-radius: 9999px;
-}
+} */
 
 /* Header Actions */
 .header-actions {
@@ -268,4 +266,5 @@
   border-radius: 6px !important;
   font-weight: 700 !important;
   font-size: 16px !important;
+  line-height: 22px;
 }
