@@ -79,13 +79,12 @@ export const HeroCarousel: React.FC = () => {
     <>
       <section className="hero-container">
         {/* Slides Container - keep within container for alignment if needed, or move out for full width */}
-        <div className="h-full relative">
+        <div className="relative">
           <div 
             className="hero-slider-track"
             style={{ 
               transform: `translateX(-${current * 100}%)`,
               width: '100%',
-              height: '100%'
             }}
           >
             {slides.map((slide, i) => (
@@ -98,7 +97,7 @@ export const HeroCarousel: React.FC = () => {
                 <img 
                   src={slide.image} 
                   alt={`Slide ${i + 1}`} 
-                  className="w-full h-full object-cover" 
+                  className="w-full h-auto block" 
                 />
               </Link>
             ))}

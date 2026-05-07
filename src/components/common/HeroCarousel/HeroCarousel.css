@@ -1,6 +1,6 @@
 .hero-container{
   position: relative;
-  height: 400px;
+  height: auto;
   overflow: hidden;
   background-color: white;
   max-width: 1236px;
@@ -8,12 +8,57 @@
   border-radius: 16px;
 }
 
+@media (max-width: 1280px) {
+  .hero-container {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    margin: 12px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    margin: 10px 16px;
+    border-radius: 12px;
+  }
+  
+  .carousel-arrow-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    margin: 8px 12px;
+    border-radius: 8px;
+  }
+
+  .carousel-arrow-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .carousel-dots {
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+}
+
 .hero-loader-container {
-  height: 400px;
+  aspect-ratio: 1236 / 400;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f9fafb;
+  max-width: 1236px;
+  margin: 15px auto;
+  border-radius: 16px;
 }
 
 .hero-slider-track {
@@ -85,4 +130,10 @@
   border-radius: 9999px;     /* rounded-full */
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .carousel-dot {
+    height: 4px;
+  }
 }

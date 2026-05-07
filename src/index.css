@@ -45,6 +45,12 @@
     padding: 0 var(--spacing-lg);
   }
 
+  @media (max-width: 640px) {
+    .container {
+      padding: 0 var(--spacing-md);
+    }
+  }
+
   .grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
