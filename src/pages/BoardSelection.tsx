@@ -12,20 +12,6 @@ const CLASSES = [
 export const BoardSelection: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero */}
-      <section className="py-24 bg-blue-50/50">
-        <div className="container text-center max-w-3xl">
-          <span className="inline-block bg-white text-[var(--color-primary)] text-[10px] font-black px-4 py-1.5 rounded-full shadow-sm mb-6 tracking-[0.2em] uppercase">
-            National Board
-          </span>
-          <h1 className="text-5xl font-black mb-6 text-gray-900">CBSE Curriculum & Test Series</h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Select your class to view available curriculum, mock tests, and 
-            foundational material specifically tailored for CBSE patterns.
-          </p>
-        </div>
-      </section>
-
       {/* Class Selection Grid */}
       <section className="py-24">
         <div className="container">

@@ -1,0 +1,130 @@
+.expert-faculty-section {
+  padding: 20px 0 60px 0;
+  background-color: #ffffff;
+}
+
+.expert-faculty-container-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.expert-faculty-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.expert-faculty-heading {
+  font-size: 28px;
+  font-weight: 800;
+  color: #071b4d;
+  margin: 0;
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.faculty-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.faculty-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-primary);
+}
+
+.faculty-image-wrapper {
+  background-color: #eef2ff; /* Light blue background for faculty photos */
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.faculty-image {
+  height: 90%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.faculty-card:hover .faculty-image {
+  transform: scale(1.05);
+}
+
+.faculty-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.faculty-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #071b4d;
+  margin: 0 0 4px 0;
+}
+
+.faculty-role {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 16px 0;
+}
+
+.faculty-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.detail-icon {
+  color: var(--color-primary);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .faculty-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .expert-faculty-container-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+  
+  .expert-faculty-heading {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .faculty-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
