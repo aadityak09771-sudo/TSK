@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +14,7 @@ export const AuthModal: React.FC = () => {
   const [step, setStep] = useState<1 | 2>(1);
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState(['', '', '', '']);
+  const [isLoading, setIsLoading] = useState(false);
   const otpInputs = useRef<(HTMLInputElement | null)[]>([]);
 
   // Handle body scroll lock & reset state
@@ -25,6 +26,7 @@ export const AuthModal: React.FC = () => {
       setStep(1);
       setPhone('');
       setOtp(['', '', '', '']);
+      setIsLoading(false);
     }
     return () => { document.body.style.overflow = ''; };
   }, [isAuthModalOpen]);
@@ -52,13 +54,26 @@ export const AuthModal: React.FC = () => {
     }
   };
 
-  const handleVerify = () => {
-    if (otp.every(digit => digit !== '')) {
-      // Show mock loading state if needed, but for now direct login
-      login(phone);
-      navigate('/dashboard');
+  const handleVerify = useCallback(async () => {
+    if (otp.every(digit => digit !== '') && !isLoading) {
+      try {
+        setIsLoading(true);
+        // Mock API call simulation
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Mock token generation and storage
+        const mockToken = `mock_jwt_token_${Math.random().toString(36).substring(7)}`;
+        localStorage.setItem('auth_token', mockToken);
+        
+        login(phone);
+        navigate('/dashboard');
+      } catch (error) {
+        console.error("Authentication failed:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  };
+  }, [otp, isLoading, phone, login, navigate]);
 
   useEffect(() => {
     if (otp.every(digit => digit !== '') && step === 2) {
@@ -67,7 +82,7 @@ export const AuthModal: React.FC = () => {
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [otp, step]);
+  }, [otp, step, handleVerify]);
 
   if (!isAuthModalOpen) return null;
 
@@ -106,12 +121,13 @@ export const AuthModal: React.FC = () => {
                       className="auth-modal-input"
                       required
                       autoFocus
+                      disabled={isLoading}
                     />
                   </div>
                 </div>
 
-                <Button type="submit" variant="primary" className="w-full py-4 text-base">
-                  Request OTP
+                <Button type="submit" variant="primary" className="w-full py-4 text-base" disabled={isLoading}>
+                  {isLoading ? 'Processing...' : 'Request OTP'}
                 </Button>
               </form>
             </div>
@@ -133,6 +149,7 @@ export const AuthModal: React.FC = () => {
                     onChange={(e) => handleOtpChange(i, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(i, e)}
                     className="auth-modal-otp-input"
+                    disabled={isLoading}
                   />
                 ))}
               </div>
@@ -142,15 +159,16 @@ export const AuthModal: React.FC = () => {
                 onClick={handleVerify}
                 variant="primary"
                 className="w-full py-4 text-base"
-                disabled={otp.some(d => !d)}
+                disabled={otp.some(d => !d) || isLoading}
               >
-                Verify & Login
+                {isLoading ? 'Verifying...' : 'Verify & Login'}
               </Button>
 
               <button
                 type="button"
                 onClick={() => setStep(1)}
                 className="auth-modal-text-button"
+                disabled={isLoading}
               >
                 Change Phone Number
               </button>

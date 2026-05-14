@@ -32,6 +32,7 @@ export const useAuthStore = create<AuthState>()(
 
       logout: () => {
         // Clear auth data
+        localStorage.removeItem('auth_token');
         set({ 
           isLoggedIn: false, 
           phoneNumber: null,
