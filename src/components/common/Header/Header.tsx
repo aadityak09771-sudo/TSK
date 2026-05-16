@@ -54,15 +54,6 @@ export const Header: React.FC = () => {
             { id: "cbse-commerce", name: "CBSE Commerce", path: "/board-cbse" },
           ],
         },
-        {
-          id: "competitive-exams",
-          label: "Competitive Exams",
-          sectionTitle: "Available Exams",
-          options: [
-            { id: "jee", name: "JEE", path: "/jee" },
-            { id: "neet", name: "NEET", path: "/neet" },
-          ],
-        },
       ];
       
       setCategories(data);

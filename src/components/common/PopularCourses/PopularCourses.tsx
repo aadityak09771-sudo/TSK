@@ -9,7 +9,7 @@ import {
   Trophy, 
   ArrowRight 
 } from 'lucide-react';
-import { Spinner } from '../../ui/Spinner/Spinner';
+import { Skeleton } from '../../ui/Skeleton/Skeleton';
 import './PopularCourses.css';
 
 interface CourseCardProps {
@@ -39,6 +39,23 @@ const CourseCard: React.FC<CourseCardProps> = ({ title, subtitle, icon, bgColor,
         <ArrowRight size={16} />
       </div>
     </Link>
+  );
+};
+
+const CourseCardSkeleton: React.FC = () => {
+  return (
+    <div className="popular-course-card skeleton-card" style={{ backgroundColor: '#f9fafb' }}>
+      <div className="card-content">
+        <Skeleton variant="circular" width={44} height={44} className="mb-4" />
+        <div className="card-text">
+          <Skeleton variant="text" width="60%" height={24} className="mb-2" />
+          <Skeleton variant="text" width="90%" height={16} />
+        </div>
+      </div>
+      <div className="card-arrow" style={{ opacity: 0.5 }}>
+        <Skeleton variant="rectangular" width={28} height={28} className="rounded" />
+      </div>
+    </div>
   );
 };
 
@@ -150,22 +167,22 @@ export const PopularCourses: React.FC = () => {
           </Link>
         </div>
         
-        {isLoading ? (
-          <div className="flex justify-center py-12">
-            <Spinner text="Loading popular courses..." />
-          </div>
-        ) : (
-          <div className="popular-courses-grid">
-            {courses.map((course, index) => (
+        <div className="popular-courses-grid">
+          {isLoading ? (
+            Array.from({ length: 6 }).map((_, index) => (
+              <CourseCardSkeleton key={index} />
+            ))
+          ) : (
+            courses.map((course, index) => (
               <CourseCard 
                 key={index} 
                 {...course}
                 board={course.board}
                 icon={iconMap[course.iconName] || <BookOpen size={24} />} 
               />
-            ))}
-          </div>
-        )}
+            ))
+          )}
+        </div>
       </div>
     </section>
   );
