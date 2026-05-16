@@ -23,7 +23,7 @@ interface Faculty {
 }
 
 const CourseCard: React.FC<DiscoveryCourse> = ({ badge, title, description, price, image, buttonText }) => (
-  <div className="compact-course-card">
+  <Link to="/board-cbse" className="compact-course-card" style={{ textDecoration: 'none' }}>
     <div className="compact-course-image-container">
       <img src={image} alt={title} className="compact-course-image" />
       <span className="compact-course-badge">{badge}</span>
@@ -38,7 +38,7 @@ const CourseCard: React.FC<DiscoveryCourse> = ({ badge, title, description, pric
         </Button>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const FacultyCard: React.FC<Faculty> = ({ name, role, experience, institute, image }) => (
@@ -151,7 +151,7 @@ export const CourseDiscovery: React.FC = () => {
             <div className="discovery-block explore-block">
               <div className="discovery-block-header">
                 <h2 className="discovery-block-heading">Explore Courses</h2>
-                <Link to="/courses" className="discovery-view-all">
+                <Link to="/select-goal" className="discovery-view-all">
                   View All Courses <ArrowRight size={16} />
                 </Link>
               </div>

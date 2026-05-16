@@ -68,7 +68,7 @@ export const ExploreCourses: React.FC = () => {
         <div className="explore-container-card">
           <div className="explore-header">
             <h2 className="explore-heading">Explore Courses</h2>
-            <Link to="/courses" className="view-all-link">
+            <Link to="/select-goal" className="view-all-link">
               View All Courses <ArrowRight size={18} />
             </Link>
           </div>

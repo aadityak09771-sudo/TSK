@@ -1,0 +1,62 @@
+.class-card-modal {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.class-card-modal:hover {
+  border-color: #3b82f6;
+  background-color: #f9fafb;
+}
+
+.class-card-modal--selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+  border-width: 2px;
+  padding: 15px 23px;
+}
+
+.class-card-modal__icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #f3f4f6;
+  margin-right: 16px;
+  font-size: 20px;
+}
+
+.class-card-modal--selected .class-card-modal__icon {
+  background-color: #dbeafe;
+}
+
+.class-card-modal__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .class-card-modal {
+    padding: 14px 20px;
+  }
+  
+  .class-card-modal__icon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    margin-right: 12px;
+  }
+  
+  .class-card-modal__name {
+    font-size: 15px;
+  }
+}

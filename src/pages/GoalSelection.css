@@ -1,0 +1,132 @@
+.goal-selection-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding-top: 80px; /* Space for fixed header */
+}
+
+/* Header */
+.goal-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.goal-header__container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goal-header__back {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.goal-header__back:hover {
+  background-color: #f3f4f6;
+}
+
+.goal-header__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.goal-header__spacer {
+  width: 40px; /* Same as back button to keep title centered */
+}
+
+/* Main Content */
+.goal-content {
+  padding: 40px 0;
+}
+
+.goal-content__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.goal-section {
+  margin-bottom: 48px;
+}
+
+/* Popular Goals Horizontal Scroll */
+.popular-goals-scroll {
+  margin: 0 -24px;
+  padding: 0 24px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.popular-goals-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.popular-goals-grid {
+  display: flex;
+  gap: 16px;
+}
+
+/* All Goals Grid */
+.all-goals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .all-goals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .goal-selection-page {
+    padding-top: 64px;
+  }
+  
+  .goal-header {
+    height: 64px;
+  }
+  
+  .goal-header__title {
+    font-size: 18px;
+  }
+  
+  .goal-content {
+    padding: 24px 0;
+  }
+  
+  .all-goals-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .goal-section {
+    margin-bottom: 32px;
+  }
+}
