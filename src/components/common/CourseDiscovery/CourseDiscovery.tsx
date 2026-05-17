@@ -3,13 +3,31 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, GraduationCap } from 'lucide-react';
 import { Button } from '../../ui/Button';
 import { Skeleton } from '../../ui/Skeleton/Skeleton';
+import { useAuthStore } from '../../../store/useAuthStore';
 import './CourseDiscovery.css';
 
+interface ApiCourse {
+  course_id: number;
+  course_name: string;
+  course_desc: string | null;
+  board: string;
+  language: string;
+  course_price: number;
+  discounted_price: number;
+  course_image: string | null;
+  start_date: string | null;
+  batch_id: number | null;
+  batch_name: string | null;
+}
+
 interface DiscoveryCourse {
+  id: number;
   badge: string;
   title: string;
   description: string;
   price: string;
+  originalPrice?: string;
+  discountPercentage?: number;
   image: string;
   buttonText: string;
 }
@@ -22,24 +40,52 @@ interface Faculty {
   image: string;
 }
 
-const CourseCard: React.FC<DiscoveryCourse> = ({ badge, title, description, price, image, buttonText }) => (
-  <Link to="/board-cbse" className="compact-course-card" style={{ textDecoration: 'none' }}>
-    <div className="compact-course-image-container">
-      <img src={image} alt={title} className="compact-course-image" />
-      <span className="compact-course-badge">{badge}</span>
-    </div>
-    <div className="compact-course-info">
-      <h3 className="compact-course-title">{title}</h3>
-      <p className="compact-course-description">{description}</p>
-      <div className="compact-course-footer">
-        <span className="compact-course-price">{price}</span>
-        <Button variant="primary" className="compact-enroll-button">
-          {buttonText}
-        </Button>
+const CourseCard: React.FC<DiscoveryCourse> = ({ id, badge, title, description, price, originalPrice, discountPercentage, image, buttonText }) => {
+  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
+  const openAuthModal = useAuthStore(state => state.openAuthModal);
+
+  const handleAction = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!isLoggedIn) {
+      openAuthModal();
+    } else {
+      window.location.href = `/courses/${id}`;
+    }
+  };
+
+  return (
+    <Link to="/board-cbse" className="compact-course-card" style={{ textDecoration: 'none' }}>
+      <div className="compact-course-image-container">
+        <img src={image} alt={title} className="compact-course-image" />
+        <span className="compact-course-badge">{badge}</span>
       </div>
-    </div>
-  </Link>
-);
+      <div className="compact-course-info">
+        <h3 className="compact-course-title">{title}</h3>
+        <p className="compact-course-description">{description}</p>
+        <div className="compact-course-footer">
+          <div className="price-container">
+            <div className="price-row">
+              <span className={`compact-course-price ${price === 'Free' ? 'is-free' : ''}`}>{price}</span>
+              {originalPrice && originalPrice !== price && (
+                <span className="compact-course-original-price">{originalPrice}</span>
+              )}
+            </div>
+            {discountPercentage && discountPercentage > 0 && (
+              <span className="compact-course-discount-percentage">{discountPercentage}% OFF</span>
+            )}
+          </div>
+          <Button 
+            variant="solid" 
+            className="compact-enroll-button py-1.5 h-9 text-[10px] shadow-md shadow-blue-500/10"
+            onClick={handleAction}
+          >
+            {isLoggedIn ? 'ENROLL NOW' : 'BUY NOW'}
+          </Button>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const CourseCardSkeleton: React.FC = () => (
   <div className="compact-course-card">
@@ -51,7 +97,10 @@ const CourseCardSkeleton: React.FC = () => (
       <Skeleton variant="text" width="100%" height={12} className="mb-1" />
       <Skeleton variant="text" width="90%" height={12} className="mb-3" />
       <div className="compact-course-footer">
-        <Skeleton variant="text" width={50} height={16} />
+        <div className="price-container">
+          <Skeleton variant="text" width={40} height={16} />
+          <Skeleton variant="text" width={30} height={12} />
+        </div>
         <Skeleton variant="rectangular" width={60} height={24} className="rounded" />
       </div>
     </div>
@@ -108,32 +157,55 @@ export const CourseDiscovery: React.FC = () => {
         // Mock API call simulation
         await new Promise(resolve => setTimeout(resolve, 1800));
 
-        const mockCourses: DiscoveryCourse[] = [
-          {
-            badge: "POPULAR",
-            title: "Class 10 Bundle",
-            description: "Full syllabus coverage with live classes & notes.",
-            price: "₹4,999",
-            image: "/assets/images/class10_course.png",
-            buttonText: "Enroll"
-          },
-          {
-            badge: "BESTSELLER",
-            title: "JEE Target",
-            description: "Advanced preparation with expert faculty.",
-            price: "₹14,999",
-            image: "/assets/images/future_leaders.png",
-            buttonText: "Enroll"
-          },
-          {
-            badge: "TRENDING",
-            title: "NEET Achievers",
-            description: "NEET-focused learning with test series.",
-            price: "₹14,999",
-            image: "/assets/images/educators.png",
-            buttonText: "Enroll"
-          }
-        ];
+        const mockCoursesResponse = {
+          "success": true,
+          "data": [
+            {
+              "course_id": 2,
+              "course_name": "Social Science by ABC",
+              "course_desc": null,
+              "board": "CBSE Science",
+              "language": "en",
+              "course_price": 0,
+              "discounted_price": 0,
+              "course_image": null,
+              "start_date": null,
+              "batch_id": null,
+              "batch_name": null
+            },
+            {
+              "course_id": 1,
+              "course_name": "Maths By The Kushwaha Sir",
+              "course_desc": "Academics for class 9th ",
+              "board": "CBSE Science",
+              "language": "en",
+              "course_price": 1200,
+              "discounted_price": 999,
+              "course_image": null,
+              "start_date": "2026-05-16T12:00:00",
+              "batch_id": 1,
+              "batch_name": "Morning Batch"
+            }
+          ]
+        };
+
+        const transformedCourses: DiscoveryCourse[] = mockCoursesResponse.data.map((course: ApiCourse) => {
+          const discountPercentage = course.course_price > 0 && course.discounted_price < course.course_price
+            ? Math.round(((course.course_price - course.discounted_price) / course.course_price) * 100)
+            : undefined;
+
+          return {
+            id: course.course_id,
+            badge: course.course_price === 0 ? "FREE" : "POPULAR",
+            title: course.course_name,
+            description: course.course_desc || `Complete ${course.board} preparation in ${course.language === 'en' ? 'English' : 'Hindi'}.`,
+            price: course.discounted_price === 0 ? "Free" : `₹${course.discounted_price}`,
+            originalPrice: course.course_price === 0 ? undefined : `₹${course.course_price}`,
+            discountPercentage,
+            image: course.course_image || "/assets/images/course.png",
+            buttonText: "Buy Now"
+          };
+        });
 
         const mockFaculty: Faculty[] = [
           {
@@ -156,10 +228,17 @@ export const CourseDiscovery: React.FC = () => {
             experience: "12+ Yrs",
             institute: "IIT Kanpur",
             image: "/assets/images/teacher_3.png"
+          },
+          {
+            name: "Dr. Priya Roy",
+            role: "Biology",
+            experience: "15+ Yrs",
+            institute: "AIIMS Delhi",
+            image: "/assets/images/teacher_4.png"
           }
         ];
 
-        setCourses(mockCourses);
+        setCourses(transformedCourses);
         setFaculty(mockFaculty);
       } catch (error) {
         console.error("Error fetching discovery data:", error);
@@ -172,48 +251,50 @@ export const CourseDiscovery: React.FC = () => {
   }, []);
 
   return (
-    <section className="course-discovery-section">
-      <div className="container">
-        <div className="course-discovery-row">
-          {/* Explore Courses Card */}
-          <div className="discovery-block explore-block">
-            <div className="discovery-block-header">
-              <h2 className="discovery-block-heading">Explore Courses</h2>
-              <Link to="/select-goal" className="discovery-view-all">
-                View All Courses <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div className="compact-grid courses-grid">
-              {isLoading ? (
-                Array.from({ length: 3 }).map((_, i) => <CourseCardSkeleton key={i} />)
-              ) : (
-                courses.map((course, index) => (
-                  <CourseCard key={index} {...course} />
-                ))
-              )}
-            </div>
+    <div className="course-discovery-container">
+      {/* Explore Courses Section */}
+      <section className="discovery-section">
+        <div className="container">
+          <div className="discovery-header">
+            <h2 className="discovery-heading">Explore Courses</h2>
+            <Link to="/select-goal" className="discovery-view-all">
+              View All Courses <ArrowRight size={18} />
+            </Link>
           </div>
-
-          {/* Expert Faculty Card */}
-          <div className="discovery-block faculty-block">
-            <div className="discovery-block-header">
-              <h2 className="discovery-block-heading">Expert Faculty</h2>
-              <Link to="/about" className="discovery-view-all">
-                View All Faculty <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div className="compact-grid faculty-grid">
-              {isLoading ? (
-                Array.from({ length: 3 }).map((_, i) => <FacultyCardSkeleton key={i} />)
-              ) : (
-                faculty.map((f, index) => (
-                  <FacultyCard key={index} {...f} />
-                ))
-              )}
-            </div>
+          
+          <div className="discovery-scroll-grid">
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, i) => <CourseCardSkeleton key={i} />)
+            ) : (
+              courses.map((course, index) => (
+                <CourseCard key={index} {...course} />
+              ))
+            )}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Expert Faculty Section */}
+      <section className="discovery-section">
+        <div className="container">
+          <div className="discovery-header">
+            <h2 className="discovery-heading">Expert Faculty</h2>
+            <Link to="/about" className="discovery-view-all">
+              View All Faculty <ArrowRight size={18} />
+            </Link>
+          </div>
+          
+          <div className="discovery-scroll-grid">
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, i) => <FacultyCardSkeleton key={i} />)
+            ) : (
+              faculty.map((f, index) => (
+                <FacultyCard key={index} {...f} />
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  BookOpen, 
-  BookText, 
-  FlaskConical, 
-  Atom, 
-  GraduationCap, 
-  Trophy, 
-  ArrowRight 
+import {
+  BookOpen,
+  BookText,
+  FlaskConical,
+  Atom,
+  GraduationCap,
+  Trophy,
+  ArrowRight
 } from 'lucide-react';
 import { Skeleton } from '../../ui/Skeleton/Skeleton';
 import './PopularCourses.css';
@@ -69,12 +69,35 @@ const iconMap: Record<string, React.ReactNode> = {
   'Trophy': <Trophy size={24} />,
 };
 
+// API Types
+interface ApiClass {
+  id: number;
+  name: string;
+  slug: string;
+  order: number;
+  description: string;
+  bg_color: string | null;
+  icon: string | null;
+  icon_color: string | null;
+  unique_alias: string | null;
+}
+
+interface ApiBoard {
+  id: number;
+  name: string;
+  official_title: string;
+  slug: string;
+  order: number;
+  description: string;
+  classes: ApiClass[];
+}
+
 interface PopularCourse {
   title: string;
   subtitle: string;
-  iconName: string;
+  iconName: string | null;
   bgColor: string;
-  iconColor: string;
+  iconColor: string,
   path: string;
   board?: string;
 }
@@ -89,64 +112,138 @@ export const PopularCourses: React.FC = () => {
         setIsLoading(true);
         // Mock API call simulation
         await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        const mockData: PopularCourse[] = [
-          {
-            title: "Class 9",
-            subtitle: "Strong Foundation for Success",
-            iconName: "BookOpen",
-            bgColor: "#EBF5FF",
-            iconColor: "#3B82F6",
-            path: "/course-listing?class=9",
-            board: "CBSE"
-          },
-          {
-            title: "Class 10",
-            subtitle: "Score Higher, Achieve More",
-            iconName: "BookText",
-            bgColor: "#E6FFFA",
-            iconColor: "#319795",
-            path: "/course-listing?class=10",
-            board: "CBSE"
-          },
-          {
-            title: "Class 11 Science",
-            subtitle: "Build Concepts, Aim Higher",
-            iconName: "FlaskConical",
-            bgColor: "#F5F3FF",
-            iconColor: "#8B5CF6",
-            path: "/course-listing?class=11",
-            board: "CBSE"
-          },
-          {
-            title: "Class 12 Science",
-            subtitle: "Board + Competitive Excellence",
-            iconName: "Atom",
-            bgColor: "#FFF5F5",
-            iconColor: "#F56565",
-            path: "/course-listing?class=12",
-            board: "CBSE"
-          },
-          {
-            title: "Foundation",
-            subtitle: "Build Strong Fundamentals",
-            iconName: "GraduationCap",
-            bgColor: "#E0FBFF",
-            iconColor: "#00B5D8",
-            path: "/courses?category=Foundation",
-            board: "CBSE"
-          },
-          {
-            title: "JEE / NEET",
-            subtitle: "Crack the Exam, Shape Your Future",
-            iconName: "Trophy",
-            bgColor: "#FFF5F7",
-            iconColor: "#D53F8C",
-            path: "/courses?category=JEE / NEET"
-          }
-        ];
-        
-        setCourses(mockData);
+
+        const mockApiResponse = {
+          "success": true,
+          "message": "Boards",
+          "status_code": 200,
+          "data": [
+            {
+              "id": 1,
+              "name": "CBSE Science",
+              "official_title": "Central Board of Secondary Education",
+              "slug": "cbse-science",
+              "order": 1,
+              "description": "Central Board of Secondary Education",
+              "classes": [
+                {
+                  "id": 1,
+                  "name": "Class 9",
+                  "slug": "class-9",
+                  "order": 9,
+                  "description": "Secondary school - Grade 9",
+                  "bg_color": "#EBF5FF",
+                  "icon": "BookOpen",
+                  "icon_color": "#3B82F6",
+                  "unique_alias": null
+                },
+                {
+                  "id": 2,
+                  "name": "Class 10",
+                  "slug": "class-10",
+                  "order": 10,
+                  "description": "Secondary school - Grade 10",
+                  "bg_color": "#E6FFFA",
+                  "icon": "BookText",
+                  "icon_color": "#319795",
+                  "unique_alias": null
+                },
+                {
+                  "id": 3,
+                  "name": "Class 11",
+                  "slug": "class-11",
+                  "order": 11,
+                  "description": "Senior secondary - Grade 11 (Science)",
+                  "bg_color": "#F5F3FF",
+                  "icon": "FlaskConical",
+                  "icon_color": "#8B5CF6",
+                  "unique_alias": null
+                },
+                {
+                  "id": 4,
+                  "name": "Class 12",
+                  "slug": "class-12",
+                  "order": 12,
+                  "description": "Senior secondary - Grade 12 (Science)",
+                  "bg_color": "#FFF5F5",
+                  "icon": "Atom",
+                  "icon_color": "#F56565",
+                  "unique_alias": null
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "UP Board",
+              "official_title": "Uttar Pradesh Madhyamik Shiksha Parishad",
+              "slug": "up-board",
+              "order": 2,
+              "description": "string",
+              "classes": [
+                {
+                  "id": 1,
+                  "name": "Class 9",
+                  "slug": "class-9",
+                  "order": 9,
+                  "description": "Secondary school - Grade 9",
+                  "bg_color": "#EBF5FF",
+                  "icon": "BookOpen",
+                  "icon_color": "#3B82F6",
+                  "unique_alias": null
+                },
+                {
+                  "id": 2,
+                  "name": "Class 10",
+                  "slug": "class-10",
+                  "order": 10,
+                  "description": "Secondary school - Grade 10",
+                  "bg_color": "#E6FFFA",
+                  "icon": "BookText",
+                  "icon_color": "#319795",
+                  "unique_alias": null
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Bihar Board",
+              "official_title": "Bihar School Examination Board",
+              "slug": "bihar-board",
+              "order": 3,
+              "description": "string",
+              "classes": [
+                {
+                  "id": 3,
+                  "name": "Class 11",
+                  "slug": "class-11",
+                  "order": 11,
+                  "description": "Senior secondary - Grade 11 (Science)",
+                  "bg_color": "#F5F3FF",
+                  "icon": "FlaskConical",
+                  "icon_color": "#8B5CF6",
+                  "unique_alias": null
+                }
+              ]
+            }
+          ]
+        }
+
+        // Transform nested board/class data into flat popular course cards
+        const transformedData: PopularCourse[] = (mockApiResponse.data as any[]).flatMap((board: ApiBoard) =>
+          board.classes.map((cls: ApiClass) => {
+            return {
+              title: cls.name,
+              subtitle: cls.description,
+              bgColor: cls.bg_color,
+              iconName: cls.icon,
+              iconColor: cls.icon_color,
+              path: `/course-listing?board=${board.slug}&class=${cls.slug}`,
+              board: board.name.split(' ')[0] // Short name for badge
+            };
+          })
+        );
+
+        setCourses(transformedData);
       } catch (error) {
         console.error("Error fetching popular courses:", error);
       } finally {
@@ -162,11 +259,8 @@ export const PopularCourses: React.FC = () => {
       <div className="container">
         <div className="popular-courses-header">
           <h2 className="popular-courses-heading">Popular Courses</h2>
-          <Link to="/courses" className="view-all-link">
-            View All Courses <ArrowRight size={18} />
-          </Link>
         </div>
-        
+
         <div className="popular-courses-grid">
           {isLoading ? (
             Array.from({ length: 6 }).map((_, index) => (
@@ -174,11 +268,11 @@ export const PopularCourses: React.FC = () => {
             ))
           ) : (
             courses.map((course, index) => (
-              <CourseCard 
-                key={index} 
+              <CourseCard
+                key={index}
                 {...course}
                 board={course.board}
-                icon={iconMap[course.iconName] || <BookOpen size={24} />} 
+                icon={iconMap[course.iconName || "BookOpen"] || <BookOpen size={24} />}
               />
             ))
           )}

@@ -35,9 +35,32 @@
 }
 
 .popular-courses-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
   gap: 24px;
+  overflow-x: auto;
+  padding: 8px 4px 24px 4px;
+  margin: 0 -4px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar */
+.popular-courses-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.popular-courses-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.popular-courses-grid::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.popular-courses-grid::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }
 
 .popular-course-card {
@@ -46,11 +69,18 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 180px;
+  width: 280px;
+  flex-shrink: 0;
   padding: 24px 20px;
   border-radius: 18px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.skeleton-card {
+  width: 280px;
+  flex-shrink: 0;
 }
 
 .card-board-badge {
@@ -123,30 +153,23 @@
 }
 
 /* Responsiveness */
-@media (max-width: 1200px) {
-  .popular-courses-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-}
-
 @media (max-width: 768px) {
   .popular-courses-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
   
+  .popular-course-card, .skeleton-card {
+    width: 240px;
+    min-height: 160px;
+  }
+
   .popular-courses-heading {
     font-size: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .popular-courses-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .popular-course-card {
-    min-height: 150px;
+  .popular-course-card, .skeleton-card {
+    width: 220px;
   }
 }
