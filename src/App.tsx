@@ -21,6 +21,7 @@ import { MyPurchases } from './pages/MyPurchases';
 import { DashboardCourses } from './pages/DashboardCourses';
 import { StudentDashboardLayout } from './layouts/StudentDashboardLayout';
 import { PublicRoute } from './components/common/PublicRoute';
+import { PrivateRoute } from './components/common/PrivateRoute';
 import { ScrollToTop } from './utils/ScrollToTop';
 
 const App: React.FC = () => {
@@ -42,45 +43,53 @@ const App: React.FC = () => {
               <Route path="/select-goal" element={<PublicRoute><GoalSelection /></PublicRoute>} />
               
               {/* Dashboard Routes */}
-              <Route path="/dashboard" element={<MyCourses />} />
-              <Route path="/library" element={<Library />} />
-              <Route path="/my-purchases" element={<MyPurchases />} />
-              <Route path="/dashboard/courses" element={<DashboardCourses />} />
+              <Route path="/dashboard" element={<PrivateRoute><MyCourses /></PrivateRoute>} />
+              <Route path="/library" element={<PrivateRoute><Library /></PrivateRoute>} />
+              <Route path="/my-purchases" element={<PrivateRoute><MyPurchases /></PrivateRoute>} />
+              <Route path="/dashboard/courses" element={<PrivateRoute><DashboardCourses /></PrivateRoute>} />
               <Route 
                 path="/dashboard/profile" 
                 element={
-                  <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
-                    <MyProfile />
-                  </StudentDashboardLayout>
+                  <PrivateRoute>
+                    <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                      <MyProfile />
+                    </StudentDashboardLayout>
+                  </PrivateRoute>
                 } 
               />
               <Route 
                 path="/dashboard/about" 
                 element={
-                  <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
-                    <About isDashboard={true} />
-                  </StudentDashboardLayout>
+                  <PrivateRoute>
+                    <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                      <About isDashboard={true} />
+                    </StudentDashboardLayout>
+                  </PrivateRoute>
                 } 
               />
               <Route 
                 path="/dashboard/contact" 
                 element={
-                  <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
-                    <Contact />
-                  </StudentDashboardLayout>
+                  <PrivateRoute>
+                    <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                      <Contact />
+                    </StudentDashboardLayout>
+                  </PrivateRoute>
                 } 
               />
               <Route 
                 path="/dashboard/privacy" 
                 element={
-                  <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
-                    <Privacy />
-                  </StudentDashboardLayout>
+                  <PrivateRoute>
+                    <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
+                      <Privacy />
+                    </StudentDashboardLayout>
+                  </PrivateRoute>
                 } 
               />
               
-              <Route path="/learning/:id" element={<LearningRoom />} />
-              <Route path="/board-cbse" element={<PublicRoute><BoardSelection /></PublicRoute>} />
+              <Route path="/learning/:id" element={<PrivateRoute><LearningRoom /></PrivateRoute>} />
+              <Route path="/category" element={<PublicRoute><BoardSelection /></PublicRoute>} />
               <Route path="/faqs" element={<PublicRoute><Faqs /></PublicRoute>} />
               <Route path="/privacy" element={<PublicRoute><Privacy /></PublicRoute>} />
               <Route path="/terms" element={<PublicRoute><Terms /></PublicRoute>} />

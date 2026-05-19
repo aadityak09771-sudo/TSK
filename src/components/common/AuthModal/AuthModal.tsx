@@ -13,8 +13,9 @@ export const AuthModal: React.FC = () => {
   const login = useAuthStore(state => state.login);
   const [step, setStep] = useState<1 | 2>(1);
   const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const otpInputs = useRef<(HTMLInputElement | null)[]>([]);
 
   // Handle body scroll lock & reset state
@@ -25,17 +26,28 @@ export const AuthModal: React.FC = () => {
       document.body.style.overflow = '';
       setStep(1);
       setPhone('');
-      setOtp(['', '', '', '']);
+      setOtp(['', '', '', '', '', '']);
       setIsLoading(false);
+      setError(null);
     }
     return () => { document.body.style.overflow = ''; };
   }, [isAuthModalOpen]);
 
   const handlePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (phone.length >= 10) {
-      setStep(2);
+    setError(null);
+
+    if (phone.length !== 10) {
+      setError('Phone number must be exactly 10 digits');
+      return;
     }
+
+    if (!/^[6-9]/.test(phone)) {
+      setError('Please enter a valid Indian mobile number starting with 6-9');
+      return;
+    }
+
+    setStep(2);
   };
 
   const handleOtpChange = (index: number, value: string) => {
@@ -43,7 +55,7 @@ export const AuthModal: React.FC = () => {
     const newOtp = [...otp];
     newOtp[index] = value.slice(-1);
     setOtp(newOtp);
-    if (value && index < 3) {
+    if (value && index < 5) {
       otpInputs.current[index + 1]?.focus();
     }
   };
@@ -116,14 +128,18 @@ export const AuthModal: React.FC = () => {
                     <input
                       type="tel"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      onChange={(e) => {
+                        setPhone(e.target.value.replace(/\D/g, '').slice(0, 10));
+                        if (error) setError(null);
+                      }}
                       placeholder="Enter 10 digit number"
-                      className="auth-modal-input"
+                      className={`auth-modal-input ${error ? 'error' : ''}`}
                       required
                       autoFocus
                       disabled={isLoading}
                     />
                   </div>
+                  {error && <p className="auth-modal-error-message">{error}</p>}
                 </div>
 
                 <Button type="submit" variant="primary" className="w-full py-4 text-base" disabled={isLoading}>

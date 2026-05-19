@@ -110,6 +110,18 @@
   border-color: var(--color-primary);
 }
 
+.auth-modal-input.error {
+  border-color: #DC2626;
+}
+
+.auth-modal-error-message {
+  color: #DC2626;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
 .auth-modal-otp-grid {
   display: flex;
   justify-content: center;
