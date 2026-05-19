@@ -237,7 +237,7 @@ export const PopularCourses: React.FC = () => {
               bgColor: cls.bg_color,
               iconName: cls.icon,
               iconColor: cls.icon_color,
-              path: `/course-listing?board=${board.slug}&class=${cls.slug}`,
+              path: `/course-listing?board=${board.slug}&class=${cls.order}`,
               board: board.name.split(' ')[0] // Short name for badge
             };
           })

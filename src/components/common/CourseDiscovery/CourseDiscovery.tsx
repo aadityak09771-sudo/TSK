@@ -22,7 +22,6 @@ interface ApiCourse {
 
 interface DiscoveryCourse {
   id: number;
-  badge: string;
   title: string;
   description: string;
   price: string;
@@ -40,7 +39,7 @@ interface Faculty {
   image: string;
 }
 
-const CourseCard: React.FC<DiscoveryCourse> = ({ id, badge, title, description, price, originalPrice, discountPercentage, image, buttonText }) => {
+const CourseCard: React.FC<DiscoveryCourse> = ({ id, title, description, price, originalPrice, discountPercentage, image, buttonText }) => {
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
   const openAuthModal = useAuthStore(state => state.openAuthModal);
 
@@ -57,7 +56,6 @@ const CourseCard: React.FC<DiscoveryCourse> = ({ id, badge, title, description, 
     <Link to="/board-cbse" className="compact-course-card" style={{ textDecoration: 'none' }}>
       <div className="compact-course-image-container">
         <img src={image} alt={title} className="compact-course-image" />
-        <span className="compact-course-badge">{badge}</span>
       </div>
       <div className="compact-course-info">
         <h3 className="compact-course-title">{title}</h3>
@@ -196,7 +194,6 @@ export const CourseDiscovery: React.FC = () => {
 
           return {
             id: course.course_id,
-            badge: course.course_price === 0 ? "FREE" : "POPULAR",
             title: course.course_name,
             description: course.course_desc || `Complete ${course.board} preparation in ${course.language === 'en' ? 'English' : 'Hindi'}.`,
             price: course.discounted_price === 0 ? "Free" : `₹${course.discounted_price}`,

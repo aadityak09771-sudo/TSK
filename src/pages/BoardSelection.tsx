@@ -22,7 +22,7 @@ export const BoardSelection: React.FC = () => {
                 <p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest mb-10">
                   {cls.description}
                 </p>
-                <Link to={`/course-listing?class=${cls.id}`}>
+                <Link to={`/course-listing?board=cbse-science&class=${cls.id}`}>
                   <Button variant="solid" className="w-full text-xs py-2 rounded-2xl shadow-lg shadow-blue-500/20 group-hover:bg-[var(--color-primary-light)]">
                     EXPLORE
                   </Button>

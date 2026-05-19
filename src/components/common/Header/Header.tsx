@@ -49,9 +49,9 @@ export const Header: React.FC = () => {
           label: "School Boards",
           sectionTitle: "Available Boards",
           options: [
-            { id: "cbse-arts", name: "CBSE Arts", path: "/board-cbse" },
-            { id: "cbse-science", name: "CBSE Science", path: "/board-cbse" },
-            { id: "cbse-commerce", name: "CBSE Commerce", path: "/board-cbse" },
+            { id: "cbse-arts", name: "CBSE Arts", path: "/categopry?board=cbse-arts" },
+            { id: "cbse-science", name: "CBSE Science", path: "/category?board=cbse-science" },
+            { id: "cbse-commerce", name: "CBSE Commerce", path: "/category?board=cbse-commerce" },
           ],
         },
       ];
