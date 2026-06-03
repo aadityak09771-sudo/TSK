@@ -1,0 +1,130 @@
+.journey-section {
+  padding: 70px 0;
+  background: transparent;
+  border-top: 1px solid #e8e8e8;
+}
+
+.journey-heading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.heading-line {
+  width: 40px;
+  height: 3px;
+  background: #ff7a21;
+  border-radius: 999px;
+}
+
+.journey-heading-wrapper h2 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #071b4d;
+}
+
+.journey-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-top: 15px; /* Adds safe space at the top so icons don't get cut off on hover */
+}
+
+.journey-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 110px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+
+.journey-icon {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: #fff5ec; /* Soft orange fill by default */
+  border: 2px solid #ffe1cf; /* Soft orange border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7a21;
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+  margin-bottom: 14px;
+  transition: .3s;
+}
+
+.journey-step:hover .journey-icon {
+  border-color: #ff7a21;
+  background: #ff7a21; /* Change background to full orange on hover */
+  color: white; /* Ensure icon color changes to white on hover */
+  transform: translateY(-8px); /* More pronounced lift */
+  box-shadow: 0 15px 35px rgba(255, 122, 33, 0.3); /* Stronger shadow */
+}
+
+.journey-step.active .journey-icon {
+  background: #ff7a21;
+  color: white;
+  border-color: #ff7a21;
+}
+
+.journey-step p {
+  font-size: 15px;
+  font-weight: 700;
+  color: #071b4d;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.journey-step:hover p {
+  color: #ff7a21; /* Text color changes to orange on hover */
+}
+
+.journey-connector {
+  width: 70px;
+  height: 2px;
+  border-top: 2px dashed #ff7a21;
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .journey-track {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+  }
+
+  .journey-track::-webkit-scrollbar {
+    height: 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-heading-wrapper h2 {
+    font-size: 28px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .heading-line {
+    display: none;
+  }
+
+  .journey-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .journey-step p {
+    font-size: 13px;
+  }
+
+  .journey-connector {
+    width: 40px;
+  }
+}

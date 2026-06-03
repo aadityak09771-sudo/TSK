@@ -1,146 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import './HeroCarousel.css'
+import { Button } from '../../ui/Button';
+import { CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import './HeroCarousel.css';
 
-interface HeroSlide {
-  image: string;
-  link: string;
-}
+const banners = [
+  {
+    id: 1,
+    tag: "#1 Learning Platform",
+    headingPrefix: "Learn Better with",
+    headingHighlight: "India's Trusted Teachers",
+    description: "Live classes by expert faculty, smart notes, chapter tests, 24x7 support.",
+    image: "/assets/images/home/hero-main.png",
+    primaryBtn: "Explore Courses",
+    primaryLink: "/courses",
+    secondaryBtn: "Start Learning",
+    secondaryLink: "/category"
+  },
+  {
+    id: 2,
+    tag: "Score Higher",
+    headingPrefix: "Crack Your Exams with",
+    headingHighlight: "Premium Study Material",
+    description: "Access thousands of mock tests, previous year papers, and detailed video solutions.",
+    image: "/assets/images/home/about-student.png",
+    primaryBtn: "Test Series",
+    primaryLink: "/test-series",
+    secondaryBtn: "Study Packs",
+    secondaryLink: "/study-packs"
+  }
+];
 
 export const HeroCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
-  const [slides, setSlides] = useState<HeroSlide[]>([
-    {
-      image: '/assets/images/hero1.png',
-      link: '/courses'
-    }
-  ]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchSlides = async () => {
-
-      // Mock API call simulation with 2s delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      const data: HeroSlide[] = [
-        {
-          image: '/assets/images/hero1.png',
-          link: '/courses'
-        },
-        // {
-        //   image: '/assets/images/class10_course.png',
-        //   link: '/courses'
-        // },
-        // {
-        //   image: '/assets/images/class11_course.png',
-        //   link: '/courses'
-        // },
-        // {
-        //   image: '/assets/images/class12_course.png',
-        //   link: '/courses'
-        // }
-      ];
-      
-      setSlides(data);
-    };
-
-    fetchSlides();
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % banners.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    if (slides.length <= 1) return;
-    
-    const timer = setInterval(() => {
-      setCurrent(prev => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [slides]);
-
-  const next = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (slides.length > 1) {
-      setCurrent((current + 1) % slides.length);
-    }
-  };
-  
-  const prev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (slides.length > 1) {
-      setCurrent((current - 1 + slides.length) % slides.length);
-    }
-  };
-
-  if (slides.length === 0) return null;
-
   return (
-    <>
-      <section className="hero-container">
-        {/* Slides Container - keep within container for alignment if needed, or move out for full width */}
-        <div className="relative">
+    <div className="hero-container section-padding">
+      {/* Floating Background Shapes */}
+      <div className="hero-shape hero-shape-1"></div>
+      <div className="hero-shape hero-shape-2"></div>
+
+      <div className="container relative z-10">
+        <div className="hero-slider-wrapper">
           <div 
             className="hero-slider-track"
-            style={{ 
-              transform: `translateX(-${current * 100}%)`,
-              width: '100%',
-            }}
+            style={{ transform: `translateX(-${current * 100}%)` }}
           >
-            {slides.map((slide, i) => (
-              <Link 
-                key={i}
-                to={slide.link}
-                className="hero-slide"
-                style={{ width: '100%', flexShrink: 0 }}
-              >
-                <img 
-                  src={slide.image} 
-                  alt={`Slide ${i + 1}`} 
-                  className="w-full h-auto block" 
-                />
-              </Link>
+            {banners.map((banner) => (
+              <div className="hero-layout" key={banner.id}>
+                <div className="hero-left">
+                  <div className="inline-block px-4 py-1 rounded-full bg-[#ff6b1a]/10 text-[#ff6b1a] font-bold text-sm mb-6">
+                    {banner.tag}
+                  </div>
+                  <h1 className="hero-heading">
+                    {banner.headingPrefix} <br className="hidden sm:block" />
+                    <span className="hero-heading-highlight">{banner.headingHighlight}</span>
+                  </h1>
+
+                  <p className="hero-description">
+                    {banner.description}
+                  </p>
+                  
+                  <div className="hero-buttons">
+                    <Button 
+                      variant="solid" 
+                      className="hero-btn-primary shadow-lg shadow-orange-500/30"
+                      onClick={() => navigate(banner.primaryLink)}
+                    >
+                      {banner.primaryBtn}
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="hero-btn-secondary"
+                      onClick={() => navigate(banner.secondaryLink)}
+                    >
+                      {banner.secondaryBtn}
+                    </Button>
+                  </div>
+
+                  <div className="hero-features">
+                    <span className="flex items-center gap-2"><CheckCircle2 size={18} color="#ff6b1a" /> Live Classes</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={18} color="#ff6b1a" /> Smart Notes</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={18} color="#ff6b1a" /> Chapter Tests</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={18} color="#ff6b1a" /> 24x7 Support</span>
+                  </div>
+                </div>
+                
+                <div className="hero-right">
+                  <div className="relative">
+                    <img src={banner.image} alt="Student Learning" className="hero-student-img relative z-10 drop-shadow-2xl" />
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-
-        {/* Controls - Hide if only 1 slide */}
-        {slides.length > 1 && (
-          <div className="carousel-actions">
+        
+        {/* Pagination Dots */}
+        <div className="hero-dots">
+          {banners.map((_, index) => (
             <button 
-              onClick={prev}
-              className="carousel-arrow-button"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button 
-              onClick={next}
-              className="carousel-arrow-button"
-              aria-label="Next slide"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        )}
-      </section>
-
-      {/* Dots - Hide if only 1 slide */}
-      {slides.length > 1 && (
-        <div className="carousel-dots">
-          {slides.map((_, i) => (
-            <button 
-              key={i}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setCurrent(i);
-              }}
-              className={`carousel-dot ${i === current ? 'w-8 bg-[var(--color-primary)]' : 'w-2 bg-gray-300'}`}
+              key={index}
+              className={`hero-dot ${current === index ? 'active' : ''}`}
+              onClick={() => setCurrent(index)}
             />
           ))}
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };

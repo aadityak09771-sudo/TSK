@@ -1,9 +1,15 @@
+:root {
+  --color-primary: #ff6b1a;
+  --color-dark: #0f172a;
+  --color-light: #fff8f3;
+}
+
 .header-public {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: #ffffff;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  background: white;
+  box-shadow: none;
   font-family: "Nunito Sans", sans-serif;
 }
 
@@ -11,13 +17,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 80px;
 }
 
 .header-logo-container {
   display: flex;
   align-items: center;
   gap: 2.5rem; /* 40px */
+}
+
+.header-logo {
+  font-weight: 800;
 }
 
 .header-logo-container .all-categories-list {
@@ -217,7 +227,7 @@
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 2rem; /* 40px */
+  gap: 32px;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -262,8 +272,9 @@
 }
 
 .auth-button {
-  padding: 0.625rem 1.5rem !important; /* 10px 24px */
-  border-radius: 6px !important;
+  padding: 12px 24px !important;
+  background: #ff6b1a !important;
+  border-radius: 12px !important;
   font-weight: 700 !important;
   font-size: 16px !important;
   line-height: 22px;

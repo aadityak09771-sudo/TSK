@@ -83,8 +83,8 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed top-20 left-0 bottom-0 bg-white border-r border-gray-100 z-[120] w-72 transition-transform duration-300 transform lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'} overflow-y-auto no-scrollbar shadow-sm lg:shadow-none`}>
-        <div className="flex flex-col h-full p-6">
+      <aside className={`fixed top-[80px] left-0 bottom-0 bg-[#f7f7f9] border-r border-[#eee] z-[120] w-[220px] transition-transform duration-300 transform lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'} overflow-y-auto no-scrollbar shadow-sm lg:shadow-none`}>
+        <div className="flex flex-col h-full p-4">
           {/* Mobile Close Button */}
           <div className="lg:hidden flex justify-end mb-4">
             <button onClick={toggleSidebar} className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg">
@@ -103,24 +103,17 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
                     <NavLink
                       key={item.name}
                       to={item.path}
-                      className={({ isActive }) => `flex items-start gap-3 px-4 py-3 rounded-xl font-bold transition-all ${
+                      className={({ isActive }) => `flex items-center gap-3 px-4 h-[48px] rounded-[14px] mb-[12px] font-[600] transition-colors ${
                         isActive
-                          ? 'bg-blue-50 text-[var(--color-primary)]' 
-                          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                          ? 'bg-[#ffe7d7] text-[#ff7a21]' 
+                          : 'bg-[#e8e8ec] text-gray-600 hover:bg-gray-200 hover:text-gray-900'
                       }`}
                       onClick={() => {
                         if (window.innerWidth < 1024) toggleSidebar();
                       }}
                     >
-                      <span className="mt-0.5">{item.icon}</span>
-                      <div className="flex flex-col">
-                        <span className="text-sm">{item.name}</span>
-                        {item.subtext && (
-                          <span className="text-[10px] font-medium text-gray-400 mt-0.5">
-                            {item.subtext}
-                          </span>
-                        )}
-                      </div>
+                      <span className="flex-shrink-0">{item.icon}</span>
+                      <span className="text-sm truncate">{item.name}</span>
                     </NavLink>
                   ))}
                 </div>
@@ -131,7 +124,7 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ isOpen, toggleSi
           <div className="mt-8 space-y-4">
             <button 
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-red-500 hover:bg-red-50 transition-all"
+              className="w-full flex items-center gap-3 px-4 h-[48px] rounded-[14px] font-[600] bg-[#e8e8ec] text-red-500 hover:bg-red-50 transition-all"
             >
               <LogOut size={20} />
               <span className="text-sm">Log Out</span>

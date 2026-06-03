@@ -8,13 +8,15 @@ interface CourseDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
   onStartLearning: (course: DashboardCourse) => void;
+  actionText?: string;
 }
 
 export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ 
   course, 
   isOpen, 
   onClose,
-  onStartLearning 
+  onStartLearning,
+  actionText
 }) => {
   if (!course || !isOpen) return null;
 
@@ -141,15 +143,21 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({
             <div className="mt-auto pt-8 border-t border-gray-100">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex flex-col">
-                  <span className="text-[10px] font-black text-green-500 uppercase tracking-widest mb-1">Exclusive Offer</span>
+                  {course.discount && (
+                    <span className="text-[10px] font-black text-green-500 uppercase tracking-widest mb-1">Exclusive Offer</span>
+                  )}
                   <div className="flex items-baseline gap-3">
                     <span className="text-4xl font-black text-gray-900">{course.price}</span>
-                    <span className="text-lg font-bold text-gray-400 line-through">{course.originalPrice}</span>
+                    {course.originalPrice && (
+                      <span className="text-lg font-bold text-gray-400 line-through">{course.originalPrice}</span>
+                    )}
                   </div>
                 </div>
-                <div className="px-4 py-2 bg-green-50 rounded-xl">
-                  <span className="text-sm font-black text-green-600">{course.discount}</span>
-                </div>
+                {course.discount && (
+                  <div className="px-4 py-2 bg-green-50 rounded-xl">
+                    <span className="text-sm font-black text-green-600">{course.discount}</span>
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-4">
@@ -157,7 +165,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({
                   className="flex-grow h-16 rounded-[1.5rem] text-sm font-black shadow-2xl shadow-blue-500/20 group"
                   onClick={() => onStartLearning(course)}
                 >
-                  Start Learning Now
+                  {actionText || 'Start Learning Now'}
                   <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>

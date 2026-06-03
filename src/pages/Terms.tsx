@@ -11,7 +11,7 @@ export const Terms: React.FC = () => {
           <section>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h3>
             <p className="leading-relaxed">
-              By accessing and using Siksha Kendra, you accept and agree to be bound by the terms 
+              By accessing and using Topper's Siksha Kendra, you accept and agree to be bound by the terms 
               and provision of this agreement. In addition, when using these particular services, 
               you shall be subject to any posted guidelines or rules applicable to such services.
             </p>

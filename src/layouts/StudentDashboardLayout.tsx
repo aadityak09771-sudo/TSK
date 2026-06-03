@@ -17,13 +17,13 @@ export const StudentDashboardLayout: React.FC<StudentDashboardLayoutProps> = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-gradient-to-b from-[#fffdfc] to-[#fffaf7]">
       <StudentSidebar 
         isOpen={isSidebarOpen} 
         toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
       />
 
-      <div className="lg:pl-72 flex flex-col min-h-screen">
+      <div className="lg:pl-[220px] flex flex-col min-h-screen">
         {/* Mobile Header */}
         <header className="lg:hidden bg-white border-b border-gray-100 p-4 sticky top-0 z-50 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -36,7 +36,7 @@ export const StudentDashboardLayout: React.FC<StudentDashboardLayoutProps> = ({
         </header>
 
         {/* Desktop Sticky Header */}
-        <div className="hidden lg:block sticky top-0 z-[60]">
+        <div className="hidden lg:block h-[80px] z-[60]">
           <DashboardHeader 
             searchQuery={searchQuery} 
             onSearchChange={onSearchChange} 

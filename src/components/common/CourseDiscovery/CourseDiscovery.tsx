@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, GraduationCap } from 'lucide-react';
-import { Button } from '../../ui/Button';
+import { Link, useNavigate } from 'react-router-dom';
+import { BookOpen, TrendingUp, Target, ShieldCheck } from 'lucide-react';
 import { Skeleton } from '../../ui/Skeleton/Skeleton';
 import { useAuthStore } from '../../../store/useAuthStore';
+import { CourseDetailsModal } from '../../dashboard/CourseDetailsModal';
+import type { DashboardCourse } from '../../../config/studentData';
 import './CourseDiscovery.css';
 
 interface ApiCourse {
@@ -22,6 +23,7 @@ interface ApiCourse {
 
 interface DiscoveryCourse {
   id: number;
+  subject: string;
   title: string;
   description: string;
   price: string;
@@ -29,115 +31,89 @@ interface DiscoveryCourse {
   discountPercentage?: number;
   image: string;
   buttonText: string;
+  lessons: string;
+  duration: string;
+  language?: string;
+  startDate?: string;
 }
 
-interface Faculty {
-  name: string;
-  role: string;
-  experience: string;
-  institute: string;
-  image: string;
+interface CourseCardProps extends DiscoveryCourse {
+  onViewDetails: (course: DiscoveryCourse) => void;
 }
 
-const CourseCard: React.FC<DiscoveryCourse> = ({ id, title, description, price, originalPrice, discountPercentage, image, buttonText }) => {
+const CourseCard: React.FC<CourseCardProps> = (props) => {
+  const { id, subject, title, description, price, originalPrice, discountPercentage, image, buttonText, lessons, duration, onViewDetails } = props;
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
   const openAuthModal = useAuthStore(state => state.openAuthModal);
+  const navigate = useNavigate();
 
-  const handleAction = (e: React.MouseEvent) => {
+  const handleBuy = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!isLoggedIn) {
       openAuthModal();
     } else {
-      window.location.href = `/courses/${id}`;
+      navigate(`/courses/${id}`);
     }
   };
 
+  const handleDetails = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onViewDetails(props);
+  };
+
   return (
-    <Link to="/board-cbse" className="compact-course-card" style={{ textDecoration: 'none' }}>
-      <div className="compact-course-image-container">
-        <img src={image} alt={title} className="compact-course-image" />
+    <div className="premium-course-card">
+      <div className="course-image-wrapper">
+        <img 
+          src={image} 
+          alt={title} 
+          onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x250/f3f4f6/a1a1aa?text=Course+Image'; }}
+        />
       </div>
-      <div className="compact-course-info">
-        <h3 className="compact-course-title">{title}</h3>
-        <p className="compact-course-description">{description}</p>
-        <div className="compact-course-footer">
-          <div className="price-container">
-            <div className="price-row">
-              <span className={`compact-course-price ${price === 'Free' ? 'is-free' : ''}`}>{price}</span>
-              {originalPrice && originalPrice !== price && (
-                <span className="compact-course-original-price">{originalPrice}</span>
-              )}
-            </div>
-            {discountPercentage && discountPercentage > 0 && (
-              <span className="compact-course-discount-percentage">{discountPercentage}% OFF</span>
-            )}
-          </div>
-          <Button 
-            variant="solid" 
-            className="compact-enroll-button py-1.5 h-9 text-[10px] shadow-md shadow-blue-500/10"
-            onClick={handleAction}
-          >
-            {isLoggedIn ? 'ENROLL NOW' : 'BUY NOW'}
-          </Button>
+      <div className="course-content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        
+        <div className="course-meta">
+          <span>{lessons}</span>
+          <span>{duration}</span>
+        </div>
+
+        <div className="course-price-row">
+          <span className="price">{price}</span>
+          {originalPrice && originalPrice !== price && (
+            <span className="old-price">{originalPrice}</span>
+          )}
+          {discountPercentage && discountPercentage > 0 && (
+            <span className="discount">{discountPercentage}% OFF</span>
+          )}
+        </div>
+
+        <div className="course-actions">
+          <button className="details-btn" onClick={handleDetails}>Details</button>
+          <button className="buy-btn" onClick={handleBuy}>Buy Now</button>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
 const CourseCardSkeleton: React.FC = () => (
-  <div className="compact-course-card">
-    <div className="compact-course-image-container">
+  <div className="premium-course-card">
+    <div className="course-image-wrapper">
       <Skeleton width="100%" height="100%" />
     </div>
-    <div className="compact-course-info">
-      <Skeleton variant="text" width="80%" height={16} className="mb-2" />
-      <Skeleton variant="text" width="100%" height={12} className="mb-1" />
-      <Skeleton variant="text" width="90%" height={12} className="mb-3" />
-      <div className="compact-course-footer">
-        <div className="price-container">
-          <Skeleton variant="text" width={40} height={16} />
-          <Skeleton variant="text" width={30} height={12} />
-        </div>
-        <Skeleton variant="rectangular" width={60} height={24} className="rounded" />
+    <div className="course-content">
+      <Skeleton variant="text" width="80%" height={24} className="mb-2" />
+      <Skeleton variant="text" width="100%" height={16} className="mb-1" />
+      <Skeleton variant="text" width="90%" height={16} className="mb-4" />
+      <div className="course-price-row">
+        <Skeleton variant="text" width={60} height={24} />
+        <Skeleton variant="text" width={40} height={16} />
       </div>
-    </div>
-  </div>
-);
-
-const FacultyCard: React.FC<Faculty> = ({ name, role, experience, institute, image }) => (
-  <div className="compact-faculty-card">
-    <div className="compact-faculty-image-wrapper">
-      <img src={image} alt={name} className="compact-faculty-image" />
-    </div>
-    <div className="compact-faculty-info">
-      <h3 className="compact-faculty-name">{name}</h3>
-      <p className="compact-faculty-role">{role}</p>
-      <div className="compact-faculty-details">
-        <div className="compact-detail-item">
-          <Clock size={12} className="compact-detail-icon" />
-          <span>{experience}</span>
-        </div>
-        <div className="compact-detail-item">
-          <GraduationCap size={12} className="compact-detail-icon" />
-          <span>{institute}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const FacultyCardSkeleton: React.FC = () => (
-  <div className="compact-faculty-card">
-    <div className="compact-faculty-image-wrapper">
-      <Skeleton variant="circular" width={80} height={80} className="mx-auto" />
-    </div>
-    <div className="compact-faculty-info">
-      <Skeleton variant="text" width="70%" height={16} className="mx-auto mb-1" />
-      <Skeleton variant="text" width="40%" height={12} className="mx-auto mb-3" />
-      <div className="compact-faculty-details">
-        <Skeleton variant="text" width="50%" height={10} className="mx-auto" />
-        <Skeleton variant="text" width="60%" height={10} className="mx-auto" />
+      <div className="course-actions">
+        <Skeleton variant="rectangular" width="100%" height={40} className="rounded flex-1" />
+        <Skeleton variant="rectangular" width="100%" height={40} className="rounded flex-1" />
       </div>
     </div>
   </div>
@@ -145,8 +121,10 @@ const FacultyCardSkeleton: React.FC = () => (
 
 export const CourseDiscovery: React.FC = () => {
   const [courses, setCourses] = useState<DiscoveryCourse[]>([]);
-  const [faculty, setFaculty] = useState<Faculty[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCourse, setSelectedCourse] = useState<DashboardCourse | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDiscoveryData = async () => {
@@ -183,60 +161,66 @@ export const CourseDiscovery: React.FC = () => {
               "start_date": "2026-05-16T12:00:00",
               "batch_id": 1,
               "batch_name": "Morning Batch"
+            },
+            {
+              "course_id": 3,
+              "course_name": "English Grammar Essentials",
+              "course_desc": "Complete grammar rules for class 10th",
+              "board": "CBSE Arts",
+              "language": "en",
+              "course_price": 999,
+              "discounted_price": 499,
+              "course_image": null,
+              "start_date": null,
+              "batch_id": null,
+              "batch_name": null
+            },
+            {
+              "course_id": 4,
+              "course_name": "General Knowledge Boost",
+              "course_desc": "Current affairs and history concepts",
+              "board": "General",
+              "language": "hi",
+              "course_price": 499,
+              "discounted_price": 0,
+              "course_image": null,
+              "start_date": null,
+              "batch_id": null,
+              "batch_name": null
             }
           ]
         };
 
-        const transformedCourses: DiscoveryCourse[] = mockCoursesResponse.data.map((course: ApiCourse) => {
+        const imagePlaceholders = [
+          "/assets/images/courses/science-course.jpg",
+          "/assets/images/courses/maths-course.jpg",
+          "/assets/images/courses/english-course.jpg",
+          "/assets/images/courses/gk-course.jpg"
+        ];
+
+        const transformedCourses: DiscoveryCourse[] = mockCoursesResponse.data.map((course: ApiCourse, index) => {
           const discountPercentage = course.course_price > 0 && course.discounted_price < course.course_price
             ? Math.round(((course.course_price - course.discounted_price) / course.course_price) * 100)
             : undefined;
 
           return {
             id: course.course_id,
+            subject: course.board,
             title: course.course_name,
             description: course.course_desc || `Complete ${course.board} preparation in ${course.language === 'en' ? 'English' : 'Hindi'}.`,
             price: course.discounted_price === 0 ? "Free" : `₹${course.discounted_price}`,
             originalPrice: course.course_price === 0 ? undefined : `₹${course.course_price}`,
             discountPercentage,
-            image: course.course_image || "/assets/images/course.png",
-            buttonText: "Buy Now"
+            image: course.course_image || imagePlaceholders[index % imagePlaceholders.length],
+            buttonText: "Enroll Now →",
+            lessons: "120+ Lessons",
+            duration: "6 Months",
+            language: course.language === 'en' ? 'English' : 'Hindi',
+            startDate: course.start_date ? new Date(course.start_date).toLocaleDateString() : 'Self Paced'
           };
         });
 
-        const mockFaculty: Faculty[] = [
-          {
-            name: "Aariz Verma",
-            role: "Physics",
-            experience: "10+ Yrs",
-            institute: "IIT Delhi",
-            image: "/assets/images/teacher_1.png"
-          },
-          {
-            name: "Neha Sharma",
-            role: "Chemistry",
-            experience: "8+ Yrs",
-            institute: "IIT Bombay",
-            image: "/assets/images/teacher_2.png"
-          },
-          {
-            name: "Rahul Mehta",
-            role: "Maths",
-            experience: "12+ Yrs",
-            institute: "IIT Kanpur",
-            image: "/assets/images/teacher_3.png"
-          },
-          {
-            name: "Dr. Priya Roy",
-            role: "Biology",
-            experience: "15+ Yrs",
-            institute: "AIIMS Delhi",
-            image: "/assets/images/teacher_4.png"
-          }
-        ];
-
         setCourses(transformedCourses);
-        setFaculty(mockFaculty);
       } catch (error) {
         console.error("Error fetching discovery data:", error);
       } finally {
@@ -247,51 +231,106 @@ export const CourseDiscovery: React.FC = () => {
     fetchDiscoveryData();
   }, []);
 
-  return (
-    <div className="course-discovery-container">
-      {/* Explore Courses Section */}
-      <section className="discovery-section">
-        <div className="container">
-          <div className="discovery-header">
-            <h2 className="discovery-heading">Explore Courses</h2>
-            <Link to="/select-goal" className="discovery-view-all">
-              View All Courses <ArrowRight size={18} />
-            </Link>
-          </div>
-          
-          <div className="discovery-scroll-grid">
-            {isLoading ? (
-              Array.from({ length: 4 }).map((_, i) => <CourseCardSkeleton key={i} />)
-            ) : (
-              courses.map((course, index) => (
-                <CourseCard key={index} {...course} />
-              ))
-            )}
-          </div>
-        </div>
-      </section>
+  const handleViewDetails = (course: DiscoveryCourse) => {
+    const dashboardCourse: DashboardCourse = {
+      id: course.id.toString(),
+      title: course.title,
+      category: course.subject,
+      language: course.language || "English",
+      thumbnail: course.image,
+      target: course.subject,
+      lessons: course.lessons,
+      price: course.price,
+      originalPrice: course.originalPrice && course.originalPrice !== course.price ? course.originalPrice : "",
+      discount: course.discountPercentage ? `${course.discountPercentage}% OFF` : "",
+      description: course.description,
+      startDate: course.startDate || "Self Paced",
+      subjects: [course.subject],
+      highlights: [
+        "Expert Faculty",
+        "Comprehensive Syllabus Coverage",
+        "Regular Mock Tests",
+        "24/7 Doubt Resolution"
+      ]
+    };
+    setSelectedCourse(dashboardCourse);
+    setIsModalOpen(true);
+  };
 
-      {/* Expert Faculty Section */}
-      <section className="discovery-section">
-        <div className="container">
-          <div className="discovery-header">
-            <h2 className="discovery-heading">Expert Faculty</h2>
-            <Link to="/about" className="discovery-view-all">
-              View All Faculty <ArrowRight size={18} />
-            </Link>
+  const handleStartLearning = (course: DashboardCourse) => {
+    setIsModalOpen(false);
+    navigate(`/courses/${course.id}`);
+  };
+
+  return (
+    <section className="course-discovery-section">
+      <div className="container">
+        <div className="course-badge">
+          ⭐ TOP PICKS
+        </div>
+
+        <div className="course-header">
+          <div>
+            <h2 className="course-main-title">
+              Popular <span>Courses</span>
+            </h2>
+            <p className="course-subtitle">Join thousands of learners in our most loved courses.</p>
+            <p className="course-subtitle">Learn, practice and achieve your goals.</p>
           </div>
-          
-          <div className="discovery-scroll-grid">
-            {isLoading ? (
-              Array.from({ length: 4 }).map((_, i) => <FacultyCardSkeleton key={i} />)
-            ) : (
-              faculty.map((f, index) => (
-                <FacultyCard key={index} {...f} />
-              ))
-            )}
+          <Link to="/courses" className="view-all-btn">
+            View All Courses →
+          </Link>
+        </div>
+        
+        <div className="course-grid">
+          {isLoading ? (
+            Array.from({ length: 4 }).map((_, i) => <CourseCardSkeleton key={i} />)
+          ) : (
+            courses.map((course, index) => (
+              <CourseCard key={index} {...course} onViewDetails={handleViewDetails} />
+            ))
+          )}
+        </div>
+
+        <div className="course-features-strip">
+          <div className="feature-item">
+            <BookOpen />
+            <div>
+              <h4>Quality Content</h4>
+              <p>Curated by experts and updated regularly</p>
+            </div>
+          </div>
+          <div className="feature-item">
+            <TrendingUp />
+            <div>
+              <h4>Learn at Your Pace</h4>
+              <p>Study anytime with lifetime access</p>
+            </div>
+          </div>
+          <div className="feature-item">
+            <Target />
+            <div>
+              <h4>Exam Focused</h4>
+              <p>Concepts, practice & tests</p>
+            </div>
+          </div>
+          <div className="feature-item">
+            <ShieldCheck />
+            <div>
+              <h4>Trusted By Students</h4>
+              <p>Join thousands of learners</p>
+            </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      <CourseDetailsModal 
+        course={selectedCourse}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onStartLearning={handleStartLearning}
+        actionText="Enroll Now"
+      />
+    </section>
   );
 };

@@ -13,7 +13,7 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
           <div className="flex items-center gap-2 text-[var(--color-primary)] font-black uppercase tracking-[0.2em] text-[10px] mb-2">
             Company Info
           </div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight">About Siksha Kendra</h1>
+          <h1 className="text-3xl font-black text-gray-900 tracking-tight">About Topper's Siksha Kendra</h1>
           <p className="text-gray-500">Learn about our mission, vision, and the philosophy behind our teaching.</p>
         </div>
 
@@ -24,7 +24,7 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
               Our Mission
             </h3>
             <p className="text-gray-600 leading-relaxed font-medium">
-              Siksha Kendra is an edutech platform focused on true academic excellence. We move beyond memorization to help students deeply understand, ask big questions, and become real-world problem solvers.
+              Topper's Siksha Kendra is an edutech platform focused on true academic excellence. We move beyond memorization to help students deeply understand, ask big questions, and become real-world problem solvers.
             </p>
           </section>
 
@@ -34,7 +34,7 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
               What Makes Us Different
             </h3>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Most platforms teach "what to study." We focus on how to think. At Siksha Kendra, students don’t just prepare for exams—they build a mindset that stays beyond the exam hall.
+              Most platforms teach "what to study." We focus on how to think. At Topper's Siksha Kendra, students don’t just prepare for exams—they build a mindset that stays beyond the exam hall.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
@@ -72,7 +72,7 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
         <div className="container text-center max-w-3xl">
           <h1 className="text-5xl font-bold mb-6 text-gray-900">Our Mission</h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Siksha Kendra is an edutech platform focused on true academic excellence. 
+            Topper's Siksha Kendra is an edutech platform focused on true academic excellence. 
             We move beyond memorization to help students deeply understand, ask big questions, 
             and become real-world problem solvers.
           </p>
@@ -88,7 +88,7 @@ export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
               Most platforms teach “what to study.” <span className="text-gray-900 font-bold underline decoration-[var(--color-primary)] decoration-4 underline-offset-4">We focus on how to think.</span>
             </p>
             <p className="text-gray-500 mb-8">
-              At SikshaKendra, students don’t just prepare for exams—they build a mindset 
+              At Topper's Siksha Kendra, students don’t just prepare for exams—they build a mindset 
               that stays beyond the exam hall. We combine:
             </p>
             <ul className="space-y-4 text-gray-600 font-medium list-none p-0">

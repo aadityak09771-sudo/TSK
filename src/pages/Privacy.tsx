@@ -11,7 +11,7 @@ export const Privacy: React.FC = () => {
           <section>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">We Value Your Privacy</h3>
             <p className="leading-relaxed">
-              At Siksha Kendra, protecting student data and parent information is our absolute priority. 
+              At Topper's Siksha Kendra, protecting student data and parent information is our absolute priority. 
               This document outlines the types of personal information we receive and collect when you 
               use our educational services, as well as some of the steps we take to safeguard information.
             </p>

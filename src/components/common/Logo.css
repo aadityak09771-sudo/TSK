@@ -1,0 +1,51 @@
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.logo-image {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-line1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #071b4d;
+}
+
+.logo-line2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #071b4d;
+  margin-top: 2px;
+}
+
+.logo-line2 span {
+  color: #ff6b1a;
+}
+
+@media (max-width: 768px) {
+
+  .logo-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo-line1 {
+    font-size: 16px;
+  }
+
+  .logo-line2 {
+    font-size: 22px;
+  }
+}
