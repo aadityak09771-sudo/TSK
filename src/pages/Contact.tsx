@@ -1,99 +1,191 @@
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import { Mail, Phone, MapPin, Send, User, BookOpen, GraduationCap, Target, MessageSquare } from 'lucide-react';
 
-export const Contact: React.FC = () => {
+interface ContactProps {
+  isDashboard?: boolean;
+}
+
+export const Contact: React.FC<ContactProps> = ({ isDashboard = false }) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Form submission logic will go here
+  };
+
   return (
-    <div className="bg-white">
-      {/* Main Content */}
-      <section className="py-5">
-        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Info Card */}
-          <div className="space-y-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-8 underline decoration-[var(--color-primary)] decoration-4 underline-offset-8">Get in Touch</h2>
-              <div className="space-y-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-blue-50 text-[var(--color-primary)] rounded-xl flex items-center justify-center shrink-0">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Email Us</p>
-                    <a href="mailto:support@sikshakendra.com" className="text-xl font-bold text-gray-900 hover:text-[var(--color-primary)] transition-colors">
-                      support@sikshakendra.com
-                    </a>
-                  </div>
-                </div>
+    <div className={`w-full bg-transparent ${isDashboard ? '' : 'px-4 sm:px-6 lg:px-8 py-8 lg:py-12'}`}>
+      <div className="max-w-[1200px] mx-auto">
+        <section className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14 bg-white rounded-[32px] p-6 sm:p-10 relative overflow-hidden shadow-sm border border-gray-100">
+          
+          {/* Decorative Background */}
+          <div className="absolute top-0 left-0 w-[250px] h-[180px] bg-[#ff6b00]/10 rounded-br-[120px] pointer-events-none" />
+          
+          {/* Top Right Decorative Dots */}
+          <div 
+            className="absolute top-10 right-10 w-24 h-24 opacity-20 pointer-events-none hidden md:block" 
+            style={{ 
+              backgroundImage: 'radial-gradient(circle at 2px 2px, #ff6b00 2px, transparent 0)', 
+              backgroundSize: '16px 16px' 
+            }} 
+          />
 
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-blue-50 text-[var(--color-primary)] rounded-xl flex items-center justify-center shrink-0">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Call Us</p>
-                    <a href="tel:+919876543210" className="text-xl font-bold text-gray-900 hover:text-[var(--color-primary)] transition-colors">
-                      +91 9876 543 210
-                    </a>
-                  </div>
-                </div>
+          {/* Left Column: Contact Info */}
+          <div className="relative z-10 flex flex-col">
+            <h1 className="text-[38px] lg:text-[56px] font-[800] text-[#0a2458] leading-tight">
+              Get in <span className="text-[#ff6b00]">Touch</span>
+            </h1>
+            <div className="w-[70px] h-[4px] bg-[#ff6b00] rounded-full mt-2.5" />
+            
+            <p className="text-[17px] leading-[1.8] text-slate-500 mt-5 mb-10 pr-0 lg:pr-8">
+              Have questions about our courses, pricing, or your academic journey? Our expert team is ready to help you out.
+            </p>
 
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-blue-50 text-[var(--color-primary)] rounded-xl flex items-center justify-center shrink-0">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Our Center</p>
-                    <p className="text-lg text-gray-700 font-medium">
-                      Sector 62, Noida,<br />
-                      Uttar Pradesh, India
-                    </p>
-                  </div>
+            <div className="space-y-6">
+              {/* Email */}
+              <a href="mailto:support@sikshakendra.com" className="flex items-center gap-5 p-3 -ml-3 rounded-2xl hover:bg-[#fff4ec]/50 transition-all duration-300 hover:-translate-y-1 group cursor-pointer">
+                <div className="w-16 h-16 bg-[#fff4ec] group-hover:bg-[#ff6b00] rounded-[18px] flex items-center justify-center text-[#ff6b00] group-hover:text-white shrink-0 transition-colors duration-300">
+                  <Mail size={28} />
                 </div>
-              </div>
+                <div>
+                  <span className="text-xs font-bold text-gray-400 tracking-widest uppercase">Email Us</span>
+                  <h4 className="text-lg font-bold text-[#0a2458] group-hover:text-[#ff6b00] transition-colors duration-300">support@sikshakendra.com</h4>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a href="tel:+919876543210" className="flex items-center gap-5 p-3 -ml-3 rounded-2xl hover:bg-[#fff4ec]/50 transition-all duration-300 hover:-translate-y-1 group cursor-pointer">
+                <div className="w-16 h-16 bg-[#fff4ec] group-hover:bg-[#ff6b00] rounded-[18px] flex items-center justify-center text-[#ff6b00] group-hover:text-white shrink-0 transition-colors duration-300">
+                  <Phone size={28} />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-gray-400 tracking-widest uppercase">Call Us</span>
+                  <h4 className="text-lg font-bold text-[#0a2458] group-hover:text-[#ff6b00] transition-colors duration-300">+91 98765 43210</h4>
+                </div>
+              </a>
+
+              {/* Location */}
+              <a href="https://maps.google.com/?q=Sector+62,+Noida,+India" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 p-3 -ml-3 rounded-2xl hover:bg-[#fff4ec]/50 transition-all duration-300 hover:-translate-y-1 group cursor-pointer">
+                <div className="w-16 h-16 bg-[#fff4ec] group-hover:bg-[#ff6b00] rounded-[18px] flex items-center justify-center text-[#ff6b00] group-hover:text-white shrink-0 transition-colors duration-300">
+                  <MapPin size={28} />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-gray-400 tracking-widest uppercase">Our Center</span>
+                  <h4 className="text-lg font-bold text-[#0a2458] group-hover:text-[#ff6b00] transition-colors duration-300">Sector 62, Noida, India</h4>
+                </div>
+              </a>
             </div>
 
-            <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100 italic text-gray-600">
+            {/* Quote Card */}
+            <div className="mt-[30px] bg-[#fff4ec] rounded-[24px] p-7 italic text-[#ff6b00] font-medium leading-relaxed relative">
               "We strive to respond to all inquiries within 24 hours. Your academic journey is our priority."
             </div>
           </div>
 
-          {/* Contact form */}
-          <div className="bg-white p-10 pt-5 rounded-[40px] shadow-2xl shadow-blue-500/5 border border-gray-100">
-            {/* <h3 className="text-2xl font-bold mb-8">Send a Message</h3> */}
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700">Full Name</label>
-                  <input type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none" placeholder="John Doe" />
+          {/* Right Column: Contact Form */}
+          <div className="relative z-10 flex items-center">
+            <form onSubmit={handleSubmit} className="w-full bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.06)] border border-gray-50 flex flex-col gap-4 sm:gap-5">
+              
+              {/* Row 1: Name & Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                <div className="relative">
+                  <div className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#ff6b00] pointer-events-none">
+                    <User size={20} />
+                  </div>
+                  <input 
+                    type="text" 
+                    placeholder="Full Name" 
+                    required
+                    className="w-full h-[58px] border border-[#e8e8e8] rounded-[14px] pl-[48px] pr-[18px] bg-white focus:border-[#ff6b00] focus:ring-4 focus:ring-[#ff6b00]/10 outline-none transition-all text-gray-700" 
+                  />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700">Phone</label>
-                  <input type="tel" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none" placeholder="+91 00000 00000" />
+                <div className="relative">
+                  <div className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#ff6b00] pointer-events-none">
+                    <Phone size={20} />
+                  </div>
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    required
+                    className="w-full h-[58px] border border-[#e8e8e8] rounded-[14px] pl-[48px] pr-[18px] bg-white focus:border-[#ff6b00] focus:ring-4 focus:ring-[#ff6b00]/10 outline-none transition-all text-gray-700" 
+                  />
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700">Email Address</label>
-                <input type="email" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none" placeholder="john@example.com" />
+
+              {/* Row 2: Board & Class */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                <div className="relative">
+                  <div className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#ff6b00] pointer-events-none">
+                    <BookOpen size={20} />
+                  </div>
+                  <select 
+                    required
+                    className="w-full h-[58px] border border-[#e8e8e8] rounded-[14px] pl-[48px] pr-[18px] bg-white focus:border-[#ff6b00] focus:ring-4 focus:ring-[#ff6b00]/10 outline-none transition-all text-gray-500 cursor-pointer appearance-none"
+                  >
+                    <option value="" disabled selected hidden>Select Board</option>
+                    <option value="cbse">CBSE</option>
+                    <option value="icse">ICSE</option>
+                    <option value="state">State Board</option>
+                  </select>
+                </div>
+                
+                <div className="relative">
+                  <div className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#ff6b00] pointer-events-none">
+                    <GraduationCap size={20} />
+                  </div>
+                  <select 
+                    required
+                    className="w-full h-[58px] border border-[#e8e8e8] rounded-[14px] pl-[48px] pr-[18px] bg-white focus:border-[#ff6b00] focus:ring-4 focus:ring-[#ff6b00]/10 outline-none transition-all text-gray-500 cursor-pointer appearance-none"
+                  >
+                    <option value="" disabled selected hidden>Select Class</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                    <option value="dropper">Dropper</option>
+                  </select>
+                </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700">Course of Interest</label>
-                <select className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none">
-                  <option>Class 12th Board Mastery Course</option>
-                  <option>Class 11th Foundation Course</option>
-                  <option>Others</option>
+
+              {/* Row 3: Course */}
+              <div className="relative">
+                <div className="absolute left-[18px] top-1/2 -translate-y-1/2 text-[#ff6b00] pointer-events-none">
+                  <Target size={20} />
+                </div>
+                <select 
+                  required
+                  className="w-full h-[58px] border border-[#e8e8e8] rounded-[14px] pl-[48px] pr-[18px] bg-white focus:border-[#ff6b00] focus:ring-4 focus:ring-[#ff6b00]/10 outline-none transition-all text-gray-500 cursor-pointer appearance-none"
+                >
+                  <option value="" disabled selected hidden>Select Interested Course</option>
+                  <option value="jee">JEE Main & Advanced</option>
+                  <option value="neet">NEET UG</option>
+                  <option value="cuet">CUET Test Series</option>
+                  <option value="foundation">Foundation (9th & 10th)</option>
                 </select>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700">Message</label>
-                <textarea className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none min-h-[150px]" placeholder="How can we help you?"></textarea>
+
+              {/* Row 4: Message */}
+              <div className="relative">
+                <div className="absolute left-[18px] top-[18px] text-[#ff6b00] pointer-events-none">
+                  <MessageSquare size={20} />
+                </div>
+                <textarea 
+                  placeholder="Write your message here..." 
+                  required
+                  className="w-full min-h-[130px] resize-none pt-[18px] pl-[48px] pr-[18px] border border-[#e8e8e8] rounded-[14px] bg-white focus:border-[#ff6b00] focus:ring-4 focus:ring-[#ff6b00]/10 outline-none transition-all text-gray-700"
+                ></textarea>
               </div>
-              <Button variant="solid" className="w-full py-5 text-base uppercase tracking-widest">
+
+              {/* Submit Button */}
+              <button 
+                type="submit" 
+                className="w-full h-[60px] mt-2 bg-[#ff6b00] text-white rounded-[14px] font-[700] hover:bg-[#e55d00] hover:-translate-y-[2px] shadow-lg shadow-orange-500/20 transition-all flex items-center justify-center gap-2 text-lg"
+              >
+                <Send size={20} />
                 Send Message
-              </Button>
+              </button>
             </form>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };

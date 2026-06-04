@@ -14,15 +14,15 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   const discountPercentage = Math.round((discountAmount / course.originalPrice) * 100);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group">
+    <div className="bg-white rounded-[24px] border border-[#f5e6d7] shadow-sm hover:shadow-[0_25px_50px_rgba(255,107,0,0.15)] hover:border-[#ff6b00]/30 hover:-translate-y-[10px] transition-all duration-[400ms] overflow-hidden flex flex-col h-full group">
       <div className="relative h-[200px] overflow-hidden">
         <img 
           src={course.image} 
           alt={course.title} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-[1.08] transition-transform duration-[400ms]"
         />
         <div className="absolute top-2 left-3 flex flex-wrap gap-2">
-          <span className="bg-[var(--color-primary)] text-white text-[9px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+          <span className="bg-[#ff6b00] text-white text-[9px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
             {course.category}
           </span>
         </div>
@@ -35,21 +35,21 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
 
         <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-2">
           <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Calendar size={14} className="text-[var(--color-primary)]" />
+            <Calendar size={14} className="text-[#ff6b00]" />
             <span className="text-xs">{course.target}</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600">
-            <BookOpen size={14} className="text-[var(--color-primary)]" />
+            <BookOpen size={14} className="text-[#ff6b00]" />
             <span className="text-xs">{course.language}</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Clock size={14} className="text-[var(--color-primary)]" />
-            <span className="text-xs">{course.startDate}</span>
+            <Clock size={14} className="text-[#ff6b00]" />
+            <span className="text-xs group-hover:text-[#ff6b00] transition-colors">{course.startDate}</span>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="bg-blue-50 text-blue-600 text-[9px] font-bold px-2 py-0.5 rounded-md">
+          <span className="bg-[#fff1e7] text-[#ff6b00] text-[9px] font-bold px-2 py-0.5 rounded-md">
             {course.lessonsCount}
           </span>
         </div>
@@ -68,16 +68,16 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           <div className="flex gap-2">
             <Button 
               variant="outline" 
-              className="flex-1 rounded-xl h-10 text-xs"
+              className="flex-1 rounded-xl h-10 text-xs bg-transparent border-none text-[#ff6b00] font-[700] hover:bg-[#fff7f1] hover:translate-x-1 transition-all duration-300"
               onClick={() => navigate(`/courses/${course.id}`)}
             >
-              View Details
+              Details
             </Button>
             <Button 
               variant="solid" 
-              className="flex-1 rounded-xl h-10 text-xs shadow-lg shadow-blue-500/10"
+              className="flex-1 rounded-xl h-10 text-xs bg-[#ff6b00] hover:bg-[#e45e00] text-white border-none shadow-md shadow-orange-500/20 transition-all"
             >
-              Enroll Now
+              Buy Now
             </Button>
           </div>
         </div>

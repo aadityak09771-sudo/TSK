@@ -1,92 +1,83 @@
 import React from 'react';
-import { Languages, Target, BookOpen, ChevronRight } from 'lucide-react';
+import { BookOpen, Globe } from 'lucide-react';
 import type { DashboardCourse } from '../../config/studentData';
-import { Button } from '../ui/Button';
 
 interface CourseCardProps {
   course: DashboardCourse;
-  onViewDetails: (course: DashboardCourse) => void;
-  onStartLearning: (course: DashboardCourse) => void;
+  onViewDetails?: (course: DashboardCourse) => void;
+  onStartLearning?: (course: DashboardCourse) => void;
 }
 
 export const CourseCard: React.FC<CourseCardProps> = ({ course, onViewDetails, onStartLearning }) => {
   return (
-    <div className="bg-white rounded-[1.5rem] border border-gray-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500 border-b-2 border-b-transparent hover:border-b-[var(--color-primary)]">
-      {/* Thumbnail Area */}
-      <div className="relative aspect-[21/9] overflow-hidden">
+    <article className="group bg-white rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(255,107,0,0.12)] border border-[#f1f5f9] hover:border-[#ff6b00]/30 flex flex-col h-full cursor-pointer" onClick={() => onViewDetails?.(course)}>
+      <div className="relative h-[200px] overflow-hidden">
         <img 
-          src={course.thumbnail} 
-          alt={course.title} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          src={course.thumbnail || '/assets/images/course.png'} 
+          alt={course.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={(e) => { 
+            const target = e.target as HTMLImageElement;
+            target.onerror = null; 
+            target.src = "/assets/images/course.png"; 
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        
-        <div className="absolute bottom-2 left-2 right-2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-          <Button 
-            className="w-full h-7 rounded-md bg-white text-[var(--color-primary)] hover:bg-white/90 text-[9px] font-black shadow-lg"
-            onClick={() => onViewDetails(course)}
-          >
-            Quick View
-          </Button>
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+          <span className="bg-[#ff6b00] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+            {course.category}
+          </span>
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="p-3.5 flex flex-col flex-grow">
-        <div className="flex items-center gap-2 mb-1.5">
-          <span className="text-[9px] font-black text-[var(--color-primary)] bg-blue-50 px-2 py-0.5 rounded-md uppercase tracking-wider">
-            {course.category}
-          </span>
-          <div className="flex items-center gap-1 text-[9px] font-black text-gray-400 uppercase tracking-widest">
-            <Languages size={10} />
-            {course.language}
-          </div>
-        </div>
-
-        <h3 className="text-base font-black text-gray-900 mb-2 group-hover:text-[var(--color-primary)] transition-colors line-clamp-1">
+      <div className="p-6 flex flex-col flex-grow bg-white">
+        <h3 className="text-xl font-bold text-[#071b4d] mb-4 line-clamp-2 min-h-[3.5rem] group-hover:text-[#ff6b00] transition-colors">
           {course.title}
         </h3>
 
-        {/* Metadata Row */}
-        <div className="flex items-center gap-3 mb-3">
-          <div className="flex items-center gap-1 text-[10px] text-gray-500 font-bold">
-            <Target size={10} className="text-gray-400" />
-            <span>{course.target}</span>
+        <div className="flex items-center gap-4 text-gray-500 text-sm mb-6">
+          <div className="flex items-center gap-1.5">
+            <BookOpen size={16} className="text-[#ff6b00]" />
+            <span className="font-medium">{course.lessons}</span>
           </div>
-          <div className="flex items-center gap-1 text-[10px] text-gray-500 font-bold">
-            <BookOpen size={10} className="text-gray-400" />
-            <span>{course.lessons}</span>
+          <div className="flex items-center gap-1.5">
+            <Globe size={16} className="text-[#ff6b00]" />
+            <span className="font-medium">{course.language}</span>
           </div>
         </div>
 
-        {/* Footer Area */}
-        <div className="mt-auto pt-3 border-t border-gray-50">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-lg font-black text-gray-900">{course.price}</span>
-              <span className="text-[10px] font-bold text-gray-400 line-through">{course.originalPrice}</span>
-              <span className="text-[9px] font-black text-green-500 uppercase ml-1">{course.discount}</span>
+        <div className="mt-auto border-t border-gray-100 pt-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-black text-[#071b4d]">{course.price}</span>
+                {course.originalPrice && course.originalPrice !== course.price && (
+                  <span className="text-sm font-bold text-gray-400 line-through">{course.originalPrice}</span>
+                )}
+              </div>
             </div>
+            {course.discount && (
+              <span className="bg-[#fff1e7] text-[#ff6b00] text-[10px] font-bold px-2.5 py-1 rounded-lg">
+                {course.discount}
+              </span>
+            )}
           </div>
 
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              className="flex-1 h-8 rounded-lg text-[9px] font-black border border-gray-100 hover:border-[var(--color-primary)]"
-              onClick={() => onViewDetails(course)}
+          <div className="flex gap-3">
+            <button 
+              onClick={(e) => { e.stopPropagation(); onViewDetails?.(course); }}
+              className="flex-1 py-3 px-4 rounded-xl border-2 border-gray-100 text-gray-600 font-bold text-sm hover:border-[#ff6b00] hover:text-[#ff6b00] transition-colors"
             >
               Details
-            </Button>
-            <Button 
-              className="flex-[2] h-8 rounded-lg text-[9px] font-black shadow-md group/btn"
-              onClick={() => onStartLearning(course)}
+            </button>
+            <button 
+              onClick={(e) => { e.stopPropagation(); onStartLearning?.(course); }}
+              className="flex-1 py-3 px-4 rounded-xl bg-[#ff6b00] hover:bg-[#e65c00] text-white font-bold text-sm shadow-md shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-1"
             >
               Start Learning
-              <ChevronRight size={12} className="ml-1 group-hover/btn:translate-x-1 transition-transform" />
-            </Button>
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };

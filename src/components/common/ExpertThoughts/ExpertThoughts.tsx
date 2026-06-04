@@ -3,33 +3,27 @@ import "./ExpertThoughts.css";
 
 const thoughts = [
   {
-    quote:
-      "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
+    quote: '"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action."',
     author: "Dr. A.P.J. Abdul Kalam",
   },
   {
-    quote:
-      "Arise, awake and stop not till the goal is reached.",
+    quote: '"Arise, awake and stop not till the goal is reached."',
     author: "Swami Vivekananda",
   },
   {
-    quote:
-      "Education is the manifestation of perfection already in man.",
+    quote: '"Education is the manifestation of perfection already in man."',
     author: "Swami Vivekananda",
   },
   {
-    quote:
-      "The root of education is bitter, but the fruit is sweet.",
+    quote: '"The root of education is bitter, but the fruit is sweet."',
     author: "Chanakya",
   },
   {
-    quote:
-      "A nation's culture resides in the hearts and souls of its people.",
-    author: "Mahatma Gandhi",
+    quote: '"An equation for me has no meaning unless it expresses a thought of God."',
+    author: "Srinivasa Ramanujan",
   },
   {
-    quote:
-      "Learning gives creativity, creativity leads to thinking.",
+    quote: '"Learning gives creativity, creativity leads to thinking."',
     author: "Dr. A.P.J. Abdul Kalam",
   },
 ];
@@ -67,8 +61,7 @@ const ExpertThoughts: React.FC = () => {
               className={`featured-card ${index === active ? "active" : ""}`}
               key={index}
             >
-              <span className="quote-mark">❝</span>
-              <h3>{thought.quote}<span style={{ color: 'var(--primary)' }}>❞</span></h3>
+              <h3>{thought.quote}</h3>
               <p>{thought.author}</p>
             </div>
           ))}

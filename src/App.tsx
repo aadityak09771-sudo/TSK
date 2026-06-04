@@ -19,6 +19,7 @@ import { LearningRoom } from './pages/LearningRoom';
 import { Library } from './pages/Library';
 import { MyPurchases } from './pages/MyPurchases';
 import { DashboardCourses } from './pages/DashboardCourses';
+import { TestSeries } from './pages/TestSeries';
 import { StudentDashboardLayout } from './layouts/StudentDashboardLayout';
 import { PublicRoute } from './components/common/PublicRoute';
 import { PrivateRoute } from './components/common/PrivateRoute';
@@ -47,6 +48,7 @@ const App: React.FC = () => {
               <Route path="/library" element={<PrivateRoute><Library /></PrivateRoute>} />
               <Route path="/my-purchases" element={<PrivateRoute><MyPurchases /></PrivateRoute>} />
               <Route path="/dashboard/courses" element={<PrivateRoute><DashboardCourses /></PrivateRoute>} />
+              <Route path="/dashboard/tests" element={<PrivateRoute><TestSeries /></PrivateRoute>} />
               <Route 
                 path="/dashboard/profile" 
                 element={
@@ -72,7 +74,7 @@ const App: React.FC = () => {
                 element={
                   <PrivateRoute>
                     <StudentDashboardLayout searchQuery="" onSearchChange={() => {}}>
-                      <Contact />
+                      <Contact isDashboard={true} />
                     </StudentDashboardLayout>
                   </PrivateRoute>
                 } 

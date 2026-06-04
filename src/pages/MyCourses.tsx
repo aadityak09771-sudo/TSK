@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
 import { StudentDashboardLayout } from '../layouts/StudentDashboardLayout';
 import { CourseCard } from '../components/dashboard/CourseCard';
 import { CourseDetailsModal } from '../components/dashboard/CourseDetailsModal';
@@ -29,8 +28,7 @@ export const MyCourses: React.FC = () => {
 
   const handleStartLearning = (course: DashboardCourse) => {
     setIsModalOpen(false);
-    navigate(`/learning/${course.id}`);
-    
+    navigate(`/courses/${course.id}`);
   };
 
   return (

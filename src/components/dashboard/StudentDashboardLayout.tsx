@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StudentSidebar } from '../components/dashboard/StudentSidebar';
-import { DashboardHeader } from '../components/dashboard/DashboardHeader';
+import { StudentSidebar } from './StudentSidebar';
+import { DashboardHeader } from './DashboardHeader';
 import { Menu } from 'lucide-react';
 
 interface StudentDashboardLayoutProps {

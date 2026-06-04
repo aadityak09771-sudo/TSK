@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, LogOut, User } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
 import { STUDENT_PROFILE } from '../../config/studentProfile';
+import { LogoutModal } from './LogoutModal';
 
 interface DashboardHeaderProps {
   searchQuery: string;
@@ -18,6 +19,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const logout = useAuthStore(state => state.logout);
   const navigate = useNavigate();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const getInitials = (name: string) => {
@@ -44,7 +46,8 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#eee] h-[80px]">
+    <>
+      <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#eee] h-[80px]">
       <div className="px-[15px] md:px-[30px] h-full flex items-center justify-between">
         {/* Left: Hamburger & Brand */}
         <div className="flex items-center gap-[14px]">
@@ -59,7 +62,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <img src="/assets/images/logo.png" alt="Logo" className="w-[45px] md:w-[55px] object-contain" onError={(e) => { e.currentTarget.src = "/assets/images/home/TKS.png" }} />
             <div className="hidden sm:flex flex-col leading-none justify-center">
               <span className="text-[12px] font-bold text-gray-500 mb-1">Topper's</span>
-              <h2 className="text-[24px] md:text-[34px] font-[800] text-[#071b4d] leading-none m-0">
+              <h2 className="text-[20px] md:text-[28px] font-[800] text-[#071b4d] leading-none m-0">
                 Siksha<span className="text-[#ff7a21]">Kendra</span>
               </h2>
             </div>
@@ -93,7 +96,10 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                 </button>
                 <div className="h-px bg-gray-100 mx-2"></div>
                 <button 
-                  onClick={handleLogout}
+                  onClick={() => {
+                    setShowProfileMenu(false);
+                    setShowLogoutModal(true);
+                  }}
                   className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
                 >
                   <LogOut size={18} />
@@ -105,5 +111,13 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         </div>
       </div>
     </header>
+
+    {showLogoutModal && (
+      <LogoutModal
+        onClose={() => setShowLogoutModal(false)}
+        onLogout={handleLogout}
+      />
+    )}
+    </>
   );
 };

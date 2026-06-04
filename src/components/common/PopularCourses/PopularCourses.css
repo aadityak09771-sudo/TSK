@@ -21,6 +21,23 @@
   gap: 24px;
 }
 
+/* Fix Card Text Overlapping Arrow */
+.popular-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  padding-right: 40px; /* Leaves safe space so text never hits the arrow */
+}
+
+.card-arrow {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
 @media (max-width: 1024px) {
   .popular-courses-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -28,19 +45,9 @@
 }
 @media (max-width: 640px) {
   .popular-courses-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 20px;
-    scrollbar-width: none;
-  }
-  .popular-courses-grid::-webkit-scrollbar {
-    display: none;
-  }
-  .popular-course-card {
-    min-width: 280px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   
   .popular-section {
@@ -49,5 +56,6 @@
   
   .section-title {
     font-size: 28px;
+    margin-bottom: 24px;
   }
 }

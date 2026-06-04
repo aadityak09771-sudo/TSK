@@ -32,9 +32,14 @@ const Footer: React.FC = () => {
       <div className="footer-container">
         {/* Column 1: Brand */}
         <div className="footer-column footer-brand">
-          <div className="footer-logo-container">
-            <img src="/assets/images/home/TKS.png" alt="Topper Siksha Kendra" className="footer-logo" />
-            <span className="footer-brand-text">Topper's Siksha Kendra</span>
+          <div className="flex items-center gap-[14px] mb-6">
+            <img src="/assets/images/logo.png" alt="Logo" className="w-[45px] md:w-[55px] object-contain" onError={(e) => { e.currentTarget.src = "/assets/images/home/TKS.png" }} />
+            <div className="flex flex-col leading-none justify-center">
+              <span className="text-[12px] font-bold text-gray-500 mb-1">Topper's</span>
+              <h2 className="text-[20px] md:text-[28px] font-[800] text-[#071b4d] leading-none m-0">
+                Siksha<span className="text-[#ff7a21]">Kendra</span>
+              </h2>
+            </div>
           </div>
           <p className="footer-tagline">
             India's Trusted Learning Platform
