@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react';
 
 const FAQ_ITEMS = [
   {
-    question: "What curriculum does Siksha Kendra follow?",
+    question: "What curriculum does Topper's Siksha Kendra follow?",
     answer: "We currently focus extensively on the CBSE and ICSE board curriculum for classes 9 through 12, heavily integrating NCERT concepts to ensure thorough board and competitive exam readiness."
   },
   {
@@ -41,12 +41,12 @@ export const Faqs: React.FC = () => {
         <div className="container max-w-3xl">
           <div className="space-y-4">
             {FAQ_ITEMS.map((item, i) => (
-              <details key={i} className="group border border-gray-100 rounded-2xl overflow-hidden shadow-sm transition-all hover:shadow-md">
-                <summary className="flex items-center justify-between p-6 cursor-pointer bg-white group-open:bg-gray-50 transition-colors">
-                  <span className="font-bold text-gray-900">{item.question}</span>
-                  <Plus className="text-[var(--color-primary)] transition-transform duration-300 group-open:rotate-45" size={24} />
+              <details key={i} className="group border border-gray-100 rounded-2xl overflow-hidden shadow-sm transition-all hover:shadow-md hover:shadow-orange-500/10 hover:border-orange-200 open:border-orange-200">
+                <summary className="flex items-center justify-between p-6 cursor-pointer bg-white group-open:bg-orange-50 transition-colors">
+                  <span className="font-bold text-gray-900 group-hover:text-orange-600 group-open:text-orange-600 transition-colors">{item.question}</span>
+                  <Plus className="text-[var(--color-primary)] group-hover:text-orange-500 group-open:text-orange-500 transition-all duration-300 group-open:rotate-45" size={24} />
                 </summary>
-                <div className="p-6 pt-0 text-gray-500 leading-relaxed bg-gray-50/50">
+                <div className="p-6 pt-0 text-gray-600 leading-relaxed bg-orange-50 border-t border-transparent group-open:border-orange-100">
                    {item.answer}
                 </div>
               </details>

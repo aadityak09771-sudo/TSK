@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, TrendingUp, Target, ShieldCheck } from 'lucide-react';
-import { Skeleton } from '../../ui/Skeleton/Skeleton';
-import { useAuthStore } from '../../../store/useAuthStore';
-import { CourseDetailsModal } from '../../dashboard/CourseDetailsModal';
-import type { DashboardCourse } from '../../../config/studentData';
+import { Skeleton } from '../ui/Skeleton/Skeleton';
+import { useAuthStore } from '../../store/useAuthStore';
+import { CourseDetailsModal } from '../dashboard/CourseDetailsModal';
+import type { DashboardCourse } from '../../config/studentData';
 import './CourseDiscovery.css';
 
 interface ApiCourse {
@@ -42,7 +42,7 @@ interface CourseCardProps extends DiscoveryCourse {
 }
 
 const CourseCard: React.FC<CourseCardProps> = (props) => {
-  const { id, title, description, price, originalPrice, discountPercentage, image, lessons, duration, onViewDetails } = props;
+  const { id, subject, title, description, price, originalPrice, discountPercentage, image, buttonText, lessons, duration, onViewDetails } = props;
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
   const openAuthModal = useAuthStore(state => state.openAuthModal);
   const navigate = useNavigate();
@@ -62,16 +62,12 @@ const CourseCard: React.FC<CourseCardProps> = (props) => {
   };
 
   return (
-    <div className="premium-course-card group hover:shadow-[0_15px_40px_rgba(255,107,0,0.12)] hover:border-[#ff6b00]/30 hover:-translate-y-2 transition-all duration-300">
+    <div className="premium-course-card">
       <div className="course-image-wrapper">
         <img 
           src={image} 
           alt={title} 
-          onError={(e) => { 
-            const target = e.currentTarget as HTMLImageElement;
-            target.onerror = null;
-            target.src = '/assets/images/home/course.png'; 
-          }}
+          onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x250/f3f4f6/a1a1aa?text=Course+Image'; }}
         />
       </div>
       <div className="course-content">
@@ -196,7 +192,10 @@ export const CourseDiscovery: React.FC = () => {
         };
 
         const imagePlaceholders = [
-          "/assets/images/home/course.png"
+          "/assets/images/courses/science-course.jpg",
+          "/assets/images/courses/maths-course.jpg",
+          "/assets/images/courses/english-course.jpg",
+          "/assets/images/courses/gk-course.jpg"
         ];
 
         const transformedCourses: DiscoveryCourse[] = mockCoursesResponse.data.map((course: ApiCourse, index) => {

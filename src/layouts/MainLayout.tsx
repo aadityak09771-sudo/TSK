@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '../components/common/Header/Header';
-import { Footer } from '../components/common/Footer';
+import Footer from '../components/common/ExpertThoughts/Footer';
+
 import { AuthModal } from '../components/common/AuthModal/AuthModal';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -13,6 +14,13 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Global Mobile Fixes */}
+      <style>{`
+        html, body {
+          overflow-x: hidden;
+          width: 100%;
+        }
+      `}</style>
       {!isLoggedIn && <Header />}
       <main className="flex-grow">
         {children}

@@ -26,7 +26,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, showExplore = tr
   };
 
   return (
-    <article className="bg-white rounded-[var(--radius-lg)] shadow-[var(--shadow-md)] overflow-hidden transition-all duration-300 hover:shadow-[var(--shadow-hover)] border border-[var(--color-border)] flex flex-col h-full">
+    <article className="bg-white rounded-[24px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-300 hover:-translate-y-2 border border-[#f1f5f9] flex flex-col h-full">
       <div className="relative h-[100px] overflow-hidden">
         {course.badge && (
           <div className="absolute top-2 left-3 z-10 bg-[var(--color-primary)] text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider">

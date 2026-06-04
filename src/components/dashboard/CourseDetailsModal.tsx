@@ -8,13 +8,15 @@ interface CourseDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
   onStartLearning: (course: DashboardCourse) => void;
+  actionText?: string;
 }
 
 export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({ 
   course, 
   isOpen, 
   onClose,
-  onStartLearning 
+  onStartLearning,
+  actionText
 }) => {
   if (!course || !isOpen) return null;
 
@@ -48,7 +50,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({
             
             <div className="absolute bottom-8 left-8 right-8">
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="bg-[var(--color-primary)] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                <span className="bg-[#ff6b00] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
                   {course.category}
                 </span>
                 <span className="bg-white/20 backdrop-blur-sm text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
@@ -90,7 +92,7 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({
 
           <div className="space-y-8">
             <div>
-              <h4 className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-widest mb-4">Course Overview</h4>
+              <h4 className="text-[10px] font-black text-[#ff6b00] uppercase tracking-widest mb-4">Course Overview</h4>
               <p className="text-gray-500 text-sm leading-relaxed font-medium">
                 {course.description}
               </p>
@@ -100,21 +102,21 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({
               <div className="space-y-1">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Language</p>
                 <div className="flex items-center gap-2 text-gray-900 font-black">
-                  <Globe size={16} className="text-[var(--color-primary)]" />
+                  <Globe size={16} className="text-[#ff6b00]" />
                   <span>{course.language}</span>
                 </div>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Duration</p>
                 <div className="flex items-center gap-2 text-gray-900 font-black">
-                  <Clock size={16} className="text-[var(--color-primary)]" />
+                  <Clock size={16} className="text-[#ff6b00]" />
                   <span>300+ Hours</span>
                 </div>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Start Date</p>
                 <div className="flex items-center gap-2 text-gray-900 font-black">
-                  <Calendar size={16} className="text-[var(--color-primary)]" />
+                  <Calendar size={16} className="text-[#ff6b00]" />
                   <span>{course.startDate}</span>
                 </div>
               </div>
@@ -141,23 +143,29 @@ export const CourseDetailsModal: React.FC<CourseDetailsModalProps> = ({
             <div className="mt-auto pt-8 border-t border-gray-100">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex flex-col">
-                  <span className="text-[10px] font-black text-green-500 uppercase tracking-widest mb-1">Exclusive Offer</span>
+                  {course.discount && (
+                    <span className="text-[10px] font-black text-green-500 uppercase tracking-widest mb-1">Exclusive Offer</span>
+                  )}
                   <div className="flex items-baseline gap-3">
                     <span className="text-4xl font-black text-gray-900">{course.price}</span>
-                    <span className="text-lg font-bold text-gray-400 line-through">{course.originalPrice}</span>
+                    {course.originalPrice && (
+                      <span className="text-lg font-bold text-gray-400 line-through">{course.originalPrice}</span>
+                    )}
                   </div>
                 </div>
-                <div className="px-4 py-2 bg-green-50 rounded-xl">
-                  <span className="text-sm font-black text-green-600">{course.discount}</span>
-                </div>
+                {course.discount && (
+                  <div className="px-4 py-2 bg-green-50 rounded-xl">
+                    <span className="text-sm font-black text-green-600">{course.discount}</span>
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-4">
                 <Button 
-                  className="flex-grow h-16 rounded-[1.5rem] text-sm font-black shadow-2xl shadow-blue-500/20 group"
+                  className="flex-grow h-16 rounded-[1.5rem] text-sm font-black bg-[#ff6b00] hover:bg-[#e55f00] border-none text-white shadow-xl shadow-orange-500/20 group transition-all"
                   onClick={() => onStartLearning(course)}
                 >
-                  Start Learning Now
+                  {actionText || 'Start Learning Now'}
                   <ChevronRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>

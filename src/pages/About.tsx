@@ -1,158 +1,111 @@
 import React from 'react';
 import { MentorshipBanner } from '../components/common/MentorshipBanner';
+import { Target, Binoculars, Lightbulb, Book, Brain, Zap, CheckCircle2, TrendingUp } from 'lucide-react';
 
 interface AboutProps {
   isDashboard?: boolean;
 }
 
 export const About: React.FC<AboutProps> = ({ isDashboard = false }) => {
-  if (isDashboard) {
     return (
-      <div className="max-w-4xl">
-        <div className="mb-12">
-          <div className="flex items-center gap-2 text-[var(--color-primary)] font-black uppercase tracking-[0.2em] text-[10px] mb-2">
-            Company Info
+    <div className={`w-full bg-transparent ${isDashboard ? '' : 'px-4 sm:px-6 lg:px-8 py-8 lg:py-12'}`}>
+      <div className="max-w-[1200px] mx-auto">
+        <div className="relative bg-[#fffaf6] rounded-[30px] p-6 lg:p-[50px] overflow-hidden border border-orange-50/50 shadow-sm">
+        {/* Decorative Background Elements */}
+        <div 
+          className="absolute top-[30px] right-[30px] w-24 h-24 opacity-20 pointer-events-none hidden lg:block" 
+          style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #ff6b00 2px, transparent 0)', backgroundSize: '16px 16px' }} 
+        />
+        <div 
+          className="absolute bottom-[30px] left-[30px] w-32 h-32 opacity-20 pointer-events-none hidden lg:block" 
+          style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #ff6b00 2px, transparent 0)', backgroundSize: '16px 16px' }} 
+        />
+        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#ff6b00]/5 rounded-full blur-[50px] pointer-events-none" />
+
+        {/* Header Section */}
+        <div className="relative z-10 flex flex-col items-center text-center mt-4">
+          
+          {/* Floating Icons (Animated & Hidden on mobile for neatness) */}
+          <div className="hidden lg:flex absolute top-4 left-10 w-16 h-16 bg-white rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.08)] items-center justify-center text-[#ff6b00] animate-[bounce_3s_ease-in-out_infinite]">
+            <Target size={28} />
           </div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight">About Siksha Kendra</h1>
-          <p className="text-gray-500">Learn about our mission, vision, and the philosophy behind our teaching.</p>
+          <div className="hidden lg:flex absolute top-0 right-32 w-16 h-16 bg-white rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.08)] items-center justify-center text-[#ff6b00] animate-[bounce_3.5s_ease-in-out_infinite]">
+            <Lightbulb size={28} />
+          </div>
+          <div className="hidden lg:flex absolute top-32 left-32 w-12 h-12 bg-white rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.08)] items-center justify-center text-[#ff6b00] animate-[bounce_4s_ease-in-out_infinite]">
+            <Book size={20} />
+          </div>
+
+          <div className="inline-flex bg-[#ff6b00] text-white px-7 py-2.5 rounded-full text-[13px] font-[700] uppercase tracking-[0.2em] shadow-lg shadow-orange-500/20">
+            ABOUT
+          </div>
+          <h1 className="text-[38px] lg:text-[58px] font-[800] text-[#0a2458] mt-6 mb-4 leading-tight">
+            Topper's <span className="text-[#ff6b00]">Siksha Kendra</span>
+          </h1>
+          <p className="text-[#64748b] text-[18px] max-w-2xl mx-auto leading-relaxed">
+            Empowering students with concept-driven learning, practical applications, and consistent practice to achieve ultimate academic excellence.
+          </p>
         </div>
 
-        <div className="space-y-12 bg-white p-8 md:p-12 rounded-[2.5rem] border border-gray-100 shadow-sm">
-          <section>
-            <h3 className="text-xl font-black text-gray-900 mb-4 flex items-center gap-3">
-              <span className="w-1.5 h-6 bg-[var(--color-primary)] rounded-full" />
-              Our Mission
-            </h3>
-            <p className="text-gray-600 leading-relaxed font-medium">
-              Siksha Kendra is an edutech platform focused on true academic excellence. We move beyond memorization to help students deeply understand, ask big questions, and become real-world problem solvers.
-            </p>
-          </section>
+        {/* Main Content Container */}
+        <div className="relative z-10 bg-white rounded-[30px] p-6 lg:p-[40px] mt-[40px] shadow-[0_15px_40px_rgba(0,0,0,0.05)] border border-gray-50">
+          
+          {/* Mission Section */}
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start py-8 border-b border-[#f1f1f1]">
+            <div className="w-16 h-16 shrink-0 bg-[#fff8f2] rounded-[20px] flex items-center justify-center text-[#ff6b00]">
+              <Target size={32} />
+            </div>
+            <div>
+              <h3 className="text-2xl lg:text-[32px] font-[700] text-[#0a2458] mb-4">Our Mission</h3>
+              <p className="text-[#64748b] leading-[1.8] text-[16px]">
+                Our mission is to create a dynamic learning environment that transcends traditional education. We aim to nurture intellectual curiosity, equip students with robust academic foundations, and foster problem-solving skills that guarantee success in both board exams and highly competitive arenas.
+              </p>
+            </div>
+          </div>
 
-          <section>
-            <h3 className="text-xl font-black text-gray-900 mb-4 flex items-center gap-3">
-              <span className="w-1.5 h-6 bg-[var(--color-primary)] rounded-full" />
-              What Makes Us Different
-            </h3>
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Most platforms teach "what to study." We focus on how to think. At Siksha Kendra, students don’t just prepare for exams—they build a mindset that stays beyond the exam hall.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* What Makes Us Different Section */}
+          <div className="py-10 border-b border-[#f1f1f1]">
+            <h3 className="text-2xl lg:text-[32px] font-[700] text-[#0a2458] mb-8 text-center md:text-left">What Makes Us Different</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-[18px]">
               {[
-                'Concept-first teaching methodology',
-                'Real-life application of complex topics',
-                'Psychology-based study strategies',
-                'Consistent practice with absolute clarity'
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100/50">
-                  <div className="w-2 h-2 bg-[var(--color-primary)] rounded-full" />
-                  <span className="text-sm font-bold text-gray-700">{item}</span>
+                { icon: <Brain size={24} />, title: "Concept-first Teaching", desc: "We focus on the 'Why' and 'How' before the 'What'." },
+                { icon: <Zap size={24} />, title: "Real-life Application", desc: "Connecting textbook theories to real-world scenarios." },
+                { icon: <CheckCircle2 size={24} />, title: "Psychology Based", desc: "Adapting methods to match cognitive learning styles." },
+                { icon: <TrendingUp size={24} />, title: "Consistent Practice", desc: "Rigorous test series and daily practice problems." }
+              ].map((feature, idx) => (
+                <div key={idx} className="group bg-[#fff8f2] rounded-[20px] p-6 transition-all duration-300 hover:-translate-y-[6px] hover:shadow-[0_15px_35px_rgba(255,107,0,0.15)] cursor-pointer">
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#ff6b00] mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                    {feature.icon}
+                  </div>
+                  <h4 className="text-lg font-[700] text-[#0a2458] mb-2 leading-tight">{feature.title}</h4>
+                  <p className="text-[#64748b] text-sm leading-relaxed">{feature.desc}</p>
                 </div>
               ))}
             </div>
-          </section>
+          </div>
 
-          <section>
-            <h3 className="text-xl font-black text-gray-900 mb-4 flex items-center gap-3">
-              <span className="w-1.5 h-6 bg-[var(--color-primary)] rounded-full" />
-              Our Vision
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              To create a generation of students who are not just rankers, but independent thinkers and decision-makers who lead with clarity. Education is not about information. It’s about transformation.
-            </p>
-          </section>
+          {/* Vision Section */}
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start pt-10">
+            <div className="w-16 h-16 shrink-0 bg-[#fff8f2] rounded-[20px] flex items-center justify-center text-[#ff6b00]">
+              <Binoculars size={32} />
+            </div>
+            <div>
+              <h3 className="text-2xl lg:text-[32px] font-[700] text-[#0a2458] mb-4">Our Vision</h3>
+              <p className="text-[#64748b] leading-[1.8] text-[16px]">
+                We envision a future where every student has the clarity, confidence, and competence to achieve their dream careers. Topper's Siksha Kendra strives to be the cornerstone of educational excellence, shaping the leaders, innovators, and thinkers of tomorrow.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
-    );
-  }
-
-  return (
-    <div className="bg-white">
-      {/* Hero */}
-      <section className="py-12 bg-blue-50/50">
-        <div className="container text-center max-w-3xl">
-          <h1 className="text-5xl font-bold mb-6 text-gray-900">Our Mission</h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Siksha Kendra is an edutech platform focused on true academic excellence. 
-            We move beyond memorization to help students deeply understand, ask big questions, 
-            and become real-world problem solvers.
-          </p>
+      </div>
+      
+      {!isDashboard && (
+        <div className="mt-12 max-w-[1200px] mx-auto">
+          <MentorshipBanner />
         </div>
-      </section>
-
-      {/* Philosophy - ZigZag Row 1 */}
-      <section className="py-12">
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl font-black mb-6 italic text-[var(--color-primary)]">What Makes Us Different</h2>
-            <p className="text-gray-500 mb-6 font-medium">
-              Most platforms teach “what to study.” <span className="text-gray-900 font-bold underline decoration-[var(--color-primary)] decoration-4 underline-offset-4">We focus on how to think.</span>
-            </p>
-            <p className="text-gray-500 mb-8">
-              At SikshaKendra, students don’t just prepare for exams—they build a mindset 
-              that stays beyond the exam hall. We combine:
-            </p>
-            <ul className="space-y-4 text-gray-600 font-medium list-none p-0">
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-[var(--color-primary)] rounded-full" />
-                Concept-first teaching
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-[var(--color-primary)] rounded-full" />
-                Real-life application of topics
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-[var(--color-primary)] rounded-full" />
-                Smart strategies based on student psychology
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-[var(--color-primary)] rounded-full" />
-                Consistent practice with clarity
-              </li>
-            </ul>
-          </div>
-          <div className="rounded-3xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-500">
-            <img src="/assets/images/mindset.png" alt="What Makes Us Different" className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </section>
-
-      {/* Vision - ZigZag Row 2 */}
-      <section className="py-24 bg-gray-50">
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="order-2 md:order-1 rounded-3xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-500">
-             <img src="/assets/images/future_leaders.png" alt="Our Vision" className="w-full h-full object-cover" />
-          </div>
-          <div className="order-1 md:order-2">
-            <h2 className="text-3xl font-black mb-6 italic text-[var(--color-primary)]">Our Vision</h2>
-            <p className="text-gray-500 text-lg leading-relaxed mb-8">
-              To create a generation of students who are not just rankers, 
-              but <span className="text-gray-900 font-bold">independent thinkers and decision-makers</span> who lead with clarity.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Who We Are - ZigZag Row 3 */}
-      <section className="py-24">
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl font-black mb-6 italic text-[var(--color-primary)]">Who We Are</h2>
-            <p className="text-gray-500 mb-6 leading-relaxed">
-              We are a team of educators, creators, and strategists who understand one thing deeply: 
-              <span className="block mt-4 text-xl font-black text-gray-900 leading-tight">"Education is not about information. It’s about transformation."</span>
-            </p>
-            <p className="text-gray-500">
-              From classrooms to content, from doubt-solving to mindset-building—everything we 
-              create is designed to move students one step closer to their best version.
-            </p>
-          </div>
-          <div className="rounded-3xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-500">
-            <img src="/assets/images/educators.png" alt="Who We Are" className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </section>
-
-      <MentorshipBanner />
+      )}
     </div>
   );
 };

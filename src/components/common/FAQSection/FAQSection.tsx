@@ -1,70 +1,39 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import './FAQSection.css';
+import React from 'react';
+import { Plus } from 'lucide-react';
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-const faqData: FAQItem[] = [
+const FAQ_ITEMS = [
   {
-    question: "What courses does SikshaKendra offer?",
-    answer: "SikshaKendra offers courses for school classes, foundation batches, board preparation, JEE, NEET, and other competitive exams."
+    question: "What curriculum does Topper's Siksha Kendra follow?",
+    answer: "We currently focus extensively on the CBSE and ICSE board curriculum for classes 9 through 12, heavily integrating NCERT concepts to ensure thorough board and competitive exam readiness."
   },
   {
-    question: "How are the live classes conducted?",
-    answer: "Live classes are conducted online by experienced faculty. Students can attend classes, ask doubts, and access learning materials from their dashboard."
+    question: "How do the live test series work?",
+    answer: "Students can enroll directly through the specific course cards. Tests are time-bound to simulate real exam environments, and detailed performance analytics are provided immediately upon completion."
   },
   {
-    question: "Can I access the recorded classes later?",
-    answer: "Yes, recorded classes are available after the live session so students can revise topics anytime."
-  },
-  {
-    question: "How can I ask doubts?",
-    answer: "Students can ask doubts during live classes or through the doubt-support feature available inside the course dashboard."
-  },
-  {
-    question: "Are notes and tests included in the course?",
-    answer: "Yes, smart notes, chapter-wise tests, mock tests, and practice materials are included depending on the selected course."
-  },
-  {
-    question: "Is there any refund policy?",
-    answer: "Refunds are handled according to the course terms and conditions. Students can contact support for refund-related queries."
+    question: "Do you offer refunds if I am unsatisfied?",
+    answer: "Yes, we offer a 7-day money-back guarantee for all our full-course premium programs if you feel our methodology doesn't align with your learning style."
   }
 ];
 
 export const FAQSection: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section className="faq-section">
-      <div className="container">
-        <h2 className="faq-heading">Frequently Asked Questions</h2>
-        <div className="faq-grid">
-          {faqData.map((item, index) => (
-            <div 
-              key={index} 
-              className={`faq-item ${openIndex === index ? 'open' : ''}`}
-              onClick={() => toggleFAQ(index)}
-            >
-              <div className="faq-question-container">
-                <h3 className="faq-question">{item.question}</h3>
-                <ChevronDown 
-                  size={20} 
-                  className={`faq-icon ${openIndex === index ? 'rotate-180' : ''}`} 
-                />
+    <section className="py-24 bg-white">
+      <div className="container max-w-3xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-extrabold text-[#071b4d]">Frequently Asked Questions</h2>
+        </div>
+        <div className="space-y-4">
+          {FAQ_ITEMS.map((item, i) => (
+            <details key={i} className="group border border-gray-100 rounded-2xl overflow-hidden shadow-sm transition-all hover:shadow-md hover:shadow-orange-500/10 hover:border-orange-200 open:border-orange-200">
+              <summary className="flex items-center justify-between p-6 cursor-pointer bg-white group-open:bg-orange-50 transition-colors">
+                <span className="font-bold text-gray-900 group-hover:text-orange-600 group-open:text-orange-600 transition-colors">{item.question}</span>
+                <Plus className="text-[#ff6b1a] group-hover:text-orange-500 group-open:text-orange-500 transition-all duration-300 group-open:rotate-45" size={24} />
+              </summary>
+              <div className="p-6 pt-0 text-gray-600 leading-relaxed bg-orange-50 border-t border-transparent group-open:border-orange-100">
+                 {item.answer}
               </div>
-              <div className="faq-answer-wrapper">
-                <div className="faq-answer-content">
-                  <p className="faq-answer">{item.answer}</p>
-                </div>
-              </div>
-            </div>
+            </details>
           ))}
         </div>
       </div>

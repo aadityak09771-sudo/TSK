@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import { useAuthStore } from '../../../store/useAuthStore';
 import { Button } from '../../ui/Button';
-import { Logo } from '../Logo';
 import { Spinner } from '../../ui/Spinner/Spinner';
+import { Logo } from '../Logo';
 import './Header.css'
 
 export const Header: React.FC = () => {
@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
           label: "School Boards",
           sectionTitle: "Available Boards",
           options: [
-            { id: "cbse-arts", name: "CBSE Arts", path: "/categopry?board=cbse-arts" },
+            { id: "cbse-arts", name: "CBSE Arts", path: "/category?board=cbse-arts" },
             { id: "cbse-science", name: "CBSE Science", path: "/category?board=cbse-science" },
             { id: "cbse-commerce", name: "CBSE Commerce", path: "/category?board=cbse-commerce" },
           ],

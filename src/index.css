@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #4361ee;
-  --color-primary-light: #3B82F6;
-  --color-secondary: #F59E0B;
+  --color-primary: #ff6b1a;
+  --color-primary-light: #ff8540;
+  --color-secondary: #071b4d;
   
-  --color-bg-white: #FFFFFF;
-  --color-bg-light: #F3F4F6;
+  --color-bg-white: #ffffff;
+  --color-bg-light: #fffaf7;
   
-  --color-text-main: #111827;
+  --color-text-main: #374151;
   --color-text-muted: #6B7280;
-  --color-border: #E5E7EB;
+  --color-border: #ececec;
 
   --font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
   
@@ -29,20 +29,41 @@
   --radius-lg: 12px;
 }
 
+:root {
+  --color-primary: #ff6b1a;
+  --color-secondary: #071b4d;
+  --color-background: #fffaf7;
+  --color-text: #374151;
+  --color-border: #ececec;
+}
+
 /* Base Styles */
 @layer base {
+  h1 {
+    font-size: 56px;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 42px;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
   body {
     @apply font-sans antialiased text-[var(--color-text-main)] bg-[var(--color-bg-light)];
     line-height: 1.6;
+    font-size: 16px;
   }
 }
 
 /* Utility Classes similar to original project */
 @layer utilities {
   .container {
-    max-width: var(--container-max-width);
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding: 0 24px;
   }
 
   @media (max-width: 640px) {
@@ -55,5 +76,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-lg);
+  }
+
+  .section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 }

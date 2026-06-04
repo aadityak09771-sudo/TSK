@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   BookOpen,
   BookText,
@@ -7,53 +6,23 @@ import {
   Atom,
   GraduationCap,
   Trophy,
-  ArrowRight
 } from 'lucide-react';
 import { Skeleton } from '../../ui/Skeleton/Skeleton';
+import { PopularCourseCard } from './PopularCourseCard';
 import './PopularCourses.css';
 
-interface CourseCardProps {
-  title: string;
-  subtitle: string;
-  icon: React.ReactNode;
-  bgColor: string;
-  iconColor: string;
-  path: string;
-  board?: string;
-}
-
-const CourseCard: React.FC<CourseCardProps> = ({ title, subtitle, icon, bgColor, iconColor, path, board }) => {
+const PopularCourseCardSkeleton: React.FC = () => {
   return (
-    <Link to={path} className="popular-course-card" style={{ backgroundColor: bgColor }}>
-      {board && <span className="card-board-badge">{board}</span>}
+    <div className="popular-card" style={{ background: '#f9fafb' }}>
+      <div className="card-icon">
+        <Skeleton variant="circular" width={32} height={32} />
+      </div>
       <div className="card-content">
-        <div className="card-icon-wrapper" style={{ color: iconColor }}>
-          {icon}
-        </div>
-        <div className="card-text">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-subtitle">{subtitle}</p>
-        </div>
+        <Skeleton variant="text" width="60%" height={32} className="mt-[20px] mb-2" />
+        <Skeleton variant="text" width="90%" height={15} />
       </div>
-      <div className="card-arrow">
-        <ArrowRight size={16} />
-      </div>
-    </Link>
-  );
-};
-
-const CourseCardSkeleton: React.FC = () => {
-  return (
-    <div className="popular-course-card skeleton-card" style={{ backgroundColor: '#f9fafb' }}>
-      <div className="card-content">
-        <Skeleton variant="circular" width={44} height={44} className="mb-4" />
-        <div className="card-text">
-          <Skeleton variant="text" width="60%" height={24} className="mb-2" />
-          <Skeleton variant="text" width="90%" height={16} />
-        </div>
-      </div>
-      <div className="card-arrow" style={{ opacity: 0.5 }}>
-        <Skeleton variant="rectangular" width={28} height={28} className="rounded" />
+      <div className="card-arrow" style={{ opacity: 0.2 }}>
+        <Skeleton variant="circular" width={24} height={24} />
       </div>
     </div>
   );
@@ -97,7 +66,7 @@ interface PopularCourse {
   subtitle: string;
   iconName: string | null;
   bgColor: string;
-  iconColor: string,
+  accentColor: string;
   path: string;
   board?: string;
 }
@@ -228,22 +197,31 @@ export const PopularCourses: React.FC = () => {
           ]
         }
 
+        const colorSchemes = [
+          { bg: '#fffaf3', accent: '#ff6b1a' }, // Class 9
+          { bg: '#eefdf5', accent: '#16a34a' }, // Class 10
+          { bg: '#f5f0ff', accent: '#7c3aed' }, // Class 11
+          { bg: '#fff0f3', accent: '#ef4444' }  // Class 12
+        ];
+
         // Transform nested board/class data into flat popular course cards
         const transformedData: PopularCourse[] = (mockApiResponse.data as any[]).flatMap((board: ApiBoard) =>
-          board.classes.map((cls: ApiClass) => {
+          board.classes.map((cls: ApiClass, index) => {
+            const scheme = colorSchemes[index % 4];
             return {
               title: cls.name,
               subtitle: cls.description,
-              bgColor: cls.bg_color,
+              bgColor: scheme.bg,
+              accentColor: scheme.accent,
               iconName: cls.icon,
-              iconColor: cls.icon_color,
               path: `/course-listing?board=${board.slug}&class=${cls.order}`,
               board: board.name.split(' ')[0] // Short name for badge
             };
           })
         );
 
-        setCourses(transformedData);
+        // Only show 4 featured courses on homepage
+        setCourses(transformedData.slice(0, 4));
       } catch (error) {
         console.error("Error fetching popular courses:", error);
       } finally {
@@ -255,27 +233,36 @@ export const PopularCourses: React.FC = () => {
   }, []);
 
   return (
-    <section className="popular-courses-section">
+    <section className="section-padding">
       <div className="container">
-        <div className="popular-courses-header">
-          <h2 className="popular-courses-heading">Popular Courses</h2>
-        </div>
+        <div className="popular-section">
+          <div className="section-title">
+            <GraduationCap size={40} className="text-[#071b4d]" />
+            <span>
+              Start Learning <span className="text-[#ff6b1a]">By Class</span>
+            </span>
+          </div>
 
-        <div className="popular-courses-grid">
-          {isLoading ? (
-            Array.from({ length: 6 }).map((_, index) => (
-              <CourseCardSkeleton key={index} />
-            ))
-          ) : (
-            courses.map((course, index) => (
-              <CourseCard
-                key={index}
-                {...course}
-                board={course.board}
-                icon={iconMap[course.iconName || "BookOpen"] || <BookOpen size={24} />}
-              />
-            ))
-          )}
+          <div className="popular-courses-grid">
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, index) => (
+                <PopularCourseCardSkeleton key={index} />
+              ))
+            ) : (
+              courses.map((course, index) => (
+                <PopularCourseCard
+                  key={index}
+                  title={course.title}
+                  subtitle={course.subtitle}
+                  icon={iconMap[course.iconName || "BookOpen"] || <BookOpen size={32} />}
+                  badge={course.board}
+                  backgroundColor={course.bgColor}
+                  accentColor={course.accentColor}
+                  path={course.path}
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, UserCircle, Menu, LogOut, User } from 'lucide-react';
+import { Menu, LogOut, User } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
 import { STUDENT_PROFILE } from '../../config/studentProfile';
 
@@ -44,10 +44,10 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-gray-100 h-20 shadow-sm">
-      <div className="px-4 md:px-8 h-full flex items-center justify-between gap-4 md:gap-8">
-        {/* Left: Hamburger & Logo & Class Dropdown */}
-        <div className="flex items-center gap-4 md:gap-8">
+    <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-[#eee] h-[80px]">
+      <div className="px-[15px] md:px-[30px] h-full flex items-center justify-between">
+        {/* Left: Hamburger & Brand */}
+        <div className="flex items-center gap-[14px]">
           <button 
             onClick={toggleSidebar} 
             className="lg:hidden p-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
@@ -55,24 +55,15 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <Menu size={24} />
           </button>
 
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/dashboard')}>
-            <div className="w-10 h-10 bg-[var(--color-primary)] rounded-xl flex items-center justify-center text-white font-black text-xl">S</div>
-            <span className="text-xl font-black text-gray-900 tracking-tight hidden sm:block">Siksha Kendra</span>
+          <div className="flex items-center gap-[14px] cursor-pointer" onClick={() => navigate('/dashboard')}>
+            <img src="/assets/images/logo.png" alt="Logo" className="w-[45px] md:w-[55px] object-contain" onError={(e) => { e.currentTarget.src = "/assets/images/home/TKS.png" }} />
+            <div className="hidden sm:flex flex-col leading-none justify-center">
+              <span className="text-[12px] font-bold text-gray-500 mb-1">Topper's</span>
+              <h2 className="text-[20px] md:text-[28px] font-[800] text-[#071b4d] leading-none m-0">
+                Siksha<span className="text-[#ff7a21]">Kendra</span>
+              </h2>
+            </div>
           </div>
-        </div>
-
-        {/* Center: Search */}
-        <div className="flex-grow max-w-2xl relative group hidden md:block">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--color-primary)] transition-colors">
-            <Search size={18} />
-          </div>
-          <input 
-            type="text" 
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search for courses, targets..." 
-            className="w-full bg-gray-50 border border-gray-100 rounded-2xl py-3 pl-11 pr-4 text-sm font-bold outline-none focus:bg-white focus:border-[var(--color-primary)] focus:ring-4 focus:ring-blue-500/5 transition-all"
-          />
         </div>
 
         {/* Right: Profile */}
@@ -82,11 +73,8 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               className="flex items-center gap-3 pl-2 cursor-pointer group"
               onClick={() => setShowProfileMenu(!showProfileMenu)}
             >
-              <div className="text-right hidden sm:block">
-                <p className="text-[10px] text-gray-400 font-black uppercase tracking-wider">Hi, {STUDENT_PROFILE.personalDetails.name.split(' ')[0]}</p>
-                <p className="text-xs font-black text-gray-900">My Profile</p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[var(--color-primary)] font-bold text-sm group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all shadow-sm">
+              <span className="font-bold text-gray-700 hidden sm:block">{STUDENT_PROFILE.personalDetails.name}</span>
+              <div className="w-12 h-12 rounded-full bg-[#ffe7d7] flex items-center justify-center text-[#ff7a21] font-bold text-lg border-2 border-white shadow-sm transition-transform group-hover:scale-105">
                 {getInitials(STUDENT_PROFILE.personalDetails.name)}
               </div>
             </div>
